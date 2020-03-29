@@ -1,0 +1,85 @@
+package com.upc.monitoringwalkers.ui.doctor.addPacient
+
+import android.os.Bundle
+import com.upc.monitoringwalkers.R
+import com.upc.monitoringwalkers.common.onTextChanged
+import com.upc.monitoringwalkers.common.shortToast
+import com.upc.monitoringwalkers.common.showGeneralError
+import com.upc.monitoringwalkers.model.getCurrentUserPreferenceObjectJson
+import com.upc.monitoringwalkers.registerTherapistPresenter
+import com.upc.monitoringwalkers.ui.base.BaseActivity
+import com.upc.monitoringwalkers.ui.doctor.addPacient.view.AddTherapistView
+import kotlinx.android.synthetic.main.activity_add_therapist.*
+
+class AddTherapistActivity : BaseActivity(), AddTherapistView {
+
+    private val presenter by lazy { registerTherapistPresenter() }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_add_therapist)
+        presenter.setView(this)
+        initUi()
+    }
+
+    private fun initUi() {
+
+        register_therapist_email_edit.onTextChanged {
+            presenter.onEmailChanged(it!!)
+        }
+
+        register_therapist_speciality_edit.onTextChanged {
+            presenter.onEmailChanged(it!!)
+        }
+
+        register_therapist_password_edit.onTextChanged {
+            presenter.onPasswordChanged(it!!)
+        }
+
+        register_therapist_confirm_password_edit.onTextChanged {
+            presenter.onRepeatPasswordChanged(it!!)
+        }
+
+        register_therapist_name_edit.onTextChanged {
+            presenter.onNameChanged(it!!)
+        }
+
+        register_therapist_last_name_edit.onTextChanged {
+            presenter.onLastNameChanged(it!!)
+        }
+
+        material_therapist_button_register.setOnClickListener {
+            showLoadingDialog()
+            val doctor = getCurrentUserPreferenceObjectJson(this)
+            presenter.onRegisterClicked(doctor.id)
+        }
+
+        supportActionBar!!.setTitle(R.string.add_patient)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+    }
+
+    override fun onRegisterSuccess() {
+        hideLoadingDialog()
+        onBackPressed()
+        shortToast(this, "Registro terapeuta exitoso")
+    }
+
+    override fun showSignUpError() {
+        hideLoadingDialog()
+        showGeneralError(this)
+    }
+
+    override fun showEmailError() {
+        register_therapist_email_edit.error = getString(R.string.email_error)
+    }
+
+    override fun showPasswordError() {
+        register_therapist_password_edit.error = getString(R.string.password_error)
+    }
+
+    override fun showPasswordMatchingError() {
+        register_therapist_confirm_password_edit.error = getString(R.string.password_error)
+    }
+
+}

@@ -2,8 +2,23 @@ package com.upc.monitoringwalkers.firebase.database
 
 import com.upc.monitoringwalkers.model.DoctorEntity
 import com.upc.monitoringwalkers.model.PatientEntity
+import com.upc.monitoringwalkers.model.TherapistEntity
 
 interface FirebaseDatabaseInterface {
+
+    /**
+     * Create a Doctor instance to save into database.
+     *
+     * @param doctorEntity Doctor instance to add into the FirebaseDatabase
+     */
+    fun createDoctor(doctorEntity: DoctorEntity)
+
+    /**
+     * Create a Therapist instance to save into database.
+     *
+     * @param therapistEntity Therapist instance to add into the FirebaseDatabase
+     */
+    fun createTherapist(therapistEntity: TherapistEntity)
 
     /**
      * Create a Patient instance to save into database.
@@ -13,11 +28,12 @@ interface FirebaseDatabaseInterface {
     fun createPatient(patientEntity: PatientEntity)
 
     /**
-     * Create a Doctor instance to save into database.
+     * Get all the doctor data from the database and parse into an DoctorEntity object.
      *
-     * @param doctorEntity Doctor instance to add into the FirebaseDatabase
+     * @param id Doctor identifier in string
+     * @param onResult Callback that is call when the method is finished
      */
-    fun createDoctor(doctorEntity: DoctorEntity)
+    fun getDoctorProfile(id: String, onResult: (DoctorEntity) -> Unit)
 
     /**
      * Get all the patient data from the database and parse into an PatientEntity object.
@@ -28,12 +44,12 @@ interface FirebaseDatabaseInterface {
     fun getPatientProfile(id: String, onResult: (PatientEntity) -> Unit)
 
     /**
-     * Get all the doctor data from the database and parse into an DoctorEntity object.
+     * Get all the therapist data from the database and parse into an TherapistEntity object.
      *
-     * @param id Doctor identifier in string
+     * @param id Therapist identifier in string
      * @param onResult Callback that is call when the method is finished
      */
-    fun getDoctorProfile(id: String, onResult: (DoctorEntity) -> Unit)
+    fun getTherapistProfile(id: String, onResult: (TherapistEntity) -> Unit)
 
     /**
      * Get the user from FirebaseDatabase type given the identifier
@@ -49,6 +65,14 @@ interface FirebaseDatabaseInterface {
      * @param onResult Callback that is call when the result is given from the FirebaseDatabase
      */
     fun getAllDoctors(onResult: (List<DoctorEntity>) -> Unit)
+
+    /**
+     * Get the list of therapists given the doctor identifier.
+     *
+     * @param doctorId Doctor unique identifier
+     * @param onResult Callback that is call when the result is given as a list of TherapistEntity
+     */
+    fun getTherapistByDoctor(doctorId: String, onResult: (List<TherapistEntity>) -> Unit)
 
     /**
      * Get the list of patients given the doctor identifier.

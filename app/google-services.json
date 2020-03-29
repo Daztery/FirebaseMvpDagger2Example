@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "689114133834",
-    "firebase_url": "https://monitoring-walkers-upc.firebaseio.com",
-    "project_id": "monitoring-walkers-upc",
-    "storage_bucket": "monitoring-walkers-upc.appspot.com"
+    "project_number": "271758393836",
+    "firebase_url": "https://monitoring-walkers.firebaseio.com",
+    "project_id": "monitoring-walkers",
+    "storage_bucket": "monitoring-walkers.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:689114133834:android:de4a39ef0df798f3",
+        "mobilesdk_app_id": "1:271758393836:android:93a3804e3e7419746480c9",
         "android_client_info": {
           "package_name": "com.upc.monitoringwalkers"
         }
       },
       "oauth_client": [
         {
-          "client_id": "689114133834-u4hkpugc18iv8c8op58rtaaknljfm8po.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.upc.monitoringwalkers",
-            "certificate_hash": "02df166bb753b446e093b44c14d6e267dd68de57"
-          }
-        },
-        {
-          "client_id": "689114133834-1n7585epp73oeudcb1eeic61mo7kl105.apps.googleusercontent.com",
+          "client_id": "271758393836-eqet3olo2go9ea4c470logea1hofr5se.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCwN4UfxlAEzvFVAyYldFVO5YxS9BYrtdY"
+          "current_key": "AIzaSyAVe8aWhOevabuKi_J4rHLyc5q6Zkg0e48"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "689114133834-1n7585epp73oeudcb1eeic61mo7kl105.apps.googleusercontent.com",
+              "client_id": "271758393836-eqet3olo2go9ea4c470logea1hofr5se.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

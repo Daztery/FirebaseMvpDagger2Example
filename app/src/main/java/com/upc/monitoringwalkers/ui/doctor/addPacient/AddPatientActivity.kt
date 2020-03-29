@@ -6,14 +6,14 @@ import com.upc.monitoringwalkers.common.onTextChanged
 import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.common.showGeneralError
 import com.upc.monitoringwalkers.model.getCurrentUserPreferenceObjectJson
-import com.upc.monitoringwalkers.registerPresenter
+import com.upc.monitoringwalkers.registerPatientPresenter
 import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.doctor.addPacient.view.AddPatientView
 import kotlinx.android.synthetic.main.activity_add_patient.*
 
 class AddPatientActivity : BaseActivity(), AddPatientView {
 
-    private val presenter by lazy { registerPresenter() }
+    private val presenter by lazy { registerPatientPresenter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +54,12 @@ class AddPatientActivity : BaseActivity(), AddPatientView {
         }
 
 
-        affection_radio_group.setOnCheckedChangeListener { radioGroup, i ->
+        affection_patient_radio_group.setOnCheckedChangeListener { radioGroup, i ->
 
         }
 
 
-        material_button_register.setOnClickListener {
+        material_patient_button_register.setOnClickListener {
             showLoadingDialog()
             val doctor = getCurrentUserPreferenceObjectJson(this)
             presenter.onRegisterClicked(doctor.id)

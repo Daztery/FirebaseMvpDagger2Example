@@ -5,6 +5,7 @@ import com.upc.monitoringwalkers.ui.admin.addDoctor.presenter.AddDoctorPresenter
 import com.upc.monitoringwalkers.ui.admin.detailDoctor.presenter.DetailDoctorPresenter
 import com.upc.monitoringwalkers.ui.admin.listDoctors.presenter.ListDoctorsPresenter
 import com.upc.monitoringwalkers.ui.doctor.addPacient.presenter.AddPatientPresenter
+import com.upc.monitoringwalkers.ui.doctor.addPacient.presenter.AddTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.listPatients.presenter.ListPatientsPresenter
 import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenter
 import com.upc.monitoringwalkers.ui.patients.profile.presenter.PatientProfilePresenter
@@ -19,13 +20,19 @@ interface AppComponent {
 
     fun loginPresenter(): LoginPresenter
 
-    fun registerPresenter(): AddPatientPresenter
+    fun registerPatientPresenter(): AddPatientPresenter
+
+    fun registerTherapistPresenter(): AddTherapistPresenter
 
     fun splashPresenter(): SplashPresenter
 
     fun addDoctorPresenter(): AddDoctorPresenter
 
     fun listDoctorsPresenter(): ListDoctorsPresenter
+
+    fun therapistProfilePresenter(): AddTherapistPresenter
+
+    fun listTherapistPresenter(): ListDoctorsPresenter
 
     fun patientProfilePresenter(): PatientProfilePresenter
 

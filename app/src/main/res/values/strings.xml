@@ -36,4 +36,8 @@
     <string name="warning_title">Cuidado!</string>
     <string name="warning_message">Estas seguro que deseas eliminar?</string>
     <string name="detail_doctor">Detalle doctor</string>
+    <string name="register_hint_speciality">Especialidad</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
