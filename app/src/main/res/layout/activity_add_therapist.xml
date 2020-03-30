@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.doctor.addPacient.AddPatientActivity">
+        tools:context=".ui.doctor.addTherapist.AddTherapistActivity">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/register_therapist_name_text_field"

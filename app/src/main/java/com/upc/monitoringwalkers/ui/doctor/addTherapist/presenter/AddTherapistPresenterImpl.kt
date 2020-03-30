@@ -1,4 +1,4 @@
-package com.upc.monitoringwalkers.ui.doctor.addPacient.presenter
+package com.upc.monitoringwalkers.ui.doctor.addTherapist.presenter
 
 import com.upc.monitoringwalkers.common.arePasswordsSame
 import com.upc.monitoringwalkers.common.isEmailValid
@@ -7,7 +7,7 @@ import com.upc.monitoringwalkers.firebase.authentication.FirebaseAuthenticationI
 import com.upc.monitoringwalkers.firebase.database.FirebaseDatabaseInterface
 import com.upc.monitoringwalkers.model.RegisterTherapistModel
 import com.upc.monitoringwalkers.model.TherapistEntity
-import com.upc.monitoringwalkers.ui.doctor.addPacient.view.AddTherapistView
+import com.upc.monitoringwalkers.ui.doctor.addTherapist.view.AddTherapistView
 import javax.inject.Inject
 
 class AddTherapistPresenterImpl @Inject constructor(

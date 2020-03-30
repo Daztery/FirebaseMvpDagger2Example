@@ -8,6 +8,7 @@ import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.splashPresenter
 import com.upc.monitoringwalkers.ui.admin.listDoctors.ListDoctorsActivity
 import com.upc.monitoringwalkers.ui.base.BaseActivity
+import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.ChoosePatientOrTherapistActivity
 import com.upc.monitoringwalkers.ui.doctor.listPatients.ListPatientsActivity
 import com.upc.monitoringwalkers.ui.login.LoginActivity
 import com.upc.monitoringwalkers.ui.patients.profile.PatientProfileActivity
@@ -33,7 +34,7 @@ class SplashActivity : BaseActivity(), SplashView {
     }
 
     override fun onCurrentUserIsDoctor() {
-        startActivity(Intent(this, ListPatientsActivity::class.java))
+        startActivity(Intent(this, ChoosePatientOrTherapistActivity::class.java))
         shortToast(this, "Usuario doctor")
         finish()
     }

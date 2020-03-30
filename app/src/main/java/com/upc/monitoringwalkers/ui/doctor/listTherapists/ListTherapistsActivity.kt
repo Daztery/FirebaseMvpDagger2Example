@@ -1,31 +1,30 @@
-package com.upc.monitoringwalkers.ui.doctor.listPatients
+package com.upc.monitoringwalkers.ui.doctor.listTherapists
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.upc.monitoringwalkers.R
-import com.upc.monitoringwalkers.listPatientsPresenter
+import com.upc.monitoringwalkers.listTherapistsPresenter
 import com.upc.monitoringwalkers.model.MWCurrentUser
-import com.upc.monitoringwalkers.model.PatientEntity
+import com.upc.monitoringwalkers.model.TherapistEntity
 import com.upc.monitoringwalkers.model.getCurrentUserPreferenceObjectJson
-import com.upc.monitoringwalkers.model.setCurrentUserPreferenceObject
 import com.upc.monitoringwalkers.ui.base.BaseActivity
-import com.upc.monitoringwalkers.ui.doctor.addPacient.AddPatientActivity
-import com.upc.monitoringwalkers.ui.doctor.listPatients.view.ListPatientsView
-import com.upc.monitoringwalkers.ui.login.LoginActivity
-import kotlinx.android.synthetic.main.activity_list_patients.*
-import kotlinx.android.synthetic.main.content_list_patients.*
+import com.upc.monitoringwalkers.ui.doctor.addTherapist.AddTherapistActivity
+import com.upc.monitoringwalkers.ui.doctor.listTherapists.view.ListTherapistsView
+import kotlinx.android.synthetic.main.activity_list_therapists.*
+import kotlinx.android.synthetic.main.content_list_therapists.*
 
-class ListPatientsActivity : BaseActivity(), ListPatientsView {
+class ListTherapistsActivity : BaseActivity(), ListTherapistsView {
 
-    private val presenter by lazy { listPatientsPresenter() }
-    private val adapter by lazy { PatientAdapter(presenter::onDeleteButtonClicked) }
+    private val presenter by lazy { listTherapistsPresenter() }
+    private val adapter by lazy { TherapistAdapter(presenter::onDeleteButtonClicked) }
     private lateinit var currentUser: MWCurrentUser
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list_patients)
+        setContentView(R.layout.activity_list_therapists)
         setSupportActionBar(toolbar)
         presenter.setView(this)
         initUi()
@@ -33,39 +32,32 @@ class ListPatientsActivity : BaseActivity(), ListPatientsView {
 
     private fun initUi() {
         currentUser = getCurrentUserPreferenceObjectJson(this)
-        patient_list_recycler_view.layoutManager = LinearLayoutManager(this)
-        patient_list_recycler_view.setHasFixedSize(true)
-        patient_list_recycler_view.adapter = adapter
+        therapist_list_recycler_view.layoutManager = LinearLayoutManager(this)
+        therapist_list_recycler_view.setHasFixedSize(true)
+        therapist_list_recycler_view.adapter = adapter
         presenter.viewReady(currentUser.id)
-        fab.setOnClickListener { view ->
-            startActivity(Intent(this, AddPatientActivity::class.java))
+        fab.setOnClickListener {
+            startActivity(Intent(this, AddTherapistActivity::class.java))
         }
-        list_patient_logout_btn.setOnClickListener {
-            presenter.logout()
-        }
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun showNoDataDescription() {
-        patientNoItems.visibility = View.VISIBLE
+        therapistNoItems.visibility = View.VISIBLE
     }
 
     override fun hideNoDataDescription() {
-        patientNoItems.visibility = View.GONE
+        therapistNoItems.visibility = View.GONE
     }
 
-    override fun addPatient(patientEntity: PatientEntity) {
-        adapter.addPatient(patientEntity)
-        patientNoItems.visibility = if (adapter.itemCount != 0) View.INVISIBLE else View.VISIBLE
+    override fun addTherapist(therapistEntity: TherapistEntity) {
+        adapter.addTherapist(therapistEntity)
+        therapistNoItems.visibility = if (adapter.itemCount != 0) View.INVISIBLE else View.VISIBLE
     }
 
-    override fun deletePatient(patientEntity: PatientEntity) {
-        adapter.removePatient(patientEntity)
+    override fun deleteTherapist(therapistEntity: TherapistEntity) {
+        adapter.removeTherapist(therapistEntity)
     }
 
-    override fun logoutSuccess() {
-        setCurrentUserPreferenceObject(this, MWCurrentUser())
-        finish()
-        startActivity(Intent(this, LoginActivity::class.java))
-    }
 
 }

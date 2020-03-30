@@ -11,6 +11,7 @@ import com.upc.monitoringwalkers.model.MWCurrentUser
 import com.upc.monitoringwalkers.model.setCurrentUserPreferenceObject
 import com.upc.monitoringwalkers.ui.admin.listDoctors.ListDoctorsActivity
 import com.upc.monitoringwalkers.ui.base.BaseActivity
+import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.ChoosePatientOrTherapistActivity
 import com.upc.monitoringwalkers.ui.doctor.listPatients.ListPatientsActivity
 import com.upc.monitoringwalkers.ui.login.view.LoginView
 import com.upc.monitoringwalkers.ui.patients.profile.PatientProfileActivity
@@ -76,7 +77,7 @@ class LoginActivity : BaseActivity(), LoginView {
     }
 
     override fun onCurrentUserIsDoctor() {
-        startActivity(Intent(this, ListPatientsActivity::class.java))
+        startActivity(Intent(this, ChoosePatientOrTherapistActivity::class.java))
         shortToast(this, "Usuario doctor")
         finish()
     }

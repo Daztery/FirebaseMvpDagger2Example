@@ -1,4 +1,4 @@
-package com.upc.monitoringwalkers.ui.doctor.addPacient.view
+package com.upc.monitoringwalkers.ui.doctor.addTherapist.view
 
 interface AddTherapistView {
 

@@ -12,5 +12,4 @@ interface ListPatientsView {
 
     fun deletePatient(patientEntity: PatientEntity)
 
-    fun logoutSuccess()
 }

@@ -1,4 +1,4 @@
-package com.upc.monitoringwalkers.ui.doctor.addPacient
+package com.upc.monitoringwalkers.ui.doctor.addTherapist
 
 import android.os.Bundle
 import com.upc.monitoringwalkers.R
@@ -8,7 +8,7 @@ import com.upc.monitoringwalkers.common.showGeneralError
 import com.upc.monitoringwalkers.model.getCurrentUserPreferenceObjectJson
 import com.upc.monitoringwalkers.registerTherapistPresenter
 import com.upc.monitoringwalkers.ui.base.BaseActivity
-import com.upc.monitoringwalkers.ui.doctor.addPacient.view.AddTherapistView
+import com.upc.monitoringwalkers.ui.doctor.addTherapist.view.AddTherapistView
 import kotlinx.android.synthetic.main.activity_add_therapist.*
 
 class AddTherapistActivity : BaseActivity(), AddTherapistView {
@@ -29,7 +29,7 @@ class AddTherapistActivity : BaseActivity(), AddTherapistView {
         }
 
         register_therapist_speciality_edit.onTextChanged {
-            presenter.onEmailChanged(it!!)
+            presenter.onSpecialityChanged(it!!)
         }
 
         register_therapist_password_edit.onTextChanged {

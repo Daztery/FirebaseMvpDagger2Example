@@ -37,12 +37,10 @@ class ListPatientsActivity : BaseActivity(), ListPatientsView {
         patient_list_recycler_view.setHasFixedSize(true)
         patient_list_recycler_view.adapter = adapter
         presenter.viewReady(currentUser.id)
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {
             startActivity(Intent(this, AddPatientActivity::class.java))
         }
-        list_patient_logout_btn.setOnClickListener {
-            presenter.logout()
-        }
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun showNoDataDescription() {
@@ -62,10 +60,5 @@ class ListPatientsActivity : BaseActivity(), ListPatientsView {
         adapter.removePatient(patientEntity)
     }
 
-    override fun logoutSuccess() {
-        setCurrentUserPreferenceObject(this, MWCurrentUser())
-        finish()
-        startActivity(Intent(this, LoginActivity::class.java))
-    }
 
 }

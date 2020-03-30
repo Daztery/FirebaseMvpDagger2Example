@@ -8,10 +8,15 @@ import com.upc.monitoringwalkers.ui.admin.listDoctors.presenter.ListDoctorsPrese
 import com.upc.monitoringwalkers.ui.admin.listDoctors.presenter.ListDoctorsPresenterImpl
 import com.upc.monitoringwalkers.ui.doctor.addPacient.presenter.AddPatientPresenter
 import com.upc.monitoringwalkers.ui.doctor.addPacient.presenter.AddPatientPresenterImpl
-import com.upc.monitoringwalkers.ui.doctor.addPacient.presenter.AddTherapistPresenter
-import com.upc.monitoringwalkers.ui.doctor.addPacient.presenter.AddTherapistPresenterImpl
+import com.upc.monitoringwalkers.ui.doctor.addTherapist.presenter.AddTherapistPresenter
+import com.upc.monitoringwalkers.ui.doctor.addTherapist.presenter.AddTherapistPresenterImpl
+import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.presenter.ChoosePatientOrTherapistPresenter
+import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.presenter.ChoosePatientOrTherapistPresenterImpl
+import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.presenter.ChoosePatientOrTherapistPresenterImpl_Factory
 import com.upc.monitoringwalkers.ui.doctor.listPatients.presenter.ListPatientsPresenter
 import com.upc.monitoringwalkers.ui.doctor.listPatients.presenter.ListPatientsPresenterImpl
+import com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter.ListTherapistsPresenter
+import com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter.ListTherapistsPresenterImpl
 import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenter
 import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenterImpl
 import com.upc.monitoringwalkers.ui.patients.profile.presenter.PatientProfilePresenter
@@ -44,7 +49,10 @@ abstract class PresentationModule {
     abstract fun addTherapistPresenter(addTherapistPresenter: AddTherapistPresenterImpl): AddTherapistPresenter
 
     @Binds
-    abstract fun listTherapistPresenter(listTherapistPresenter: ListTherapistPresenterImpl): ListTherapistPresenter
+    abstract fun listTherapistPresenter(listTherapistPresenter: ListTherapistsPresenterImpl): ListTherapistsPresenter
+
+    @Binds
+    abstract fun choosePatientOrTherapistPresenter(choosePatientOrTherapistPresenter: ChoosePatientOrTherapistPresenterImpl): ChoosePatientOrTherapistPresenter
 
     @Binds
     abstract fun patientProfilePresenter(patientProfilePresenter: PatientProfilePresenterImpl): PatientProfilePresenter

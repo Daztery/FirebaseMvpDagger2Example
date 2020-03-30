@@ -1,16 +1,15 @@
-package com.upc.monitoringwalkers.ui.doctor.listPatients.view
+package com.upc.monitoringwalkers.ui.doctor.listTherapists.view
 
-import com.upc.monitoringwalkers.model.PatientEntity
+import com.upc.monitoringwalkers.model.TherapistEntity
 
-interface ListPatientsView {
+interface ListTherapistsView {
 
     fun showNoDataDescription()
 
     fun hideNoDataDescription()
 
-    fun addPatient(patientEntity: PatientEntity)
+    fun addTherapist(therapistEntity: TherapistEntity)
 
-    fun deletePatient(patientEntity: PatientEntity)
+    fun deleteTherapist(therapistEntity: TherapistEntity)
 
-    fun logoutSuccess()
 }

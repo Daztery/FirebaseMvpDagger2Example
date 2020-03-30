@@ -7,7 +7,6 @@ import com.upc.monitoringwalkers.ui.doctor.listPatients.view.ListPatientsView
 import javax.inject.Inject
 
 class ListPatientsPresenterImpl @Inject constructor(
-    private val authentication: FirebaseAuthenticationInterface,
     private val databaseInterface: FirebaseDatabaseInterface
 ) : ListPatientsPresenter {
 
@@ -17,7 +16,6 @@ class ListPatientsPresenterImpl @Inject constructor(
         this.view = view
     }
 
-
     override fun viewReady(doctorId: String) {
         listAllPatientByDoctor(doctorId)
     }
@@ -25,12 +23,6 @@ class ListPatientsPresenterImpl @Inject constructor(
     override fun listAllPatientByDoctor(doctorId: String) {
         databaseInterface.listenToPatientByDoctor(doctorId) {
             view.addPatient(it)
-        }
-    }
-
-    override fun logout() {
-        authentication.logout {
-            view.logoutSuccess()
         }
     }
 

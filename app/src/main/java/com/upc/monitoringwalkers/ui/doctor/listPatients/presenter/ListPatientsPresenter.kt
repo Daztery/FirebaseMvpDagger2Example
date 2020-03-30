@@ -10,7 +10,5 @@ interface ListPatientsPresenter : BasePresenter<ListPatientsView> {
 
     fun listAllPatientByDoctor(doctorId: String)
 
-    fun logout()
-
     fun onDeleteButtonClicked(patientEntity: PatientEntity)
 }

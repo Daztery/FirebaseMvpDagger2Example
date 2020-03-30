@@ -23,10 +23,12 @@
     <string name="logout_btn_text">Cerrar sesion</string>
     <string name="welcome_txt">Bienvenido</string>
     <string name="title_activity_list_patients">ListPatientsActivity</string>
+    <string name="title_activity_list_therapists">ListTherapistsActivity</string>
     <string name="please_wait_txt">Espere por favor</string>
     <string name="loading_txt">Cargando...</string>
     <string name="forgot_password">Olvidaste tu contraseña?</string>
     <string name="patients">Mis pacientes</string>
+    <string name="therapist">Mis terapeutas</string>
     <string name="doctors">Doctores</string>
     <string name="add_patient">Agregar paciente</string>
     <string name="add_doctor">Agregar doctor</string>

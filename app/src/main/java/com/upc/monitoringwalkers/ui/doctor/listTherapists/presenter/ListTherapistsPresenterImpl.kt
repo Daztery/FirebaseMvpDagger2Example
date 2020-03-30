@@ -1,42 +1,36 @@
-package com.upc.monitoringwalkers.ui.doctor.listPatients.presenter
+package com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter
 
 import com.upc.monitoringwalkers.firebase.authentication.FirebaseAuthenticationInterface
 import com.upc.monitoringwalkers.firebase.database.FirebaseDatabaseInterface
-import com.upc.monitoringwalkers.model.PatientEntity
-import com.upc.monitoringwalkers.ui.doctor.listPatients.view.ListPatientsView
+import com.upc.monitoringwalkers.model.TherapistEntity
+import com.upc.monitoringwalkers.ui.doctor.listTherapists.view.ListTherapistsView
 import javax.inject.Inject
 
-class ListPatientsPresenterImpl @Inject constructor(
-    private val authentication: FirebaseAuthenticationInterface,
+class ListTherapistsPresenterImpl @Inject constructor(
     private val databaseInterface: FirebaseDatabaseInterface
-) : ListPatientsPresenter {
+) : ListTherapistsPresenter {
 
-    private lateinit var view: ListPatientsView
+    private lateinit var view: ListTherapistsView
 
-    override fun setView(view: ListPatientsView) {
+    override fun setView(view: ListTherapistsView) {
         this.view = view
     }
 
 
     override fun viewReady(doctorId: String) {
-        listAllPatientByDoctor(doctorId)
+        listAllTherapistByDoctor(doctorId)
     }
 
-    override fun listAllPatientByDoctor(doctorId: String) {
-        databaseInterface.listenToPatientByDoctor(doctorId) {
-            view.addPatient(it)
+    override fun listAllTherapistByDoctor(doctorId: String) {
+        databaseInterface.listenToTherapistByDoctor(doctorId) {
+            view.addTherapist(it)
         }
     }
 
-    override fun logout() {
-        authentication.logout {
-            view.logoutSuccess()
-        }
-    }
 
-    override fun onDeleteButtonClicked(patientEntity: PatientEntity) {
-        databaseInterface.deleteUser(patientEntity.id) {
-            view.deletePatient(patientEntity)
+    override fun onDeleteButtonClicked(therapistEntity: TherapistEntity) {
+        databaseInterface.deleteUser(therapistEntity.id) {
+            view.deleteTherapist(therapistEntity)
         }
     }
 }

@@ -1,16 +1,14 @@
-package com.upc.monitoringwalkers.ui.doctor.listPatients.presenter
-
-import com.upc.monitoringwalkers.model.PatientEntity
+package com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter
+import com.upc.monitoringwalkers.model.TherapistEntity
 import com.upc.monitoringwalkers.ui.base.BasePresenter
-import com.upc.monitoringwalkers.ui.doctor.listPatients.view.ListPatientsView
+import com.upc.monitoringwalkers.ui.doctor.listTherapists.view.ListTherapistsView
 
-interface ListPatientsPresenter : BasePresenter<ListPatientsView> {
+interface ListTherapistsPresenter : BasePresenter<ListTherapistsView> {
 
     fun viewReady(doctorId: String)
 
-    fun listAllPatientByDoctor(doctorId: String)
+    fun listAllTherapistByDoctor(doctorId: String)
 
-    fun logout()
 
-    fun onDeleteButtonClicked(patientEntity: PatientEntity)
+    fun onDeleteButtonClicked(therapistEntity: TherapistEntity)
 }

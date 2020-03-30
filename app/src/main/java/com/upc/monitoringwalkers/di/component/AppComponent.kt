@@ -5,8 +5,10 @@ import com.upc.monitoringwalkers.ui.admin.addDoctor.presenter.AddDoctorPresenter
 import com.upc.monitoringwalkers.ui.admin.detailDoctor.presenter.DetailDoctorPresenter
 import com.upc.monitoringwalkers.ui.admin.listDoctors.presenter.ListDoctorsPresenter
 import com.upc.monitoringwalkers.ui.doctor.addPacient.presenter.AddPatientPresenter
-import com.upc.monitoringwalkers.ui.doctor.addPacient.presenter.AddTherapistPresenter
+import com.upc.monitoringwalkers.ui.doctor.addTherapist.presenter.AddTherapistPresenter
+import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.presenter.ChoosePatientOrTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.listPatients.presenter.ListPatientsPresenter
+import com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter.ListTherapistsPresenter
 import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenter
 import com.upc.monitoringwalkers.ui.patients.profile.presenter.PatientProfilePresenter
 import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresenter
@@ -30,9 +32,9 @@ interface AppComponent {
 
     fun listDoctorsPresenter(): ListDoctorsPresenter
 
-    fun therapistProfilePresenter(): AddTherapistPresenter
+    fun therapistProfilePresenter(): AddTherapistPresenter //TODO change and create profile
 
-    fun listTherapistPresenter(): ListDoctorsPresenter
+    fun listTherapistPresenter(): ListTherapistsPresenter
 
     fun patientProfilePresenter(): PatientProfilePresenter
 
@@ -41,4 +43,7 @@ interface AppComponent {
     fun resetPasswordPresenter(): ResetPasswordPresenter
 
     fun detailDoctorPresenter(): DetailDoctorPresenter
+
+    fun choosePatientOrTherapistPresenter(): ChoosePatientOrTherapistPresenter
+
 }
