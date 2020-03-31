@@ -2,6 +2,7 @@ package com.upc.monitoringwalkers.model
 
 import android.os.Bundle
 
+
 data class TherapistEntity(
     var id: String = "",
     var name: String = "",
@@ -30,4 +31,4 @@ data class TherapistEntity(
 fun TherapistEntity.mapToTherapist() = TherapistEntity(id, name, lastName, email, type, specialty, doctorId)
 fun TherapistEntity.isValid() = name.isNotBlank()
         && email.isNotBlank()
-        && type.toString().isNotBlank()
+        && type.toString().isNotBlank() && type == UserType.THERAPIST

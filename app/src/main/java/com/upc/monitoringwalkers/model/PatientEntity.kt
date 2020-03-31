@@ -34,4 +34,4 @@ fun PatientEntity.mapToPatient() =
     PatientEntity(id, name, lastName, email, type, age, treatment, weight, affectation, doctorId)
 fun PatientEntity.isValid() = name.isNotBlank()
         && email.isNotBlank()
-        && type.toString().isNotBlank()
+        && type.toString().isNotBlank() && type == UserType.PATIENT

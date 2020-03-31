@@ -7,6 +7,8 @@ import javax.inject.Inject
 
 private const val KEY_USER = "user"
 private const val KEY_TYPE_USER = "type"
+private const val KEY_THERAPIST = "THERAPIST"
+private const val KEY_PATIENT = "PATIENT"
 private const val KEY_DOCTOR = "DOCTOR"
 
 
