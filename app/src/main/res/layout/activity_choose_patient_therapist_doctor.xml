@@ -29,6 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:layout_marginLeft="5px"
                 android:background="@drawable/ic_exit_to_app_black_24dp"
                 android:contentDescription="@string/logout" />
 

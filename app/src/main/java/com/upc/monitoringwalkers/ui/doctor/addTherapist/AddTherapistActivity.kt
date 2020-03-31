@@ -54,7 +54,7 @@ class AddTherapistActivity : BaseActivity(), AddTherapistView {
             presenter.onRegisterClicked(doctor.id)
         }
 
-        supportActionBar!!.setTitle(R.string.add_patient)
+        supportActionBar!!.setTitle(R.string.add_therapist)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
     }

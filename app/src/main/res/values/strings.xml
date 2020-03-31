@@ -16,7 +16,7 @@
     <string name="password_error">Contraseña invalida</string>
     <string name="error_title">Error</string>
     <string name="error_message">Ha ocurrido un error inesperado</string>
-    <string name="accept_button_text">Ok</string>
+    <string name="accept_button_text">OK</string>
     <string name="title_activity_list_doctors">ListDoctorsActivity</string>
     <string name="no_items_text">No hay elementos disponibles</string>
     <string name="logout">Logout</string>
@@ -25,11 +25,12 @@
     <string name="title_activity_list_patients">ListPatientsActivity</string>
     <string name="title_activity_list_therapists">ListTherapistsActivity</string>
     <string name="please_wait_txt">Espere por favor</string>
-    <string name="loading_txt">Cargando...</string>
-    <string name="forgot_password">Olvidaste tu contraseña?</string>
+    <string name="loading_txt">Cargando…</string>
+    <string name="forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="patients">Mis pacientes</string>
     <string name="therapist">Mis terapeutas</string>
     <string name="doctors">Doctores</string>
+    <string name="add_therapist">Agregar terapeuta</string>
     <string name="add_patient">Agregar paciente</string>
     <string name="add_doctor">Agregar doctor</string>
     <string name="register_weight_age">Peso</string>
