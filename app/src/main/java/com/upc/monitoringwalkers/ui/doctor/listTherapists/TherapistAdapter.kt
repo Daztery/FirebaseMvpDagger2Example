@@ -1,6 +1,7 @@
 package com.upc.monitoringwalkers.ui.doctor.listTherapists
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.upc.monitoringwalkers.R
 import com.upc.monitoringwalkers.common.showDeleteAdvertice
 import com.upc.monitoringwalkers.model.TherapistEntity
+import com.upc.monitoringwalkers.ui.doctor.detailTherapist.DetailTherapistActivity
 import kotlinx.android.synthetic.main.item_therapist.view.*
 
 class TherapistAdapter(private val onDeleteClickHandler: (TherapistEntity) -> Unit) :
@@ -44,13 +46,19 @@ class TherapistHolder(
     private inline val onDeleteClickHandler: (TherapistEntity) -> Unit
 ) : RecyclerView.ViewHolder(itemView) {
     @SuppressLint("SetTextI18n")
-    fun displayData(therapist: TherapistEntity) = with(itemView) {
-        therapistFullName.text = "${therapist.name} ${therapist.lastName}"
-        therapistEmail.text = therapist.email
+    fun displayData(therapistEntity: TherapistEntity) = with(itemView) {
+        therapistFullName.text = "${therapistEntity.name} ${therapistEntity.lastName}"
+        therapistEmail.text = therapistEntity.email
         therapist_delete.setOnClickListener {
             showDeleteAdvertice(context) {
-                onDeleteClickHandler(therapist)
+                onDeleteClickHandler(therapistEntity)
             }
         }
+        container_item_therapist.setOnClickListener {
+            val intent = Intent(context, DetailTherapistActivity::class.java)
+            intent.putExtra("therapistId", therapistEntity.id)
+            context.startActivity(intent)
+        }
+
     }
 }

@@ -5,6 +5,7 @@ import com.upc.monitoringwalkers.R
 import com.upc.monitoringwalkers.common.onTextChanged
 import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.common.showGeneralError
+import com.upc.monitoringwalkers.model.Affectation
 import com.upc.monitoringwalkers.model.getCurrentUserPreferenceObjectJson
 import com.upc.monitoringwalkers.registerPatientPresenter
 import com.upc.monitoringwalkers.ui.base.BaseActivity
@@ -53,14 +54,21 @@ class AddPatientActivity : BaseActivity(), AddPatientView {
             presenter.onWeightChanged(it!!)
         }
 
+        radio_button_low.setOnClickListener {
+            presenter.onAffectionChanged(Affectation.LOW)
+        }
 
-        affection_patient_radio_group.setOnCheckedChangeListener { radioGroup, i ->
+        radio_button_middle.setOnClickListener {
+            presenter.onAffectionChanged(Affectation.MIDDLE)
+        }
 
+        radio_button_high.setOnClickListener {
+            presenter.onAffectionChanged(Affectation.HIGH)
         }
 
 
         material_patient_button_register.setOnClickListener {
-            showLoadingDialog()
+            //showLoadingDialog()
             val doctor = getCurrentUserPreferenceObjectJson(this)
             presenter.onRegisterClicked(doctor.id)
         }

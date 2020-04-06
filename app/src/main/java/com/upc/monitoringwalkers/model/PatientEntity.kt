@@ -12,7 +12,8 @@ data class PatientEntity(
     var treatment: String = "",
     var weight: Int = 0,
     var affectation: Affectation = Affectation.LOW,
-    var doctorId: String = ""
+    var doctorId: String = "",
+    var therapistId: String = ""
 ) {
     companion object {
         fun from(bundle: Bundle): PatientEntity {

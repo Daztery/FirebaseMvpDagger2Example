@@ -15,3 +15,4 @@ fun choosePatientOrTherapistPresenter() = component().choosePatientOrTherapistPr
 fun listTherapistsPresenter() = component().listTherapistPresenter()
 fun resetPasswordPresenter() = component().resetPasswordPresenter()
 fun detailDoctorPresenter() = component().detailDoctorPresenter()
+fun detailTherapistPresenter() = component().detailTherapistPresenter()

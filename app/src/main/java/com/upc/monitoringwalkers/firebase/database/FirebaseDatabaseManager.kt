@@ -103,7 +103,21 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
 
 
     override fun getTherapistProfile(id: String, onResult: (TherapistEntity) -> Unit) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        database.reference.child(KEY_USER).child(id).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val user = snapshot.getValue(TherapistEntity::class.java)
+                if (user?.name != null) {
+                    user.run {
+                        onResult(TherapistEntity(id, name, lastName, email, type, specialty,doctorId))
+                    }
+                } else {
+                    onResult(TherapistEntity())
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) = Unit
+        })
     }
 
     override fun getTherapistByDoctor(doctorId: String, onResult: (List<TherapistEntity>) -> Unit) {
