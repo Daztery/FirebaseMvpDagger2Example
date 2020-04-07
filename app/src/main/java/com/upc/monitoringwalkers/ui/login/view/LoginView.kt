@@ -12,6 +12,8 @@ interface LoginView {
 
     fun onCurrentUserIsPatient()
 
+    fun onCurrentUserIsTherapist()
+
     fun onCurrentUserIsAdmin()
 
 }

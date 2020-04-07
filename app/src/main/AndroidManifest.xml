@@ -13,7 +13,8 @@
         android:theme="@style/AppThemeDoctorPatient"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ui.doctor.detailTherapist.DetailTherapistActivity"></activity>
-        <activity android:name=".ui.therapists.profile.TherapistProfileActivity" />
+        <activity android:name=".ui.therapists.profile.TherapistProfileActivity"
+            android:theme="@style/AppThemeDoctorPatient.NoActionBar"/>
         <activity
             android:name=".ui.doctor.choosePatientOrTherapist.ChoosePatientOrTherapistActivity"
             android:theme="@style/AppThemeDoctorPatient.NoActionBar" />
@@ -31,7 +32,8 @@
             android:name=".ui.doctor.listTherapists.ListTherapistsActivity"
             android:label="@string/title_activity_list_therapists"
             android:theme="@style/AppThemeDoctorPatient.NoActionBar" />
-        <activity android:name=".ui.patients.profile.PatientProfileActivity" />
+        <activity android:name=".ui.patients.profile.PatientProfileActivity"
+            android:theme="@style/AppThemeDoctorPatient.NoActionBar"/>
         <activity
             android:name=".ui.admin.listDoctors.ListDoctorsActivity"
             android:label="@string/title_activity_list_doctors"

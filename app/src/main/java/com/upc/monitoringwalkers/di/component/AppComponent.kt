@@ -9,11 +9,13 @@ import com.upc.monitoringwalkers.ui.doctor.addTherapist.presenter.AddTherapistPr
 import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.presenter.ChoosePatientOrTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.presenter.DetailTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.listPatients.presenter.ListPatientsPresenter
+import com.upc.monitoringwalkers.ui.doctor.listPatientsByTherapist.presenter.ListPatientsByTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter.ListTherapistsPresenter
 import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenter
 import com.upc.monitoringwalkers.ui.patients.profile.presenter.PatientProfilePresenter
 import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresenter
 import com.upc.monitoringwalkers.ui.splash.presenter.SplashPresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.presenter.TherapistProfilePresenter
 import dagger.Component
 import javax.inject.Singleton
 
@@ -33,7 +35,7 @@ interface AppComponent {
 
     fun listDoctorsPresenter(): ListDoctorsPresenter
 
-    fun therapistProfilePresenter(): AddTherapistPresenter //TODO change and create profile
+    fun therapistProfilePresenter(): TherapistProfilePresenter
 
     fun listTherapistPresenter(): ListTherapistsPresenter
 
@@ -48,5 +50,7 @@ interface AppComponent {
     fun detailTherapistPresenter(): DetailTherapistPresenter
 
     fun choosePatientOrTherapistPresenter(): ChoosePatientOrTherapistPresenter
+
+    fun listPatientsByTherapistPresenter(): ListPatientsByTherapistPresenter
 
 }

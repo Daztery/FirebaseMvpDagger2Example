@@ -16,6 +16,7 @@ import com.upc.monitoringwalkers.ui.doctor.listPatients.ListPatientsActivity
 import com.upc.monitoringwalkers.ui.login.view.LoginView
 import com.upc.monitoringwalkers.ui.patients.profile.PatientProfileActivity
 import com.upc.monitoringwalkers.ui.resetPassword.ResetPasswordActivity
+import com.upc.monitoringwalkers.ui.therapists.profile.TherapistProfileActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity(), LoginView {
@@ -57,6 +58,7 @@ class LoginActivity : BaseActivity(), LoginView {
         when (currentUser.type) {
             "DOCTOR" -> onCurrentUserIsDoctor()
             "PATIENT" -> onCurrentUserIsPatient()
+            "THERAPIST" -> onCurrentUserIsTherapist()
             "ADMIN" -> onCurrentUserIsAdmin()
             else -> showGeneralError(this)
         }
@@ -85,6 +87,13 @@ class LoginActivity : BaseActivity(), LoginView {
     override fun onCurrentUserIsPatient() {
         startActivity(Intent(this, PatientProfileActivity::class.java))
         shortToast(this, "Usuario paciente")
+        finish()
+    }
+
+    override fun onCurrentUserIsTherapist() {
+        startActivity(Intent(this, TherapistProfileActivity::class.java))
+        shortToast(this, "Usuario terapeuta")
+        finish()
     }
 
     override fun onCurrentUserIsAdmin() {

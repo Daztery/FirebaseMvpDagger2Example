@@ -1,5 +1,6 @@
 package com.upc.monitoringwalkers.ui.doctor.detailTherapist
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,7 @@ import com.upc.monitoringwalkers.detailTherapistPresenter
 import com.upc.monitoringwalkers.model.TherapistEntity
 import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.view.DetailTherapistView
+import com.upc.monitoringwalkers.ui.doctor.listPatientsByTherapist.ListPatientsByTherapistActivity
 import com.upc.monitoringwalkers.ui.therapists.profile.view.TherapistProfileView
 import kotlinx.android.synthetic.main.activity_detail_therapist.*
 
@@ -31,6 +33,12 @@ class DetailTherapistActivity : BaseActivity(),DetailTherapistView {
         presenter.fetchTherapistProfile(therapistId)
         supportActionBar!!.setTitle(R.string.detail_therapist)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        detail_therapist_add_patients.setOnClickListener {
+            startActivity(Intent(this, ListPatientsByTherapistActivity::class.java))
+        }
+        detail_therapist_see_patients.setOnClickListener {
+            startActivity(Intent(this, ListPatientsByTherapistActivity::class.java))
+        }
     }
 
     override fun onFetchTherapistProfileSuccess(therapistEntity: TherapistEntity) {

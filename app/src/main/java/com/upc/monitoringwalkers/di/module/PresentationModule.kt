@@ -12,11 +12,12 @@ import com.upc.monitoringwalkers.ui.doctor.addTherapist.presenter.AddTherapistPr
 import com.upc.monitoringwalkers.ui.doctor.addTherapist.presenter.AddTherapistPresenterImpl
 import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.presenter.ChoosePatientOrTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.presenter.ChoosePatientOrTherapistPresenterImpl
-import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.presenter.ChoosePatientOrTherapistPresenterImpl_Factory
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.presenter.DetailTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.presenter.DetailTherapistPresenterImpl
 import com.upc.monitoringwalkers.ui.doctor.listPatients.presenter.ListPatientsPresenter
 import com.upc.monitoringwalkers.ui.doctor.listPatients.presenter.ListPatientsPresenterImpl
+import com.upc.monitoringwalkers.ui.doctor.listPatientsByTherapist.presenter.ListPatientsByTheparistPresenterImpl
+import com.upc.monitoringwalkers.ui.doctor.listPatientsByTherapist.presenter.ListPatientsByTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter.ListTherapistsPresenter
 import com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter.ListTherapistsPresenterImpl
 import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenter
@@ -27,6 +28,8 @@ import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresent
 import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresenterImpl
 import com.upc.monitoringwalkers.ui.splash.presenter.SplashPresenter
 import com.upc.monitoringwalkers.ui.splash.presenter.SplashPresenterImpl
+import com.upc.monitoringwalkers.ui.therapists.profile.presenter.TherapistProfilePresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.presenter.TherapistProfilePresenterImpl
 import dagger.Binds
 import dagger.Module
 
@@ -54,6 +57,9 @@ abstract class PresentationModule {
     abstract fun listTherapistPresenter(listTherapistPresenter: ListTherapistsPresenterImpl): ListTherapistsPresenter
 
     @Binds
+    abstract fun detailTherapistPresenter(detailTherapistPresenter: DetailTherapistPresenterImpl): DetailTherapistPresenter
+
+    @Binds
     abstract fun choosePatientOrTherapistPresenter(choosePatientOrTherapistPresenter: ChoosePatientOrTherapistPresenterImpl): ChoosePatientOrTherapistPresenter
 
     @Binds
@@ -69,5 +75,8 @@ abstract class PresentationModule {
     abstract fun detailDoctorPresenter(detailDoctorPresenter: DetailDoctorPresenterImpl): DetailDoctorPresenter
 
     @Binds
-    abstract fun detailTherapistPresenter(detailTherapistPresenter: DetailTherapistPresenterImpl): DetailTherapistPresenter
+    abstract fun therapistProfilePresenter(therapistProfilePresenter: TherapistProfilePresenterImpl): TherapistProfilePresenter
+
+    @Binds
+    abstract fun listPatientsByTherapistPresenter(listPatientsByTheparistPresenter: ListPatientsByTheparistPresenterImpl): ListPatientsByTherapistPresenter
 }

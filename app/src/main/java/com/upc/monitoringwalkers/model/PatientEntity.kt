@@ -32,7 +32,7 @@ data class PatientEntity(
 }
 
 fun PatientEntity.mapToPatient() =
-    PatientEntity(id, name, lastName, email, type, age, treatment, weight, affectation, doctorId)
+    PatientEntity(id, name, lastName, email, type, age, treatment, weight, affectation, doctorId, therapistId)
 fun PatientEntity.isValid() = name.isNotBlank()
         && email.isNotBlank()
         && type.toString().isNotBlank() && type == UserType.PATIENT

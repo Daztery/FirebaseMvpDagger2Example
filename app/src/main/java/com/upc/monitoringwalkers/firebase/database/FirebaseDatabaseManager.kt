@@ -16,6 +16,16 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
     FirebaseDatabaseInterface {
 
 
+    override fun updatePatientWithTherapist(patientEntity: PatientEntity, onResult: (Boolean) -> Unit) {
+        database.reference.child(KEY_USER).child(patientEntity.id).setValue(patientEntity)
+     }
+
+    override fun deleteTherapistInPatient(therapistId: String, onResult: (Boolean) -> Unit) {
+        //database.reference.child(KEY_USER).orderByChild("doctorId").equalTo(therapistId) //TODO Change the method
+
+    }
+
+
     override fun getUserType(id: String, onResult: (String) -> Unit) {
         database.reference.child(KEY_USER).child(id).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -70,6 +80,24 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
         })
     }
 
+    override fun getTherapistProfile(id: String, onResult: (TherapistEntity) -> Unit) {
+        database.reference.child(KEY_USER).child(id).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val user = snapshot.getValue(TherapistEntity::class.java)
+                if (user?.name != null) {
+                    user.run {
+                        onResult(TherapistEntity(id, name, lastName, email, type, specialty,doctorId))
+                    }
+                } else {
+                    onResult(TherapistEntity())
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) = Unit
+        })
+    }
+
 
     override fun createPatient(patientEntity: PatientEntity) {
         database.reference.child(KEY_USER).child(patientEntity.id).setValue(patientEntity)
@@ -98,31 +126,15 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
     }
 
     override fun getPatientsByDoctor(doctorId: String, onResult: (List<PatientEntity>) -> Unit) {
-
+        //TODO See why is not implemented
     }
-
-
-    override fun getTherapistProfile(id: String, onResult: (TherapistEntity) -> Unit) {
-        database.reference.child(KEY_USER).child(id).addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val user = snapshot.getValue(TherapistEntity::class.java)
-                if (user?.name != null) {
-                    user.run {
-                        onResult(TherapistEntity(id, name, lastName, email, type, specialty,doctorId))
-                    }
-                } else {
-                    onResult(TherapistEntity())
-                }
-
-            }
-
-            override fun onCancelled(error: DatabaseError) = Unit
-        })
-    }
-
     override fun getTherapistByDoctor(doctorId: String, onResult: (List<TherapistEntity>) -> Unit) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //TODO See why is not implemented
     }
+
+
+
+
 
     override fun listenToTherapistByDoctor(doctorId: String, onResult: (TherapistEntity) -> Unit) {
         database.reference.child(KEY_USER).orderByChild("doctorId").equalTo(doctorId)

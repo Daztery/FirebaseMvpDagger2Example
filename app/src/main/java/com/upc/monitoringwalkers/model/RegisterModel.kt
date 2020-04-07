@@ -14,7 +14,8 @@ data class RegisterPatientModel(
     var weight: String = "0",
     var affectation: Affectation = Affectation.LOW,
     var treatment: String = "",
-    var doctorId: String = ""
+    var doctorId: String = "",
+    var therapistId: String = ""
 ) {
     fun isValid(): Boolean = isEmailValid(email) && arePasswordsSame(
         password,
