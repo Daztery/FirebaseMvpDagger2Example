@@ -22,13 +22,13 @@ class ListPatientsPresenterImpl @Inject constructor(
 
     override fun listAllPatientByDoctor(doctorId: String) {
         databaseInterface.listenToPatientByDoctor(doctorId) {
-            view.addPatient(it)
+            view.addPatientToList(it)
         }
     }
 
     override fun onDeleteButtonClicked(patientEntity: PatientEntity) {
         databaseInterface.deleteUser(patientEntity.id) {
-            view.deletePatient(patientEntity)
+            view.deletePatientFromList(patientEntity)
         }
     }
 }

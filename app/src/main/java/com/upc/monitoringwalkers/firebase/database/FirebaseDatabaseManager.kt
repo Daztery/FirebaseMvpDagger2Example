@@ -15,16 +15,54 @@ private const val KEY_DOCTOR = "DOCTOR"
 class FirebaseDatabaseManager @Inject constructor(private val database: FirebaseDatabase) :
     FirebaseDatabaseInterface {
 
-
-    override fun updatePatientWithTherapist(patientEntity: PatientEntity, onResult: (Boolean) -> Unit) {
+    override fun updatePatientWithTherapist(patientEntity: PatientEntity) {
         database.reference.child(KEY_USER).child(patientEntity.id).setValue(patientEntity)
      }
 
-    override fun deleteTherapistInPatient(therapistId: String, onResult: (Boolean) -> Unit) {
-        //database.reference.child(KEY_USER).orderByChild("doctorId").equalTo(therapistId) //TODO Change the method
+    override fun deleteTherapistFromPatient(patientEntity: PatientEntity/*, onResult: (Boolean) -> Unit*/) {
+        database.reference.child(KEY_USER).child(patientEntity.id).setValue(patientEntity)/*.addOnCompleteListener {
+            onResult(it.isSuccessful && it.isComplete)
+        }*/
 
     }
 
+    override fun listenToPatientByTherapist(
+        patientEntity: PatientEntity,
+        onResult: (PatientEntity) -> Unit
+    ) {
+        database.reference.child(KEY_USER).orderByChild("patientId").equalTo(patientEntity.id)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onCancelled(error: DatabaseError) = Unit
+
+                override fun onChildMoved(snapshot: DataSnapshot, p1: String?) = Unit
+
+                override fun onChildChanged(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(PatientEntity::class.java)?.run {
+                        if (isValid()) {
+                            Log.i(
+                                "therapistInfo",
+                                "${this.name} ${this.email} ${this.lastName} ${snapshot.key} ${this.type}"
+                            )
+                            onResult(mapToPatient())
+                        }
+                    }
+                }
+
+                override fun onChildAdded(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(PatientEntity::class.java)?.run {
+                        if (isValid()) {
+                            Log.i(
+                                "therapistInfo",
+                                "${this.name} ${this.email} ${this.lastName} ${snapshot.key} ${this.type}"
+                            )
+                            onResult(mapToPatient())
+                        }
+                    }
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) = Unit
+            })
+    }
 
     override fun getUserType(id: String, onResult: (String) -> Unit) {
         database.reference.child(KEY_USER).child(id).addValueEventListener(object : ValueEventListener {
@@ -131,10 +169,6 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
     override fun getTherapistByDoctor(doctorId: String, onResult: (List<TherapistEntity>) -> Unit) {
         //TODO See why is not implemented
     }
-
-
-
-
 
     override fun listenToTherapistByDoctor(doctorId: String, onResult: (TherapistEntity) -> Unit) {
         database.reference.child(KEY_USER).orderByChild("doctorId").equalTo(doctorId)

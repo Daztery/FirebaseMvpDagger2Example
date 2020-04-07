@@ -1,4 +1,4 @@
-package com.upc.monitoringwalkers.ui.doctor.listPatientsByTherapist
+package com.upc.monitoringwalkers.ui.doctor.listPatientsWithoutTherapist
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,20 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.upc.monitoringwalkers.R
-import com.upc.monitoringwalkers.common.showDeleteAdvertice
+import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.model.PatientEntity
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.DetailTherapistActivity
-import kotlinx.android.synthetic.main.item_patient_by_therapist.view.*
+import kotlinx.android.synthetic.main.item_patient_without_therapist.view.*
 
-class PatientByTherapistAdapter(private val onDeleteClickHandler: (PatientEntity) -> Unit,
-                                private val therapistId:String) :
+class PatientWithoutTherapistAdapter(private val onTherapistIdChanged: (PatientEntity) -> Unit,
+                                     private val therapistId:String) :
     RecyclerView.Adapter<PatientHolder>()  {
 
     private val items = mutableListOf<PatientEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PatientHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_patient_by_therapist, parent, false)
-        return PatientHolder(view, onDeleteClickHandler,therapistId)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_patient_without_therapist, parent, false)
+        return PatientHolder(view, onTherapistIdChanged,therapistId)
     }
 
     override fun getItemCount(): Int = items.size
@@ -28,11 +28,10 @@ class PatientByTherapistAdapter(private val onDeleteClickHandler: (PatientEntity
     override fun onBindViewHolder(holder: PatientHolder, position: Int) {
         val patient = items[position]
         holder.displayData(patient)
-
     }
 
     fun addPatient(patient: PatientEntity) {
-        if(patient.therapistId!=""){
+        if(patient.therapistId==""){
             items.add(patient)
             notifyItemInserted(items.size - 1)
         }
@@ -47,22 +46,21 @@ class PatientByTherapistAdapter(private val onDeleteClickHandler: (PatientEntity
 
 class PatientHolder(
     itemView: View,
-    private inline val onDeleteClickHandler: (PatientEntity) -> Unit,
+    private inline val onTherapistIdChanged: (PatientEntity) -> Unit,
     private inline val therapistId:String
 ) : RecyclerView.ViewHolder(itemView) {
     @SuppressLint("SetTextI18n")
     fun displayData(patient: PatientEntity) = with(itemView) {
-        patientByTherapistFullName.text = "${patient.name} ${patient.lastName}"
-        patientByTherapistEmail.text = patient.email
-        patientByTherapist_delete.setOnClickListener {
-            showDeleteAdvertice(context) {
-                patient.therapistId=""
-                onDeleteClickHandler(patient)
-                val intent = Intent(context, DetailTherapistActivity::class.java)
-                intent.putExtra("therapistId", therapistId)
-                context.startActivity(intent)
-                (context as ListPatientsByTherapistActivity).finish()
-            }
+        patientWithoutTherapistFullName.text = "${patient.name} ${patient.lastName}"
+        patientWithoutTherapistEmail.text = patient.email
+        containerPatientWithoutTherapist.setOnClickListener {
+
+            patient.therapistId=therapistId
+            onTherapistIdChanged(patient)
+            val intent = Intent(context, DetailTherapistActivity::class.java)
+            intent.putExtra("therapistId", therapistId)
+            context.startActivity(intent)
+            (context as ListPatientsWithoutTherapistActivity).finish()
         }
     }
 }

@@ -10,7 +10,5 @@ interface ListPatientsByTherapistPresenter : BasePresenter<ListPatientsByTherapi
 
     fun listAllPatientByDoctorAndFiltered(doctorId: String)
 
-    fun onTherapistIdChanged(therapistId: String)
-
-    fun onDeleteButtonClicked(patientEntity: PatientEntity)
+    fun onDeleteTherapistIdClicked(patientEntity: PatientEntity)
 }

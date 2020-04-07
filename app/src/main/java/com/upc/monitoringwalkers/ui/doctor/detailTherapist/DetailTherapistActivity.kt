@@ -1,7 +1,6 @@
 package com.upc.monitoringwalkers.ui.doctor.detailTherapist
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
@@ -11,7 +10,8 @@ import com.upc.monitoringwalkers.model.TherapistEntity
 import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.view.DetailTherapistView
 import com.upc.monitoringwalkers.ui.doctor.listPatientsByTherapist.ListPatientsByTherapistActivity
-import com.upc.monitoringwalkers.ui.therapists.profile.view.TherapistProfileView
+import com.upc.monitoringwalkers.ui.doctor.listPatientsWithoutTherapist.ListPatientsWithoutTherapistActivity
+import com.upc.monitoringwalkers.ui.doctor.listPatientsWithoutTherapist.presenter.ListPatientsWithoutTherapistPresenter
 import kotlinx.android.synthetic.main.activity_detail_therapist.*
 
 class DetailTherapistActivity : BaseActivity(),DetailTherapistView {
@@ -34,10 +34,14 @@ class DetailTherapistActivity : BaseActivity(),DetailTherapistView {
         supportActionBar!!.setTitle(R.string.detail_therapist)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         detail_therapist_add_patients.setOnClickListener {
-            startActivity(Intent(this, ListPatientsByTherapistActivity::class.java))
+            val intent = Intent(this, ListPatientsWithoutTherapistActivity::class.java)
+            intent.putExtra("therapistId", therapistId)
+            this.startActivity(intent)
         }
         detail_therapist_see_patients.setOnClickListener {
-            startActivity(Intent(this, ListPatientsByTherapistActivity::class.java))
+            val intent = Intent(this, ListPatientsByTherapistActivity::class.java)
+            intent.putExtra("therapistId", therapistId)
+            this.startActivity(intent)
         }
     }
 

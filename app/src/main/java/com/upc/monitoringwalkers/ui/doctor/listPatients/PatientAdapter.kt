@@ -27,7 +27,7 @@ class PatientAdapter(private val onDeleteClickHandler: (PatientEntity) -> Unit) 
         holder.displayData(patient)
     }
 
-    fun addPatient(patient: PatientEntity) {
+    fun addPatientToList(patient: PatientEntity) {
         items.add(patient)
         notifyItemInserted(items.size - 1)
     }

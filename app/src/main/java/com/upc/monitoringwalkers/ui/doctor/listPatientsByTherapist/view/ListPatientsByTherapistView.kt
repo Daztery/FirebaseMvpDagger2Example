@@ -10,6 +10,6 @@ interface ListPatientsByTherapistView {
 
     fun addPatientToTherapist(patientEntity: PatientEntity)
 
-    fun deletePatientToTherapist(therapistId: String)
+    fun deleteTherapistFromPatient(patientEntity: PatientEntity)
 
 }

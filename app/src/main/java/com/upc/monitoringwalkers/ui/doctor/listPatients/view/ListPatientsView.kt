@@ -8,8 +8,8 @@ interface ListPatientsView {
 
     fun hideNoDataDescription()
 
-    fun addPatient(patientEntity: PatientEntity)
+    fun addPatientToList(patientEntity: PatientEntity)
 
-    fun deletePatient(patientEntity: PatientEntity)
+    fun deletePatientFromList(patientEntity: PatientEntity)
 
 }

@@ -16,9 +16,9 @@ import kotlinx.android.synthetic.main.content_list_choose_patients_by_therapist.
 
 class ListPatientsByTherapistActivity : BaseActivity(), ListPatientsByTherapistView {
 
-
+    private lateinit var therapistId: String
     private val presenter by lazy { listPatientsByTherapistPresenter() }
-    private val adapter by lazy { PatientByTherapistAdapter(presenter::onDeleteButtonClicked) }
+    private val adapter by lazy { PatientByTherapistAdapter(presenter::onDeleteTherapistIdClicked,therapistId) }
     private lateinit var currentUser: MWCurrentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +26,7 @@ class ListPatientsByTherapistActivity : BaseActivity(), ListPatientsByTherapistV
         setContentView(R.layout.activity_list_choose_patient_by_therapist)
         setSupportActionBar(toolbar)
         presenter.setView(this)
+        therapistId = intent.extras!!.getString("therapistId").toString()
         initUi()
     }
 
@@ -51,8 +52,8 @@ class ListPatientsByTherapistActivity : BaseActivity(), ListPatientsByTherapistV
         patientByTherapistNoItems.visibility = if (adapter.itemCount != 0) View.INVISIBLE else View.VISIBLE
     }
 
-    override fun deletePatientToTherapist(therapistId: String) {
-        //adapter.removePatient(patientEntity)
+    override fun deleteTherapistFromPatient(patientEntity: PatientEntity) {
+        adapter.removePatient(patientEntity)
     }
 
 }

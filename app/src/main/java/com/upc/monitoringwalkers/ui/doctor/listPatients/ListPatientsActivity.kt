@@ -51,12 +51,12 @@ class ListPatientsActivity : BaseActivity(), ListPatientsView {
         patientNoItems.visibility = View.GONE
     }
 
-    override fun addPatient(patientEntity: PatientEntity) {
-        adapter.addPatient(patientEntity)
+    override fun addPatientToList(patientEntity: PatientEntity) {
+        adapter.addPatientToList(patientEntity)
         patientNoItems.visibility = if (adapter.itemCount != 0) View.INVISIBLE else View.VISIBLE
     }
 
-    override fun deletePatient(patientEntity: PatientEntity) {
+    override fun deletePatientFromList(patientEntity: PatientEntity) {
         adapter.removePatient(patientEntity)
     }
 

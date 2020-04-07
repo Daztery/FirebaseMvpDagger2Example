@@ -18,6 +18,8 @@ import com.upc.monitoringwalkers.ui.doctor.listPatients.presenter.ListPatientsPr
 import com.upc.monitoringwalkers.ui.doctor.listPatients.presenter.ListPatientsPresenterImpl
 import com.upc.monitoringwalkers.ui.doctor.listPatientsByTherapist.presenter.ListPatientsByTheparistPresenterImpl
 import com.upc.monitoringwalkers.ui.doctor.listPatientsByTherapist.presenter.ListPatientsByTherapistPresenter
+import com.upc.monitoringwalkers.ui.doctor.listPatientsWithoutTherapist.presenter.ListPatientsWithoutTheparistPresenterImpl
+import com.upc.monitoringwalkers.ui.doctor.listPatientsWithoutTherapist.presenter.ListPatientsWithoutTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter.ListTherapistsPresenter
 import com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter.ListTherapistsPresenterImpl
 import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenter
@@ -79,4 +81,7 @@ abstract class PresentationModule {
 
     @Binds
     abstract fun listPatientsByTherapistPresenter(listPatientsByTheparistPresenter: ListPatientsByTheparistPresenterImpl): ListPatientsByTherapistPresenter
+
+    @Binds
+    abstract fun listPatientsWithoutTherapistPresenter(listPatientsWithoutTheparistPresenter: ListPatientsWithoutTheparistPresenterImpl): ListPatientsWithoutTherapistPresenter
 }

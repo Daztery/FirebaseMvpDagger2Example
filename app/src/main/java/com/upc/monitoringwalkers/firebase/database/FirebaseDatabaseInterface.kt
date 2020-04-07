@@ -99,6 +99,14 @@ interface FirebaseDatabaseInterface {
     fun listenToPatientByDoctor(doctorId: String, onResult: (PatientEntity) -> Unit)
 
     /**
+     * List patients by Therapist
+     *
+     * @param patientEntity
+     * @param onResult
+     */
+    fun listenToPatientByTherapist(patientEntity: PatientEntity, onResult: (PatientEntity) -> Unit)
+
+    /**
      * Listen changes on therapists by doctor
      *
      * @param doctorId
@@ -120,7 +128,7 @@ interface FirebaseDatabaseInterface {
      * @param therapistId
      * @param onResult
      */
-    fun deleteTherapistInPatient(therapistId: String, onResult: (Boolean) -> Unit)
+    fun deleteTherapistFromPatient(patientEntity: PatientEntity/*, onResult: (Boolean) -> Unit*/)
 
     /**
      * Update a Patient with new Therapist
@@ -128,7 +136,7 @@ interface FirebaseDatabaseInterface {
      * @param userId
      * @param onResult
      */
-    fun updatePatientWithTherapist(patientEntity: PatientEntity,   onResult: (Boolean) -> Unit)
+    fun updatePatientWithTherapist(patientEntity: PatientEntity)
 
 
 

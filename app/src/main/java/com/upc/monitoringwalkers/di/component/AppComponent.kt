@@ -10,6 +10,7 @@ import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.presenter.Ch
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.presenter.DetailTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.listPatients.presenter.ListPatientsPresenter
 import com.upc.monitoringwalkers.ui.doctor.listPatientsByTherapist.presenter.ListPatientsByTherapistPresenter
+import com.upc.monitoringwalkers.ui.doctor.listPatientsWithoutTherapist.presenter.ListPatientsWithoutTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter.ListTherapistsPresenter
 import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenter
 import com.upc.monitoringwalkers.ui.patients.profile.presenter.PatientProfilePresenter
@@ -52,5 +53,7 @@ interface AppComponent {
     fun choosePatientOrTherapistPresenter(): ChoosePatientOrTherapistPresenter
 
     fun listPatientsByTherapistPresenter(): ListPatientsByTherapistPresenter
+
+    fun listPatientsWithoutTherapistPresenter(): ListPatientsWithoutTherapistPresenter
 
 }

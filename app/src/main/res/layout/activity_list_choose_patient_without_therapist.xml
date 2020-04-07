@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.doctor.listPatientsByTherapist.ListPatientsWithoutTherapistActivity">
+    tools:context=".ui.doctor.listPatientsWithoutTherapist.ListPatientsWithoutTherapistActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_list_choose_patients_by_therapist" />
+    <include layout="@layout/content_list_choose_patients_without_therapist" />
 
 
 
