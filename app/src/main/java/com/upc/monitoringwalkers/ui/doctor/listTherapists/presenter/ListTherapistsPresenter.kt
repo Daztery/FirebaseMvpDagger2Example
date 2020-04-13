@@ -9,6 +9,7 @@ interface ListTherapistsPresenter : BasePresenter<ListTherapistsView> {
 
     fun listAllTherapistByDoctor(doctorId: String)
 
-
     fun onDeleteButtonClicked(therapistEntity: TherapistEntity)
+
+    fun deleteAllPatientsHaveTherapistId(doctorId: String)
 }

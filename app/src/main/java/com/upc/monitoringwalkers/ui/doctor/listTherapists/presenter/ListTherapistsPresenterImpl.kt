@@ -1,5 +1,6 @@
 package com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter
 
+import android.util.Log
 import com.upc.monitoringwalkers.firebase.authentication.FirebaseAuthenticationInterface
 import com.upc.monitoringwalkers.firebase.database.FirebaseDatabaseInterface
 import com.upc.monitoringwalkers.model.TherapistEntity
@@ -29,8 +30,35 @@ class ListTherapistsPresenterImpl @Inject constructor(
 
 
     override fun onDeleteButtonClicked(therapistEntity: TherapistEntity) {
-        databaseInterface.deleteUser(therapistEntity.id) {
-            view.deleteTherapist(therapistEntity)
+
+
+        databaseInterface.listenToPatientByDoctor(therapistEntity.doctorId) {
+            if(therapistEntity.id==it.therapistId){
+                Log.i(
+                    "DELETE",
+                    "${it.name} ${it.email} ${it.lastName} ${it.type}"
+                )
+                it.therapistId=""
+                databaseInterface.deleteTherapistFromPatient(it) {
+                    view.deletePatientsWithTherapistId(therapistEntity)
+                }
+
+            }
+            databaseInterface.deleteUser(therapistEntity.id) {
+                view.deleteTherapist(therapistEntity)
+            }
+
         }
     }
+
+
+    override fun deleteAllPatientsHaveTherapistId(doctorId: String) {
+
+        databaseInterface.listenToPatientByDoctor(doctorId) {
+            print(it)
+        }
+
+    }
+
+
 }

@@ -59,5 +59,9 @@ class ListTherapistsActivity : BaseActivity(), ListTherapistsView {
         adapter.removeTherapist(therapistEntity)
     }
 
+    override fun deletePatientsWithTherapistId(therapistEntity: TherapistEntity){
+        print(therapistEntity.id)
+    }
+
 
 }

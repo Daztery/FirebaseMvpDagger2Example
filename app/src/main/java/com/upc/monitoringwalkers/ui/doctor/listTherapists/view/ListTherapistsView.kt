@@ -12,4 +12,6 @@ interface ListTherapistsView {
 
     fun deleteTherapist(therapistEntity: TherapistEntity)
 
+    fun deletePatientsWithTherapistId(therapistEntity: TherapistEntity)
+
 }
