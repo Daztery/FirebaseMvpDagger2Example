@@ -25,15 +25,10 @@ class ListPatientsWithoutTheparistPresenterImpl @Inject constructor(
     }
 
     override fun onTherapistIdChanged(patientEntity: PatientEntity) {
-        databaseInterface.getPatientProfile(patientEntity.id){
-            if(it.isValid()){
-                it.therapistId = patientEntity.therapistId
-                databaseInterface.updatePatientWithTherapist(it)
-
-            } else {
-               print("No existe este paciente!")
-            }
+        databaseInterface.updatePatientWithTherapist(patientEntity){
+            view.deletePatientWithoutTherapistFromList(patientEntity)
         }
+
     }
 
     override fun viewReady(doctorId: String) {

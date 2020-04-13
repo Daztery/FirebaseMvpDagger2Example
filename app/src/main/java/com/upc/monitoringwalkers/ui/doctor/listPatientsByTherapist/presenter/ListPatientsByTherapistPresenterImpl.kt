@@ -12,8 +12,6 @@ class ListPatientsByTheparistPresenterImpl @Inject constructor(
 
     private lateinit var view: ListPatientsByTherapistView
 
-    private lateinit var therapistId : String
-
     override fun setView(view: ListPatientsByTherapistView) {
         this.view = view
     }
@@ -26,14 +24,21 @@ class ListPatientsByTheparistPresenterImpl @Inject constructor(
     }
 
     override fun onDeleteTherapistIdClicked(patientEntity: PatientEntity) {
-        databaseInterface.getPatientProfile(patientEntity.id){
+
+        databaseInterface.deleteTherapistFromPatient(patientEntity){
+            view.deletePatientWithTherapistFromList(patientEntity)
+        }
+
+       /* databaseInterface.getPatientProfile(patientEntity.id){
             if(it.isValid()){
                 it.therapistId = patientEntity.therapistId
-                databaseInterface.deleteTherapistFromPatient(it)
+                databaseInterface.deleteTherapistFromPatient(patientEntity){
+                    view.deleteTherapistFromPatient(patientEntity)
+                }
             } else {
                 print("No existe este paciente!")
             }
-        }
+        }*/
 
     }
 

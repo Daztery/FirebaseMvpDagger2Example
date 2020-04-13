@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.upc.monitoringwalkers.R
 import com.upc.monitoringwalkers.common.shortToast
@@ -54,13 +55,8 @@ class PatientHolder(
         patientWithoutTherapistFullName.text = "${patient.name} ${patient.lastName}"
         patientWithoutTherapistEmail.text = patient.email
         containerPatientWithoutTherapist.setOnClickListener {
-
             patient.therapistId=therapistId
             onTherapistIdChanged(patient)
-            val intent = Intent(context, DetailTherapistActivity::class.java)
-            intent.putExtra("therapistId", therapistId)
-            context.startActivity(intent)
-            (context as ListPatientsWithoutTherapistActivity).finish()
         }
     }
 }

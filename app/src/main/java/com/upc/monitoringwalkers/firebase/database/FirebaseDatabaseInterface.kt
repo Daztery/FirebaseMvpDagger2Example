@@ -125,18 +125,18 @@ interface FirebaseDatabaseInterface {
     /**
      * Delete the therapist from patient by identifier
      *
-     * @param therapistId
+     * @param patientEntity
      * @param onResult
      */
-    fun deleteTherapistFromPatient(patientEntity: PatientEntity/*, onResult: (Boolean) -> Unit*/)
+    fun deleteTherapistFromPatient(patientEntity: PatientEntity, onResult: (Boolean) -> Unit)
 
     /**
      * Update a Patient with new Therapist
      *
-     * @param userId
+     * @param patientEntity
      * @param onResult
      */
-    fun updatePatientWithTherapist(patientEntity: PatientEntity)
+    fun updatePatientWithTherapist(patientEntity: PatientEntity, onResult: (Boolean) -> Unit)
 
 
 

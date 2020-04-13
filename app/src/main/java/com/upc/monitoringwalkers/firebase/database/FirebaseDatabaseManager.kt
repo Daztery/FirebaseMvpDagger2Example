@@ -15,14 +15,25 @@ private const val KEY_DOCTOR = "DOCTOR"
 class FirebaseDatabaseManager @Inject constructor(private val database: FirebaseDatabase) :
     FirebaseDatabaseInterface {
 
-    override fun updatePatientWithTherapist(patientEntity: PatientEntity) {
-        database.reference.child(KEY_USER).child(patientEntity.id).setValue(patientEntity)
+    override fun deleteUser(userId: String, onResult: (Boolean) -> Unit) {
+        database.reference.child(KEY_USER).child(userId).removeValue().addOnCompleteListener {
+            onResult(it.isSuccessful && it.isComplete)
+        }
+
+    }
+
+    override fun updatePatientWithTherapist(patientEntity: PatientEntity, onResult: (Boolean) -> Unit) {
+        database.reference.child(KEY_USER).child(patientEntity.id).child("therapistId")
+            .setValue(patientEntity.therapistId).addOnCompleteListener {
+                onResult(it.isSuccessful && it.isComplete)
+            }
      }
 
-    override fun deleteTherapistFromPatient(patientEntity: PatientEntity/*, onResult: (Boolean) -> Unit*/) {
-        database.reference.child(KEY_USER).child(patientEntity.id).setValue(patientEntity)/*.addOnCompleteListener {
-            onResult(it.isSuccessful && it.isComplete)
-        }*/
+    override fun deleteTherapistFromPatient(patientEntity: PatientEntity, onResult: (Boolean) -> Unit) {
+        database.reference.child(KEY_USER).child(patientEntity.id).child("therapistId")
+            .setValue(patientEntity.therapistId).addOnCompleteListener {
+                onResult(it.isSuccessful && it.isComplete)
+            }
 
     }
 
@@ -276,10 +287,5 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
     }
 
 
-    override fun deleteUser(userId: String, onResult: (Boolean) -> Unit) {
-        database.reference.child(KEY_USER).child(userId).removeValue().addOnCompleteListener {
-            onResult(it.isSuccessful && it.isComplete)
-        }
 
-    }
 }

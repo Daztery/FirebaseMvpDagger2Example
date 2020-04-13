@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.upc.monitoringwalkers.R
+import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.common.showDeleteAdvertice
 import com.upc.monitoringwalkers.model.PatientEntity
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.DetailTherapistActivity
@@ -32,7 +33,7 @@ class PatientByTherapistAdapter(private val onDeleteClickHandler: (PatientEntity
     }
 
     fun addPatient(patient: PatientEntity) {
-        if(patient.therapistId!=""){
+        if(patient.therapistId!="" && patient.therapistId==therapistId){
             items.add(patient)
             notifyItemInserted(items.size - 1)
         }
@@ -58,10 +59,6 @@ class PatientHolder(
             showDeleteAdvertice(context) {
                 patient.therapistId=""
                 onDeleteClickHandler(patient)
-                val intent = Intent(context, DetailTherapistActivity::class.java)
-                intent.putExtra("therapistId", therapistId)
-                context.startActivity(intent)
-                (context as ListPatientsByTherapistActivity).finish()
             }
         }
     }

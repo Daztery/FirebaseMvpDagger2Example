@@ -52,7 +52,7 @@ class ListPatientsByTherapistActivity : BaseActivity(), ListPatientsByTherapistV
         patientByTherapistNoItems.visibility = if (adapter.itemCount != 0) View.INVISIBLE else View.VISIBLE
     }
 
-    override fun deleteTherapistFromPatient(patientEntity: PatientEntity) {
+    override fun deletePatientWithTherapistFromList(patientEntity: PatientEntity) {
         adapter.removePatient(patientEntity)
     }
 
