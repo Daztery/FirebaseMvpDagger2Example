@@ -107,9 +107,9 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
         database.reference.child(KEY_USER).child(id).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val user = snapshot.getValue(PatientEntity::class.java)
-                user?.run {
-                    onResult(
-                        PatientEntity(
+                if (user?.name != null) {
+                    user.run {
+                        onResult(PatientEntity(
                             id,
                             name,
                             lastName,
@@ -120,9 +120,12 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
                             weight,
                             affectation,
                             doctorId
-                        )
-                    )
+                        ))
+                    }
+                } else {
+                    onResult(PatientEntity())
                 }
+
             }
 
             override fun onCancelled(error: DatabaseError) = Unit

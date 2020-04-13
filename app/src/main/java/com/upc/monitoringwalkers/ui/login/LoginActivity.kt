@@ -12,11 +12,10 @@ import com.upc.monitoringwalkers.model.setCurrentUserPreferenceObject
 import com.upc.monitoringwalkers.ui.admin.listDoctors.ListDoctorsActivity
 import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.ChoosePatientOrTherapistActivity
-import com.upc.monitoringwalkers.ui.doctor.listPatients.ListPatientsActivity
 import com.upc.monitoringwalkers.ui.login.view.LoginView
 import com.upc.monitoringwalkers.ui.patients.profile.PatientProfileActivity
 import com.upc.monitoringwalkers.ui.resetPassword.ResetPasswordActivity
-import com.upc.monitoringwalkers.ui.therapists.profile.TherapistProfileActivity
+import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.TherapistProfileActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity(), LoginView {

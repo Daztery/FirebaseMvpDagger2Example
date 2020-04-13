@@ -1,22 +1,31 @@
-package com.upc.monitoringwalkers.ui.therapists.profile.presenter
+package com.upc.monitoringwalkers.ui.therapists.profile.listPatients.presenter
 
 import com.upc.monitoringwalkers.firebase.authentication.FirebaseAuthenticationInterface
 import com.upc.monitoringwalkers.firebase.database.FirebaseDatabaseInterface
 import com.upc.monitoringwalkers.model.isValid
-import com.upc.monitoringwalkers.ui.therapists.profile.view.TherapistProfileView
+import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.view.TherapistProfileView
 import javax.inject.Inject
 
 class TherapistProfilePresenterImpl @Inject constructor(
     private val authentication: FirebaseAuthenticationInterface,
     private val databaseInterface: FirebaseDatabaseInterface
-) : TherapistProfilePresenter{
+) : TherapistProfilePresenter {
 
     private lateinit var view: TherapistProfileView
 
+    override fun setView(view: TherapistProfileView) {
+        this.view = view
+    }
     override fun viewReady(therapistId: String) {
-        print("Inicio de sesion")
+        fetchTherapistProfile(therapistId)
     }
 
+    override fun listAllPatientByDoctorAndFiltered(doctorId: String) {
+
+        databaseInterface.listenToPatientByDoctor(doctorId) {
+            view.addPatientToTherapist(it)
+        }
+    }
     override fun logout() {
         authentication.logout {
             view.logoutSuccess()
@@ -26,14 +35,13 @@ class TherapistProfilePresenterImpl @Inject constructor(
     override fun fetchTherapistProfile(therapistId: String) {
         databaseInterface.getTherapistProfile(therapistId){
             if(it.isValid()){
-                view.onFetchTherapistProfileSuccess(it)
+                listAllPatientByDoctorAndFiltered(it.doctorId)
+                //view.onFetchTherapistProfileSuccess(it)
             } else {
                 view.onFetchTherapistProfileFail("No existe este terapeuta!")
             }
         }
     }
 
-    override fun setView(view: TherapistProfileView) {
-        this.view = view
-    }
+
 }

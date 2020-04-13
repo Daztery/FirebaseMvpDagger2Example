@@ -1,24 +1,28 @@
-package com.upc.monitoringwalkers.ui.therapists.profile
+package com.upc.monitoringwalkers.ui.therapists.profile.listPatients
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.bumptech.glide.Glide
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.upc.monitoringwalkers.R
-import com.upc.monitoringwalkers.model.MWCurrentUser
-import com.upc.monitoringwalkers.model.TherapistEntity
-import com.upc.monitoringwalkers.model.getCurrentUserPreferenceObjectJson
-import com.upc.monitoringwalkers.model.setCurrentUserPreferenceObject
+import com.upc.monitoringwalkers.model.*
 import com.upc.monitoringwalkers.therapistProfilePresenter
 import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.login.LoginActivity
-import com.upc.monitoringwalkers.ui.therapists.profile.view.TherapistProfileView
+import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.view.TherapistProfileView
 import kotlinx.android.synthetic.main.activity_therapist_profile.*
+import kotlinx.android.synthetic.main.content_list_patients_on_therapist_profile.*
 
-class TherapistProfileActivity : BaseActivity(), TherapistProfileView  {
+class TherapistProfileActivity : BaseActivity(),
+    TherapistProfileView {
 
+    private lateinit var therapistId: String
     private val presenter by lazy { therapistProfilePresenter() }
+    private val adapter by lazy {
+        TherapistProfileAdapter(
+            therapistId
+        )
+    }
     private lateinit var currentUser: MWCurrentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,37 +37,27 @@ class TherapistProfileActivity : BaseActivity(), TherapistProfileView  {
 
         currentUser = getCurrentUserPreferenceObjectJson(this)
         presenter.viewReady(currentUser.id)
-        presenter.fetchTherapistProfile(currentUser.id)
-        therapist_profile_logout_btn.setOnClickListener {
-            presenter.logout()
-        }
-
+        therapistId=currentUser.id
+        patient_list_on_therapist_profile_recycler_view.layoutManager = LinearLayoutManager(this)
+        patient_list_on_therapist_profile_recycler_view.setHasFixedSize(true)
+        patient_list_on_therapist_profile_recycler_view.adapter = adapter
         therapist_profile_logout.setOnClickListener {
             presenter.logout()
         }
 
     }
-
     override fun onFetchTherapistProfileSuccess(therapistEntity: TherapistEntity) {
-        therapist_profile_progress.visibility = View.GONE
-        therapist_profile.visibility = View.VISIBLE
         therapist_profile_appBar.visibility=View.VISIBLE
-        therapist_profile_full_name.text = "${therapistEntity.name} ${therapistEntity.lastName}"
-        therapist_profile_email.text = therapistEntity.email
-        Glide
-            .with(this)
-            .load("https://cdn3.iconfinder.com/data/icons/healthcare-medical-lilac-series-vol-1/256/DOCTOR-512.png") // TODO : custom photo
-            .centerCrop()
-            .placeholder(R.drawable.ic_person_outline_black_24dp)
-            .into(therapist_profile_image)
+        therapistId=therapistEntity.id
     }
 
     override fun onFetchTherapistProfileFail(error: String) {
-        therapist_profile_progress.visibility = View.GONE
-        therapist_profile_error.apply {
-            visibility = View.VISIBLE
-            text = error
-        }
+        patientByTherapistOnProfileNoItems.visibility=View.VISIBLE
+    }
+
+    override fun addPatientToTherapist(patientEntity: PatientEntity) {
+        adapter.addPatient(patientEntity)
+        patientByTherapistOnProfileNoItems.visibility = if (adapter.itemCount != 0) View.INVISIBLE else View.VISIBLE
     }
 
     override fun logoutError() {

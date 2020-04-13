@@ -40,6 +40,7 @@
     <string name="warning_message">Estas seguro que deseas eliminar?</string>
     <string name="detail_doctor">Detalle doctor</string>
     <string name="detail_therapist">Detalle Terapeuta</string>
+    <string name="detail_patient">Detalle Paciente</string>
     <string name="register_hint_speciality">Especialidad</string>
 
     <!-- TODO: Remove or change this placeholder text -->

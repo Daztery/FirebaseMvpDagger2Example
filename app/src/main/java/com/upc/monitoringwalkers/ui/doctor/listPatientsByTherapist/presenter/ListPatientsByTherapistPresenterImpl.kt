@@ -29,16 +29,6 @@ class ListPatientsByTheparistPresenterImpl @Inject constructor(
             view.deletePatientWithTherapistFromList(patientEntity)
         }
 
-       /* databaseInterface.getPatientProfile(patientEntity.id){
-            if(it.isValid()){
-                it.therapistId = patientEntity.therapistId
-                databaseInterface.deleteTherapistFromPatient(patientEntity){
-                    view.deleteTherapistFromPatient(patientEntity)
-                }
-            } else {
-                print("No existe este paciente!")
-            }
-        }*/
 
     }
 

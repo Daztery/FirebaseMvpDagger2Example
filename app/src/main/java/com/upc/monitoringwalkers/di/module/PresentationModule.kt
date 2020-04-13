@@ -30,8 +30,10 @@ import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresent
 import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresenterImpl
 import com.upc.monitoringwalkers.ui.splash.presenter.SplashPresenter
 import com.upc.monitoringwalkers.ui.splash.presenter.SplashPresenterImpl
-import com.upc.monitoringwalkers.ui.therapists.profile.presenter.TherapistProfilePresenter
-import com.upc.monitoringwalkers.ui.therapists.profile.presenter.TherapistProfilePresenterImpl
+import com.upc.monitoringwalkers.ui.therapists.profile.detailPatient.presenter.DetailPatientPresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.detailPatient.presenter.DetailPatientPresenterImpl
+import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.presenter.TherapistProfilePresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.presenter.TherapistProfilePresenterImpl
 import dagger.Binds
 import dagger.Module
 
@@ -75,6 +77,9 @@ abstract class PresentationModule {
 
     @Binds
     abstract fun detailDoctorPresenter(detailDoctorPresenter: DetailDoctorPresenterImpl): DetailDoctorPresenter
+
+    @Binds
+    abstract fun detailPatientPresenter(detailPatientPresenter: DetailPatientPresenterImpl): DetailPatientPresenter
 
     @Binds
     abstract fun therapistProfilePresenter(therapistProfilePresenter: TherapistProfilePresenterImpl): TherapistProfilePresenter

@@ -16,7 +16,8 @@ import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenter
 import com.upc.monitoringwalkers.ui.patients.profile.presenter.PatientProfilePresenter
 import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresenter
 import com.upc.monitoringwalkers.ui.splash.presenter.SplashPresenter
-import com.upc.monitoringwalkers.ui.therapists.profile.presenter.TherapistProfilePresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.detailPatient.presenter.DetailPatientPresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.presenter.TherapistProfilePresenter
 import dagger.Component
 import javax.inject.Singleton
 
@@ -49,6 +50,8 @@ interface AppComponent {
     fun detailDoctorPresenter(): DetailDoctorPresenter
 
     fun detailTherapistPresenter(): DetailTherapistPresenter
+
+    fun detailPatientPresenter(): DetailPatientPresenter
 
     fun choosePatientOrTherapistPresenter(): ChoosePatientOrTherapistPresenter
 
