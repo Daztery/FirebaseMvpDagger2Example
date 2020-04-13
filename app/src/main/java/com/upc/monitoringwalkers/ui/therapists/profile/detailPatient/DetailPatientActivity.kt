@@ -26,7 +26,7 @@ class DetailPatientActivity : BaseActivity(), DetailPatientView {
 
     private fun initUi() {
         presenter.fetchPatientProfile(patientId)
-        supportActionBar!!.setTitle(R.string.detail_therapist)
+        supportActionBar!!.setTitle(R.string.detail_patient)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 

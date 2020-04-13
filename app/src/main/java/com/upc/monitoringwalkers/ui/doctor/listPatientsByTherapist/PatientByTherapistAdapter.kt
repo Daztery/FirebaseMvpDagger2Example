@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.upc.monitoringwalkers.R
 import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.common.showDeleteAdvertice
@@ -61,5 +62,11 @@ class PatientHolder(
                 onDeleteClickHandler(patient)
             }
         }
+        Glide
+            .with(this)
+            .load("https://cdn2.iconfinder.com/data/icons/covid-19-filled/64/virus-18-512.png")
+            .centerCrop()
+            .placeholder(R.drawable.ic_person_outline_black_24dp)
+            .into(img_user)
     }
 }

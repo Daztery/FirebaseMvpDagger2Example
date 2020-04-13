@@ -18,6 +18,9 @@ class SplashPresenterImpl @Inject constructor() : SplashPresenter {
                 "PATIENT" -> {
                     view.onCurrentUserIsPatient()
                 }
+                "THERAPIST" -> {
+                    view.onCurrentUserIsTherapist()
+                }
                 "DOCTOR" -> {
                     view.onCurrentUserIsDoctor()
                 }

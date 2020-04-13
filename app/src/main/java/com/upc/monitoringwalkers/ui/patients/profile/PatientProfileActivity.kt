@@ -34,9 +34,6 @@ class PatientProfileActivity : BaseActivity(), PatientProfileView {
         presenter.viewReady(currentUser.id)
         presenter.fetchPatientProfile(currentUser.id)
 
-        patient_profile_logout_btn.setOnClickListener {
-            presenter.logout()
-        }
 
         patient_profile_logout.setOnClickListener {
             presenter.logout()
@@ -63,7 +60,7 @@ class PatientProfileActivity : BaseActivity(), PatientProfileView {
         patient_profile_email.text = patientEntity.email
         Glide
             .with(this)
-            .load("https://cdn3.iconfinder.com/data/icons/healthcare-medical-lilac-series-vol-1/256/DOCTOR-512.png") // TODO : custom photo
+            .load("https://cdn2.iconfinder.com/data/icons/covid-19-filled/64/virus-18-512.png")
             .centerCrop()
             .placeholder(R.drawable.ic_person_outline_black_24dp)
             .into(patient_profile_image)

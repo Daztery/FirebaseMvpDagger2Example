@@ -13,6 +13,7 @@ import com.upc.monitoringwalkers.ui.doctor.listPatients.ListPatientsActivity
 import com.upc.monitoringwalkers.ui.login.LoginActivity
 import com.upc.monitoringwalkers.ui.patients.profile.PatientProfileActivity
 import com.upc.monitoringwalkers.ui.splash.view.SplashView
+import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.TherapistProfileActivity
 
 class SplashActivity : BaseActivity(), SplashView {
 
@@ -42,6 +43,13 @@ class SplashActivity : BaseActivity(), SplashView {
     override fun onCurrentUserIsPatient() {
         startActivity(Intent(this, PatientProfileActivity::class.java))
         shortToast(this, "Usuario paciente")
+        finish()
+    }
+
+    override fun onCurrentUserIsTherapist() {
+        startActivity(Intent(this, TherapistProfileActivity::class.java))
+        shortToast(this, "Usuario terapeuta")
+        finish()
     }
 
     override fun onCurrentUserIsAdmin() {

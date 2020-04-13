@@ -35,7 +35,7 @@ class ListPatientsByTherapistActivity : BaseActivity(), ListPatientsByTherapistV
         patientByTherapist_list_recycler_view.setHasFixedSize(true)
         patientByTherapist_list_recycler_view.adapter = adapter
         presenter.viewReady(currentUser.id)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun showNoDataDescription() {

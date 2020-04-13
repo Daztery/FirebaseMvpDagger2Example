@@ -6,6 +6,8 @@ interface SplashView {
 
     fun onCurrentUserIsPatient()
 
+    fun onCurrentUserIsTherapist()
+
     fun onCurrentUserIsAdmin()
 
     fun onCurrentUserIsEmpty()

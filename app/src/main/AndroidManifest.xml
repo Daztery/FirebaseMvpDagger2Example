@@ -12,55 +12,87 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeDoctorPatient"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.doctor.detailTherapist.DetailTherapistActivity"></activity>
 
-        <activity android:name=".ui.therapists.profile.detailPatient.DetailPatientActivity"></activity>
+        <!--Therapist Sesion-->
+
+        <activity android:name=".ui.therapists.profile.listPatients.TherapistProfileActivity"
+            android:theme="@style/AppThemeDoctorPatient.NoActionBar"/>
 
         <activity
-            android:name=".ui.doctor.listPatientsWithoutTherapist.ListPatientsWithoutTherapistActivity"
-            android:label="@string/title_activity_list_patients"
+            android:name=".ui.therapists.profile.detailPatient.DetailPatientActivity"
+            android:parentActivityName=".ui.therapists.profile.listPatients.TherapistProfileActivity" />
+
+        <!--Reset Password-->
+
+        <activity
+            android:name=".ui.resetPassword.ResetPasswordActivity"
+            android:parentActivityName=".ui.login.LoginActivity" />
+
+        <!--Patient Sesion-->
+
+        <activity android:name=".ui.patients.profile.PatientProfileActivity"
+            android:theme="@style/AppThemeDoctorPatient.NoActionBar"/>
+
+        <!--Admin Sesion-->
+        <activity
+            android:name=".ui.admin.listDoctors.ListDoctorsActivity"
+            android:label="@string/title_activity_list_doctors"
             android:theme="@style/AppThemeDoctorPatient.NoActionBar" />
 
         <activity
-            android:name=".ui.doctor.listPatientsByTherapist.ListPatientsByTherapistActivity"
-            android:label="@string/title_activity_list_patients"
+            android:name=".ui.admin.detailDoctor.DetailDoctorActivity"
+            android:parentActivityName=".ui.admin.listDoctors.ListDoctorsActivity" />
+
+        <activity
+            android:name=".ui.admin.addDoctor.AddDoctorActivity"
+            android:parentActivityName=".ui.admin.listDoctors.ListDoctorsActivity" />
+
+        <!--Doctor Sesion-->
+
+        <activity
+            android:name=".ui.doctor.choosePatientOrTherapist.ChoosePatientOrTherapistActivity"
             android:theme="@style/AppThemeDoctorPatient.NoActionBar" />
 
         <activity
             android:name=".ui.doctor.listPatients.ListPatientsActivity"
             android:label="@string/title_activity_list_patients"
-            android:theme="@style/AppThemeDoctorPatient.NoActionBar" />
+            android:theme="@style/AppThemeDoctorPatient.NoActionBar"
+            android:parentActivityName=".ui.doctor.choosePatientOrTherapist.ChoosePatientOrTherapistActivity"/>
 
-        <activity android:name=".ui.therapists.profile.listPatients.TherapistProfileActivity"
-            android:theme="@style/AppThemeDoctorPatient.NoActionBar"/>
         <activity
-            android:name=".ui.doctor.choosePatientOrTherapist.ChoosePatientOrTherapistActivity"
-            android:theme="@style/AppThemeDoctorPatient.NoActionBar" />
-        <activity
-            android:name=".ui.resetPassword.ResetPasswordActivity"
-            android:parentActivityName=".ui.login.LoginActivity" />
-        <activity
-            android:name=".ui.admin.detailDoctor.DetailDoctorActivity"
-            android:parentActivityName=".ui.admin.listDoctors.ListDoctorsActivity" />
+            android:name=".ui.doctor.addPacient.AddPatientActivity"
+            android:parentActivityName=".ui.doctor.listPatients.ListPatientsActivity"
+            />
+
         <activity
             android:name=".ui.doctor.listTherapists.ListTherapistsActivity"
             android:label="@string/title_activity_list_therapists"
-            android:theme="@style/AppThemeDoctorPatient.NoActionBar" />
-        <activity android:name=".ui.patients.profile.PatientProfileActivity"
-            android:theme="@style/AppThemeDoctorPatient.NoActionBar"/>
+            android:theme="@style/AppThemeDoctorPatient.NoActionBar"
+            android:parentActivityName=".ui.doctor.choosePatientOrTherapist.ChoosePatientOrTherapistActivity"/>
+
         <activity
-            android:name=".ui.admin.listDoctors.ListDoctorsActivity"
-            android:label="@string/title_activity_list_doctors"
-            android:theme="@style/AppThemeDoctorPatient.NoActionBar" />
-        <activity
-            android:name=".ui.admin.addDoctor.AddDoctorActivity"
-            android:parentActivityName=".ui.admin.listDoctors.ListDoctorsActivity" />
-        <activity
-            android:name=".ui.doctor.addPacient.AddPatientActivity"
-            android:parentActivityName=".ui.doctor.addPacient.AddPatientActivity" />
+            android:name=".ui.doctor.detailTherapist.DetailTherapistActivity"
+            android:parentActivityName=".ui.doctor.listTherapists.ListTherapistsActivity" />
+
         <activity
             android:name=".ui.doctor.addTherapist.AddTherapistActivity"
-            android:parentActivityName=".ui.doctor.listTherapists.ListTherapistsActivity" />
+            android:parentActivityName=".ui.doctor.listTherapists.ListTherapistsActivity"
+            />
+
+        <activity
+            android:name=".ui.doctor.listPatientsWithoutTherapist.ListPatientsWithoutTherapistActivity"
+            android:label="@string/title_activity_list_patients"
+            android:theme="@style/AppThemeDoctorPatient.NoActionBar"
+            android:parentActivityName=".ui.doctor.detailTherapist.DetailTherapistActivity"/>
+
+        <activity
+            android:name=".ui.doctor.listPatientsByTherapist.ListPatientsByTherapistActivity"
+            android:label="@string/title_activity_list_patients"
+            android:theme="@style/AppThemeDoctorPatient.NoActionBar"
+            android:parentActivityName=".ui.doctor.detailTherapist.DetailTherapistActivity"/>
+
+        <!--Inicio Sesion-->
+
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

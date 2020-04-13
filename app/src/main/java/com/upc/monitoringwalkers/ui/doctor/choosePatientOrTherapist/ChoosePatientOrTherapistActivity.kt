@@ -2,6 +2,7 @@ package com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist
 
 import android.content.Intent
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.upc.monitoringwalkers.R
 import com.upc.monitoringwalkers.choosePatientOrTherapistPresenter
 import com.upc.monitoringwalkers.model.MWCurrentUser
@@ -31,6 +32,21 @@ class ChoosePatientOrTherapistActivity : BaseActivity(), ChoosePatientOrTherapis
     private fun initUi() {
         currentUser = getCurrentUserPreferenceObjectJson(this)
         presenter.viewReady(currentUser.id)
+
+        Glide
+            .with(this)
+            .load("https://cdn3.iconfinder.com/data/icons/healthcare-medical-lilac-series-vol-1/256/DOCTOR-512.png")
+            .centerCrop()
+            .placeholder(R.drawable.ic_person_outline_black_24dp)
+            .into(img_therapist)
+
+        Glide
+            .with(this)
+            .load("https://cdn2.iconfinder.com/data/icons/covid-19-filled/64/virus-18-512.png")
+            .centerCrop()
+            .placeholder(R.drawable.ic_person_outline_black_24dp)
+            .into(img_patients)
+
 
         containerPatients.setOnClickListener {
             startActivity(Intent(this, ListPatientsActivity::class.java))

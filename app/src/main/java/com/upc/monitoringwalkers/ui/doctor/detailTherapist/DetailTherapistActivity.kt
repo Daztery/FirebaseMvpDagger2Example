@@ -52,7 +52,7 @@ class DetailTherapistActivity : BaseActivity(),DetailTherapistView {
         detail_therapist_email.text = therapistEntity.email
         Glide
             .with(this)
-            .load("https://cdn3.iconfinder.com/data/icons/healthcare-medical-lilac-series-vol-1/256/DOCTOR-512.png") // TODO : custom photo
+            .load("https://cdn3.iconfinder.com/data/icons/healthcare-medical-lilac-series-vol-1/256/DOCTOR-512.png")
             .centerCrop()
             .placeholder(R.drawable.ic_person_outline_black_24dp)
             .into(detail_therapist_image)

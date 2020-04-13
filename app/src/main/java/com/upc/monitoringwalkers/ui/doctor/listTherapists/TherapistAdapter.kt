@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.upc.monitoringwalkers.R
 import com.upc.monitoringwalkers.common.showDeleteAdvertice
 import com.upc.monitoringwalkers.model.TherapistEntity
@@ -59,6 +60,12 @@ class TherapistHolder(
             intent.putExtra("therapistId", therapistEntity.id)
             context.startActivity(intent)
         }
+        Glide
+            .with(this)
+            .load("https://cdn3.iconfinder.com/data/icons/healthcare-medical-lilac-series-vol-1/256/DOCTOR-512.png")
+            .centerCrop()
+            .placeholder(R.drawable.ic_person_outline_black_24dp)
+            .into(img_user_therapist)
 
     }
 }
