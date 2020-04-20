@@ -34,7 +34,6 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
             .setValue(patientEntity.therapistId).addOnCompleteListener {
                 onResult(it.isSuccessful && it.isComplete)
             }
-
     }
 
     override fun listenToPatientByTherapist(

@@ -1,6 +1,7 @@
 package com.upc.monitoringwalkers.ui.doctor.detailTherapist.presenter
 
 import com.upc.monitoringwalkers.firebase.database.FirebaseDatabaseInterface
+import com.upc.monitoringwalkers.model.TherapistEntity
 import com.upc.monitoringwalkers.model.isValid
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.view.DetailTherapistView
 import javax.inject.Inject
@@ -24,6 +25,24 @@ class DetailTherapistPresenterImpl @Inject constructor(
             }
         }
     }
+
+    override fun fetchNumberOfPatients(therapistId: String) {
+        var count = 0
+        var therapist: TherapistEntity
+        databaseInterface.getTherapistProfile(therapistId){
+            therapist=it
+            databaseInterface.listenToPatientByDoctor(therapist.doctorId) {
+                var patient=it
+                if(therapist.id==patient.therapistId){
+                    count +=1
+                }
+                view.onFetchNumberOfPatients(count)
+            }
+        }
+
+    }
+
+
 
 
 

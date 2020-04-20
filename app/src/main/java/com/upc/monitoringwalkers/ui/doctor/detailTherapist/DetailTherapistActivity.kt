@@ -11,7 +11,6 @@ import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.view.DetailTherapistView
 import com.upc.monitoringwalkers.ui.doctor.listPatientsByTherapist.ListPatientsByTherapistActivity
 import com.upc.monitoringwalkers.ui.doctor.listPatientsWithoutTherapist.ListPatientsWithoutTherapistActivity
-import com.upc.monitoringwalkers.ui.doctor.listPatientsWithoutTherapist.presenter.ListPatientsWithoutTherapistPresenter
 import kotlinx.android.synthetic.main.activity_detail_therapist.*
 
 class DetailTherapistActivity : BaseActivity(),DetailTherapistView {
@@ -25,12 +24,12 @@ class DetailTherapistActivity : BaseActivity(),DetailTherapistView {
         setContentView(R.layout.activity_detail_therapist)
         presenter.setView(this)
         therapistId = intent.extras!!.getString("therapistId").toString()
-
         initUi()
     }
 
     private fun initUi() {
         presenter.fetchTherapistProfile(therapistId)
+        presenter.fetchNumberOfPatients(therapistId)
         supportActionBar!!.setTitle(R.string.detail_therapist)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         detail_therapist_add_patients.setOnClickListener {
@@ -66,4 +65,12 @@ class DetailTherapistActivity : BaseActivity(),DetailTherapistView {
         }
     }
 
+    override fun onFetchNumberOfPatients(count: Int) {
+        detail_therapist_patients.text = count.toString()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        this.recreate()
+    }
 }

@@ -5,4 +5,5 @@ import com.upc.monitoringwalkers.model.TherapistEntity
 interface DetailTherapistView {
     fun onFetchTherapistProfileSuccess(therapistEntity: TherapistEntity)
     fun onFetchTherapistProfileFail(error: String)
+    fun onFetchNumberOfPatients(count: Int)
 }
