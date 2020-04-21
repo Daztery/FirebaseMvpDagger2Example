@@ -5,12 +5,14 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.upc.monitoringwalkers.R
 import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.common.showDeleteAdvertice
 import com.upc.monitoringwalkers.model.PatientEntity
+import com.upc.monitoringwalkers.ui.doctor.detailPatient.DetailPatientActivity
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.DetailTherapistActivity
 import kotlinx.android.synthetic.main.item_patient_by_therapist.view.*
 
@@ -56,6 +58,13 @@ class PatientHolder(
     fun displayData(patient: PatientEntity) = with(itemView) {
         patientByTherapistFullName.text = "${patient.name} ${patient.lastName}"
         patientByTherapistEmail.text = patient.email
+        containerPatientByTherapist.setOnClickListener{
+            //shortToast(context,patient.id)
+            val intent = Intent(context, DetailPatientActivity::class.java)
+            intent.putExtra("patientId", patient.id)
+            intent.putExtra("therapistId",therapistId)
+            context.startActivity(intent)
+        }
         patientByTherapist_delete.setOnClickListener {
             showDeleteAdvertice(context) {
                 patient.therapistId=""

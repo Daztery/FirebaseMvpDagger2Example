@@ -1,5 +1,6 @@
 package com.upc.monitoringwalkers.firebase.database
 
+import com.upc.monitoringwalkers.model.CommentEntity
 import com.upc.monitoringwalkers.model.DoctorEntity
 import com.upc.monitoringwalkers.model.PatientEntity
 import com.upc.monitoringwalkers.model.TherapistEntity
@@ -26,6 +27,13 @@ interface FirebaseDatabaseInterface {
      * @param patientEntity Patient instance to add into the FirebaseDatabase
      */
     fun createPatient(patientEntity: PatientEntity)
+
+    /**
+     * Create a Comment instance to save into database.
+     *
+     * @param commentEntity Comment instance to add into the FirebaseDatabase
+     */
+    fun createComment(commentEntity: CommentEntity)
 
     /**
      * Get all the doctor data from the database and parse into an DoctorEntity object.
@@ -105,6 +113,14 @@ interface FirebaseDatabaseInterface {
      * @param onResult
      */
     fun listenToPatientByTherapist(patientEntity: PatientEntity, onResult: (PatientEntity) -> Unit)
+
+    /**
+     * List comments by Patient
+     *
+     * @param patientEntity
+     * @param onResult
+     */
+    fun listCommentsByPatient(patientId: String, onResult: (CommentEntity) -> Unit)
 
     /**
      * Listen changes on therapists by doctor

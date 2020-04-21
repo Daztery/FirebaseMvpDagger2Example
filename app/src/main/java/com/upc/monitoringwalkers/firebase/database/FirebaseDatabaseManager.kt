@@ -6,10 +6,12 @@ import com.upc.monitoringwalkers.model.*
 import javax.inject.Inject
 
 private const val KEY_USER = "user"
+private const val KEY_COMMENT = "comment"
 private const val KEY_TYPE_USER = "type"
 private const val KEY_THERAPIST = "THERAPIST"
 private const val KEY_PATIENT = "PATIENT"
 private const val KEY_DOCTOR = "DOCTOR"
+
 
 
 class FirebaseDatabaseManager @Inject constructor(private val database: FirebaseDatabase) :
@@ -27,6 +29,10 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
             .setValue(patientEntity.therapistId).addOnCompleteListener {
                 onResult(it.isSuccessful && it.isComplete)
             }
+
+        /*database.reference.child(KEY_COMMENT).child(patientEntity.id).setValue(patientEntity.id).addOnCompleteListener {
+            onResult(it.isSuccessful && it.isComplete)
+        }*/
      }
 
     override fun deleteTherapistFromPatient(patientEntity: PatientEntity, onResult: (Boolean) -> Unit) {
@@ -34,6 +40,10 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
             .setValue(patientEntity.therapistId).addOnCompleteListener {
                 onResult(it.isSuccessful && it.isComplete)
             }
+
+        /*database.reference.child(KEY_COMMENT).child(patientEntity.id).removeValue().addOnCompleteListener {
+            onResult(it.isSuccessful && it.isComplete)
+        }*/
     }
 
     override fun listenToPatientByTherapist(
@@ -280,6 +290,51 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
                                 "${this.name} ${this.email} ${this.lastName} ${snapshot.key} ${this.type}"
                             )
                             onResult(mapToPatient())
+                        }
+                    }
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) = Unit
+            })
+    }
+
+    override fun createComment(commentEntity: CommentEntity) {
+
+        //database.reference.child(KEY_COMMENT).child(commentEntity.patientId).child(commentEntity.date).setValue(commentEntity)
+
+        database.reference.child(KEY_COMMENT).child(commentEntity.id).setValue(commentEntity)
+    }
+
+    override fun listCommentsByPatient(
+        patientId: String,
+        onResult: (CommentEntity) -> Unit
+    ) {
+        database.reference.child(KEY_COMMENT).orderByChild("patientId").equalTo(patientId)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onCancelled(error: DatabaseError) = Unit
+
+                override fun onChildMoved(snapshot: DataSnapshot, p1: String?) = Unit
+
+                override fun onChildChanged(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(CommentEntity::class.java)?.run {
+                        if (isValid()) {
+                            Log.i(
+                                "commentInfo",
+                                "${this.date} ${this.comment}"
+                            )
+                            onResult(mapToComment())
+                        }
+                    }
+                }
+
+                override fun onChildAdded(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(CommentEntity::class.java)?.run {
+                        if (isValid()) {
+                            Log.i(
+                                "commentInfo",
+                                "${this.date} ${this.comment}"
+                            )
+                            onResult(mapToComment())
                         }
                     }
                 }

@@ -4,9 +4,10 @@ import android.os.Bundle
 
 data class CommentEntity(
     var id: String = "",
+    var patientId: String = "",
     var therapistId: String = "",
     var comment: String = "",
-    val date: String = ""
+    var date: String = ""
 ){
     companion object {
         fun from(bundle: Bundle): TherapistEntity {
@@ -24,7 +25,7 @@ data class CommentEntity(
     }
 }
 
-fun CommentEntity.mapToComment() = TherapistEntity(id, therapistId, comment, date)
+fun CommentEntity.mapToComment() = CommentEntity(id, patientId, therapistId, comment,date)
 fun CommentEntity.isValid() = therapistId.isNotBlank()
         && comment.isNotBlank()
         && date.isNotBlank()

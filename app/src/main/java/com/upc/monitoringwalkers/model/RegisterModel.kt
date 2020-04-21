@@ -49,3 +49,13 @@ data class RegisterTherapistModel(
     fun isValid(): Boolean =
         isEmailValid(email) && arePasswordsSame(password, repeatPassword) && name.isNotEmpty() && lastName.isNotEmpty()
 }
+
+data class RegisterCommentModel(
+    var id: String = "",
+    var patientId: String = "",
+    var therapistId: String = "",
+    var comment: String = "",
+    var date: String = ""
+) {
+    fun isValid(): Boolean = comment.isNotBlank()
+}

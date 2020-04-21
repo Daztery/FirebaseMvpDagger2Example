@@ -91,6 +91,19 @@
             android:theme="@style/AppThemeDoctorPatient.NoActionBar"
             android:parentActivityName=".ui.doctor.detailTherapist.DetailTherapistActivity"/>
 
+        <activity
+            android:name=".ui.doctor.detailPatient.DetailPatientActivity"
+            android:parentActivityName=".ui.doctor.listPatientsByTherapist.ListPatientsByTherapistActivity"/>
+
+        <activity
+            android:name=".ui.doctor.addComment.AddCommentActivity"
+            android:parentActivityName=".ui.doctor.listComments.ListCommentsActivity"/>
+
+        <activity
+            android:name=".ui.doctor.listComments.ListCommentsActivity"
+            android:theme="@style/AppThemeDoctorPatient.NoActionBar"
+            android:parentActivityName=".ui.doctor.detailPatient.DetailPatientActivity"/>
+
         <!--Inicio Sesion-->
 
         <activity android:name=".ui.splash.SplashActivity">

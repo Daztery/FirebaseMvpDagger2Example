@@ -45,4 +45,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--Images-->
+    <string name="img_patient">https://cdn2.iconfinder.com/data/icons/covid-19-filled/64/virus-18-512.png</string>
+    <string name="img_therapist">https://cdn3.iconfinder.com/data/icons/healthcare-medical-lilac-series-vol-1/256/DOCTOR-512.png</string>
+    <string name="img_doctor">https://cdn3.iconfinder.com/data/icons/healthcare-medical-lilac-series-vol-1/256/DOCTOR-512.png</string>
 </resources>

@@ -43,6 +43,7 @@ class ListDoctorsActivity : BaseActivity(), ListDoctorsView {
             shortToast(this, "Cerrar sesion")
             presenter.logout()
         }
+
     }
 
     override fun showNoDataDescription() {
