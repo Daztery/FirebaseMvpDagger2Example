@@ -1,11 +1,10 @@
 package com.upc.monitoringwalkers.ui.doctor.addTherapist.presenter
 
-import com.upc.monitoringwalkers.firebase.authentication.FirebaseAuthenticationInterface
 import com.upc.monitoringwalkers.firebase.database.FirebaseDatabaseInterface
 import com.upc.monitoringwalkers.model.CommentEntity
 import com.upc.monitoringwalkers.model.RegisterCommentModel
-import com.upc.monitoringwalkers.ui.doctor.addComment.presenter.AddCommentPresenter
-import com.upc.monitoringwalkers.ui.doctor.addComment.view.AddCommentView
+import com.upc.monitoringwalkers.ui.therapists.profile.addComment.presenter.AddCommentPresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.addComment.view.AddCommentView
 import java.util.*
 import javax.inject.Inject
 

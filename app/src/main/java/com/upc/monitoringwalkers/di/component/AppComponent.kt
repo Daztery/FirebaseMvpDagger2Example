@@ -4,13 +4,13 @@ import com.upc.monitoringwalkers.di.module.PresentationModule
 import com.upc.monitoringwalkers.ui.admin.addDoctor.presenter.AddDoctorPresenter
 import com.upc.monitoringwalkers.ui.admin.detailDoctor.presenter.DetailDoctorPresenter
 import com.upc.monitoringwalkers.ui.admin.listDoctors.presenter.ListDoctorsPresenter
-import com.upc.monitoringwalkers.ui.doctor.addComment.presenter.AddCommentPresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.addComment.presenter.AddCommentPresenter
 import com.upc.monitoringwalkers.ui.doctor.addPacient.presenter.AddPatientPresenter
 import com.upc.monitoringwalkers.ui.doctor.addTherapist.presenter.AddTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.presenter.ChoosePatientOrTherapistPresenter
-import com.upc.monitoringwalkers.ui.doctor.detailPatient.presenter.DetailPatientInTherapistPresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.detailPatient.presenter.DetailPatientInTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.presenter.DetailTherapistPresenter
-import com.upc.monitoringwalkers.ui.doctor.listComments.presenter.ListCommentsPresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.listComments.presenter.ListCommentsPresenter
 import com.upc.monitoringwalkers.ui.doctor.listPatients.presenter.ListPatientsPresenter
 import com.upc.monitoringwalkers.ui.doctor.listPatientsByTherapist.presenter.ListPatientsByTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.listPatientsWithoutTherapist.presenter.ListPatientsWithoutTherapistPresenter
@@ -19,7 +19,6 @@ import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenter
 import com.upc.monitoringwalkers.ui.patients.profile.presenter.PatientProfilePresenter
 import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresenter
 import com.upc.monitoringwalkers.ui.splash.presenter.SplashPresenter
-import com.upc.monitoringwalkers.ui.therapists.profile.detailPatient.presenter.DetailPatientPresenter
 import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.presenter.TherapistProfilePresenter
 import dagger.Component
 import javax.inject.Singleton
@@ -55,8 +54,6 @@ interface AppComponent {
     fun detailDoctorPresenter(): DetailDoctorPresenter
 
     fun detailTherapistPresenter(): DetailTherapistPresenter
-
-    fun detailPatientPresenter(): DetailPatientPresenter
 
     fun detailPatientInTherapistPresenter(): DetailPatientInTherapistPresenter
 

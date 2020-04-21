@@ -6,7 +6,7 @@ import com.upc.monitoringwalkers.ui.admin.detailDoctor.presenter.DetailDoctorPre
 import com.upc.monitoringwalkers.ui.admin.detailDoctor.presenter.DetailDoctorPresenterImpl
 import com.upc.monitoringwalkers.ui.admin.listDoctors.presenter.ListDoctorsPresenter
 import com.upc.monitoringwalkers.ui.admin.listDoctors.presenter.ListDoctorsPresenterImpl
-import com.upc.monitoringwalkers.ui.doctor.addComment.presenter.AddCommentPresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.addComment.presenter.AddCommentPresenter
 import com.upc.monitoringwalkers.ui.doctor.addPacient.presenter.AddPatientPresenter
 import com.upc.monitoringwalkers.ui.doctor.addPacient.presenter.AddPatientPresenterImpl
 import com.upc.monitoringwalkers.ui.doctor.addTherapist.presenter.AddCommentPresenterImpl
@@ -14,12 +14,12 @@ import com.upc.monitoringwalkers.ui.doctor.addTherapist.presenter.AddTherapistPr
 import com.upc.monitoringwalkers.ui.doctor.addTherapist.presenter.AddTherapistPresenterImpl
 import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.presenter.ChoosePatientOrTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.presenter.ChoosePatientOrTherapistPresenterImpl
-import com.upc.monitoringwalkers.ui.doctor.detailPatient.presenter.DetailPatientInTherapistPresenter
-import com.upc.monitoringwalkers.ui.doctor.detailPatient.presenter.DetailPatientInTherapistPresenterImpl
+import com.upc.monitoringwalkers.ui.therapists.profile.detailPatient.presenter.DetailPatientInTherapistPresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.detailPatient.presenter.DetailPatientInTherapistPresenterImpl
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.presenter.DetailTherapistPresenter
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.presenter.DetailTherapistPresenterImpl
-import com.upc.monitoringwalkers.ui.doctor.listComments.presenter.ListCommentsPresenter
-import com.upc.monitoringwalkers.ui.doctor.listComments.presenter.ListCommentsPresenterImpl
+import com.upc.monitoringwalkers.ui.therapists.profile.listComments.presenter.ListCommentsPresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.listComments.presenter.ListCommentsPresenterImpl
 import com.upc.monitoringwalkers.ui.doctor.listPatients.presenter.ListPatientsPresenter
 import com.upc.monitoringwalkers.ui.doctor.listPatients.presenter.ListPatientsPresenterImpl
 import com.upc.monitoringwalkers.ui.doctor.listPatientsByTherapist.presenter.ListPatientsByTheparistPresenterImpl
@@ -36,8 +36,6 @@ import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresent
 import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresenterImpl
 import com.upc.monitoringwalkers.ui.splash.presenter.SplashPresenter
 import com.upc.monitoringwalkers.ui.splash.presenter.SplashPresenterImpl
-import com.upc.monitoringwalkers.ui.therapists.profile.detailPatient.presenter.DetailPatientPresenter
-import com.upc.monitoringwalkers.ui.therapists.profile.detailPatient.presenter.DetailPatientPresenterImpl
 import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.presenter.TherapistProfilePresenter
 import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.presenter.TherapistProfilePresenterImpl
 import dagger.Binds
@@ -86,9 +84,6 @@ abstract class PresentationModule {
 
     @Binds
     abstract fun detailDoctorPresenter(detailDoctorPresenter: DetailDoctorPresenterImpl): DetailDoctorPresenter
-
-    @Binds
-    abstract fun detailPatientPresenter(detailPatientPresenter: DetailPatientPresenterImpl): DetailPatientPresenter
 
     @Binds
     abstract fun detailPatientInTherapistPresenter(detailPatientInTherapistPresenter: DetailPatientInTherapistPresenterImpl): DetailPatientInTherapistPresenter

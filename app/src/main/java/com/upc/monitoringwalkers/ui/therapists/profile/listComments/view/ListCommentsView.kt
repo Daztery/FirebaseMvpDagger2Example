@@ -1,7 +1,6 @@
-package com.upc.monitoringwalkers.ui.doctor.listComments.view
+package com.upc.monitoringwalkers.ui.therapists.profile.listComments.view
 
 import com.upc.monitoringwalkers.model.CommentEntity
-import com.upc.monitoringwalkers.model.PatientEntity
 
 interface ListCommentsView {
 

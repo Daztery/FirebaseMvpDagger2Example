@@ -1,4 +1,4 @@
-package com.upc.monitoringwalkers.ui.doctor.addComment.view
+package com.upc.monitoringwalkers.ui.therapists.profile.addComment.view
 
 interface AddCommentView {
 

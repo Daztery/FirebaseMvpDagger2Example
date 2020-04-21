@@ -1,10 +1,8 @@
-package com.upc.monitoringwalkers.ui.doctor.listComments.presenter
+package com.upc.monitoringwalkers.ui.therapists.profile.listComments.presenter
 
-import com.upc.monitoringwalkers.firebase.authentication.FirebaseAuthenticationInterface
 import com.upc.monitoringwalkers.firebase.database.FirebaseDatabaseInterface
 import com.upc.monitoringwalkers.model.CommentEntity
-import com.upc.monitoringwalkers.model.isValid
-import com.upc.monitoringwalkers.ui.doctor.listComments.view.ListCommentsView
+import com.upc.monitoringwalkers.ui.therapists.profile.listComments.view.ListCommentsView
 import javax.inject.Inject
 
 class ListCommentsPresenterImpl @Inject constructor(

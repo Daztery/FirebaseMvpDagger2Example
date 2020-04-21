@@ -1,4 +1,4 @@
-package com.upc.monitoringwalkers.ui.doctor.listComments
+package com.upc.monitoringwalkers.ui.therapists.profile.listComments
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,8 @@ import com.upc.monitoringwalkers.R
 import com.upc.monitoringwalkers.listCommentsByPatientPresenter
 import com.upc.monitoringwalkers.model.CommentEntity
 import com.upc.monitoringwalkers.ui.base.BaseActivity
-import com.upc.monitoringwalkers.ui.doctor.addComment.AddCommentActivity
-import com.upc.monitoringwalkers.ui.doctor.listComments.view.ListCommentsView
+import com.upc.monitoringwalkers.ui.therapists.profile.addComment.AddCommentActivity
+import com.upc.monitoringwalkers.ui.therapists.profile.listComments.view.ListCommentsView
 import kotlinx.android.synthetic.main.activity_list_comments.*
 import kotlinx.android.synthetic.main.content_list_comments.*
 

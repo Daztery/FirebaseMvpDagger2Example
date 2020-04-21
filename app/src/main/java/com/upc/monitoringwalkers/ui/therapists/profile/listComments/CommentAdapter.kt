@@ -1,4 +1,4 @@
-package com.upc.monitoringwalkers.ui.doctor.listComments
+package com.upc.monitoringwalkers.ui.therapists.profile.listComments
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

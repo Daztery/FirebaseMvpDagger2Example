@@ -1,7 +1,7 @@
-package com.upc.monitoringwalkers.ui.doctor.addComment.presenter
+package com.upc.monitoringwalkers.ui.therapists.profile.addComment.presenter
 
 import com.upc.monitoringwalkers.ui.base.BasePresenter
-import com.upc.monitoringwalkers.ui.doctor.addComment.view.AddCommentView
+import com.upc.monitoringwalkers.ui.therapists.profile.addComment.view.AddCommentView
 
 interface AddCommentPresenter : BasePresenter<AddCommentView> {
 

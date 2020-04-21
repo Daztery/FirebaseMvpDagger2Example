@@ -1,19 +1,15 @@
-package com.upc.monitoringwalkers.ui.doctor.addComment
+package com.upc.monitoringwalkers.ui.therapists.profile.addComment
 
-import android.os.Build
 import android.os.Bundle
-import androidx.annotation.RequiresApi
 import com.upc.monitoringwalkers.R
 import com.upc.monitoringwalkers.addCommentPresenter
 import com.upc.monitoringwalkers.common.onTextChanged
 import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.common.showGeneralError
 import com.upc.monitoringwalkers.ui.base.BaseActivity
-import com.upc.monitoringwalkers.ui.doctor.addComment.view.AddCommentView
+import com.upc.monitoringwalkers.ui.therapists.profile.addComment.view.AddCommentView
 import kotlinx.android.synthetic.main.activity_add_comment.*
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class AddCommentActivity : BaseActivity(), AddCommentView {

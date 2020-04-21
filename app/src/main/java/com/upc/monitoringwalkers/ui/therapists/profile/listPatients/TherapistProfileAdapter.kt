@@ -60,6 +60,7 @@ class PatientHolder(
             //shortToast(context,patient.id)
             val intent = Intent(context, DetailPatientActivity::class.java)
             intent.putExtra("patientId", patient.id)
+            intent.putExtra("therapistId", therapistId)
             context.startActivity(intent)
         }
         Glide
