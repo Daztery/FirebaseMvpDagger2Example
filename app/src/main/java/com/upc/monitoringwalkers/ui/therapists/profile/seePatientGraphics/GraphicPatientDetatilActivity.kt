@@ -1,4 +1,4 @@
-package com.upc.monitoringwalkers.ui.patients.profile.seeGraphics
+package com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics
 
 
 import android.os.Bundle

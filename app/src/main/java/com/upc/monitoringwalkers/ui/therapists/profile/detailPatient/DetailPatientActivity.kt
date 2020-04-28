@@ -10,6 +10,7 @@ import com.upc.monitoringwalkers.model.PatientEntity
 import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.therapists.profile.detailPatient.view.DetailPatientView
 import com.upc.monitoringwalkers.ui.therapists.profile.listComments.ListCommentsActivity
+import com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.GraphicPatientDetatilActivity
 import kotlinx.android.synthetic.main.activity_detail_patient.*
 
 class DetailPatientActivity : BaseActivity(), DetailPatientView {
@@ -35,6 +36,11 @@ class DetailPatientActivity : BaseActivity(), DetailPatientView {
         detail_patient_see_comments.setOnClickListener {
             val intent = Intent(this, ListCommentsActivity::class.java)
             intent.putExtra("therapistId", therapistId)
+            intent.putExtra("patientId", patientId)
+            this.startActivity(intent)
+        }
+        detail_patient_see_graphics.setOnClickListener {
+            val intent = Intent(this, GraphicPatientDetatilActivity::class.java)
             intent.putExtra("patientId", patientId)
             this.startActivity(intent)
         }

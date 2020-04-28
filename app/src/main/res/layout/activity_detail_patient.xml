@@ -102,9 +102,26 @@
                 app:cornerRadius="23dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_patient_email"
+                app:layout_constraintVertical_bias="0.155" />
+
+            <Button
+                android:id="@+id/detail_patient_see_graphics"
+                android:layout_width="198dp"
+                android:layout_height="59dp"
+                android:layout_marginTop="7dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:text="Ver graficos"
+                android:textSize="14sp"
+                app:cornerRadius="23dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detail_patient_email" />
+                app:layout_constraintTop_toBottomOf="@+id/detail_patient_see_comments" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

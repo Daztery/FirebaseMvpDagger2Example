@@ -32,6 +32,10 @@
             android:name=".ui.therapists.profile.addComment.AddCommentActivity"
             android:parentActivityName=".ui.therapists.profile.listComments.ListCommentsActivity"/>
 
+        <activity
+            android:name=".ui.therapists.profile.seePatientGraphics.GraphicPatientDetatilActivity"
+            android:parentActivityName=".ui.therapists.profile.detailPatient.DetailPatientActivity"/>
+
         <!--Reset Password-->
 
         <activity
