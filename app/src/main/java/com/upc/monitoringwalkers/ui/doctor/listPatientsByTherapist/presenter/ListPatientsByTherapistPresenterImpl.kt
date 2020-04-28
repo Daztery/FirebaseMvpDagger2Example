@@ -18,7 +18,7 @@ class ListPatientsByTheparistPresenterImpl @Inject constructor(
 
     override fun listAllPatientByDoctorAndFiltered(doctorId: String) {
 
-        databaseInterface.listenToPatientByDoctor(doctorId) {
+        databaseInterface.listPatientsByDoctor(doctorId) {
             view.addPatientToTherapist(it)
         }
     }

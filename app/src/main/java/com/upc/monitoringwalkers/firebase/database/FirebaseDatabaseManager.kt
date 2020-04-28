@@ -8,6 +8,8 @@ import javax.inject.Inject
 private const val KEY_USER = "user"
 private const val KEY_COMMENT = "comment"
 private const val KEY_TYPE_USER = "type"
+private const val KEY_THERAPY_SESSION_FORCE = "therapy-session-force"
+private const val KEY_THERAPY_SESSION_SPEED = "therapy-session-speed"
 private const val KEY_THERAPIST = "THERAPIST"
 private const val KEY_PATIENT = "PATIENT"
 private const val KEY_DOCTOR = "DOCTOR"
@@ -46,7 +48,7 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
         }*/
     }
 
-    override fun listenToPatientByTherapist(
+    override fun listPatientsByTherapist(
         patientEntity: PatientEntity,
         onResult: (PatientEntity) -> Unit
     ) {
@@ -193,7 +195,7 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
         //TODO See why is not implemented
     }
 
-    override fun listenToTherapistByDoctor(doctorId: String, onResult: (TherapistEntity) -> Unit) {
+    override fun listTherapistsByDoctor(doctorId: String, onResult: (TherapistEntity) -> Unit) {
         database.reference.child(KEY_USER).orderByChild("doctorId").equalTo(doctorId)
             .addChildEventListener(object : ChildEventListener {
                 override fun onCancelled(error: DatabaseError) = Unit
@@ -263,7 +265,7 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
             })
     }
 
-    override fun listenToPatientByDoctor(doctorId: String, onResult: (PatientEntity) -> Unit) {
+    override fun listPatientsByDoctor(doctorId: String, onResult: (PatientEntity) -> Unit) {
         database.reference.child(KEY_USER).orderByChild("doctorId").equalTo(doctorId)
             .addChildEventListener(object : ChildEventListener {
                 override fun onCancelled(error: DatabaseError) = Unit
@@ -343,6 +345,81 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
             })
     }
 
+    override fun getOfForceGraphicByPatient(
+        patientId: String,
+        onResult: (PointEntity) -> Unit
+    ) {
+        database.reference.child(KEY_THERAPY_SESSION_FORCE).orderByChild("patientId").equalTo(patientId)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onCancelled(error: DatabaseError) = Unit
 
+                override fun onChildMoved(snapshot: DataSnapshot, p1: String?) = Unit
+
+                override fun onChildChanged(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(PointEntity::class.java)?.run {
+                        if (isValid()) {
+                            Log.i(
+                                "pointInfo",
+                                "${this.startedAt} ${this.value}"
+                            )
+                            onResult(mapToPoint())
+                        }
+                    }
+                }
+
+                override fun onChildAdded(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(PointEntity::class.java)?.run {
+                        if (isValid()) {
+                            Log.i(
+                                "pointInfo",
+                                "${this.startedAt} ${this.value}"
+                            )
+                            onResult(mapToPoint())
+                        }
+                    }
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) = Unit
+            })
+    }
+
+
+    override fun getOfSpeedGraphicByPatient(
+        patientId: String,
+        onResult: (PointEntity) -> Unit
+    ) {
+        database.reference.child(KEY_THERAPY_SESSION_SPEED).orderByChild("patientId").equalTo(patientId)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onCancelled(error: DatabaseError) = Unit
+
+                override fun onChildMoved(snapshot: DataSnapshot, p1: String?) = Unit
+
+                override fun onChildChanged(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(PointEntity::class.java)?.run {
+                        if (isValid()) {
+                            Log.i(
+                                "pointInfo",
+                                "${this.startedAt} ${this.value}"
+                            )
+                            onResult(mapToPoint())
+                        }
+                    }
+                }
+
+                override fun onChildAdded(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(PointEntity::class.java)?.run {
+                        if (isValid()) {
+                            Log.i(
+                                "pointInfo",
+                                "${this.startedAt} ${this.value}"
+                            )
+                            onResult(mapToPoint())
+                        }
+                    }
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) = Unit
+            })
+    }
 
 }

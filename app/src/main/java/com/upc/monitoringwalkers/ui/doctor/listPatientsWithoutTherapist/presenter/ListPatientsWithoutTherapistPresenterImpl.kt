@@ -19,7 +19,7 @@ class ListPatientsWithoutTheparistPresenterImpl @Inject constructor(
     }
 
     override fun listAllPatientWithoutTherapist(doctorId: String) {
-        databaseInterface.listenToPatientByDoctor(doctorId) {
+        databaseInterface.listPatientsByDoctor(doctorId) {
             view.addPatientWithoutTherapistToList(it)
         }
     }

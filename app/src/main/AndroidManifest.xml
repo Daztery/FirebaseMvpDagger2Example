@@ -40,8 +40,12 @@
 
         <!--Patient Sesion-->
 
-        <activity android:name=".ui.patients.profile.PatientProfileActivity"
+        <activity android:name=".ui.patients.profile.seeDetail.PatientProfileActivity"
             android:theme="@style/AppThemeDoctorPatient.NoActionBar"/>
+
+        <activity android:name=".ui.patients.profile.seeGraphics.GraphicPatientDetatilActivity"
+            android:label="Graficos"
+            android:parentActivityName=".ui.patients.profile.seeDetail.PatientProfileActivity"/>
 
         <!--Admin Sesion-->
         <activity

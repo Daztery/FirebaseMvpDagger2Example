@@ -9,9 +9,8 @@ import com.upc.monitoringwalkers.splashPresenter
 import com.upc.monitoringwalkers.ui.admin.listDoctors.ListDoctorsActivity
 import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.doctor.choosePatientOrTherapist.ChoosePatientOrTherapistActivity
-import com.upc.monitoringwalkers.ui.doctor.listPatients.ListPatientsActivity
 import com.upc.monitoringwalkers.ui.login.LoginActivity
-import com.upc.monitoringwalkers.ui.patients.profile.PatientProfileActivity
+import com.upc.monitoringwalkers.ui.patients.profile.seeDetail.PatientProfileActivity
 import com.upc.monitoringwalkers.ui.splash.view.SplashView
 import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.TherapistProfileActivity
 

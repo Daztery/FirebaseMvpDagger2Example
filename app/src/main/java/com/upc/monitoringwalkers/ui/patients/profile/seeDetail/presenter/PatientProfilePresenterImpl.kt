@@ -1,9 +1,9 @@
-package com.upc.monitoringwalkers.ui.patients.profile.presenter
+package com.upc.monitoringwalkers.ui.patients.profile.seeDetail.presenter
 
 import com.upc.monitoringwalkers.firebase.authentication.FirebaseAuthenticationInterface
 import com.upc.monitoringwalkers.firebase.database.FirebaseDatabaseInterface
 import com.upc.monitoringwalkers.model.isValid
-import com.upc.monitoringwalkers.ui.patients.profile.view.PatientProfileView
+import com.upc.monitoringwalkers.ui.patients.profile.seeDetail.view.PatientProfileView
 import javax.inject.Inject
 
 class PatientProfilePresenterImpl @Inject constructor(
@@ -29,7 +29,7 @@ class PatientProfilePresenterImpl @Inject constructor(
     }
 
     override fun viewReady(patientId: String) {
-        print("Inicio de sesion")
+        fetchPatientProfile(patientId)
     }
 
     override fun logout() {

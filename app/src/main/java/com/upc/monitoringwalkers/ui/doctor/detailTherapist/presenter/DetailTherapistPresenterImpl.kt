@@ -31,7 +31,7 @@ class DetailTherapistPresenterImpl @Inject constructor(
         var therapist: TherapistEntity
         databaseInterface.getTherapistProfile(therapistId){
             therapist=it
-            databaseInterface.listenToPatientByDoctor(therapist.doctorId) {
+            databaseInterface.listPatientsByDoctor(therapist.doctorId) {
                 var patient=it
                 if(therapist.id==patient.therapistId){
                     count +=1

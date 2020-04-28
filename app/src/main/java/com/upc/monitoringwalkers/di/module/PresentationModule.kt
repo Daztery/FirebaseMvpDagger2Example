@@ -30,8 +30,10 @@ import com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter.ListTherapis
 import com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter.ListTherapistsPresenterImpl
 import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenter
 import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenterImpl
-import com.upc.monitoringwalkers.ui.patients.profile.presenter.PatientProfilePresenter
-import com.upc.monitoringwalkers.ui.patients.profile.presenter.PatientProfilePresenterImpl
+import com.upc.monitoringwalkers.ui.patients.profile.seeDetail.presenter.PatientProfilePresenter
+import com.upc.monitoringwalkers.ui.patients.profile.seeDetail.presenter.PatientProfilePresenterImpl
+import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.presenter.GraphicPatientDetatilPresenter
+import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.presenter.GraphicPatientDetatilPresenterImpl
 import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresenter
 import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresenterImpl
 import com.upc.monitoringwalkers.ui.splash.presenter.SplashPresenter
@@ -99,4 +101,7 @@ abstract class PresentationModule {
 
     @Binds
     abstract fun listPatientsWithoutTherapistPresenter(listPatientsWithoutTheparistPresenter: ListPatientsWithoutTheparistPresenterImpl): ListPatientsWithoutTherapistPresenter
+
+    @Binds
+    abstract fun graphicPatientDetatilPresenter(graphicPatientDetatilPresenter: GraphicPatientDetatilPresenterImpl): GraphicPatientDetatilPresenter
 }

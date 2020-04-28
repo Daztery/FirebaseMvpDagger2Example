@@ -1,4 +1,4 @@
-package com.upc.monitoringwalkers.ui.patients.profile
+package com.upc.monitoringwalkers.ui.patients.profile.seeDetail
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,10 +12,12 @@ import com.upc.monitoringwalkers.model.setCurrentUserPreferenceObject
 import com.upc.monitoringwalkers.patientProfilePresenter
 import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.login.LoginActivity
-import com.upc.monitoringwalkers.ui.patients.profile.view.PatientProfileView
+import com.upc.monitoringwalkers.ui.patients.profile.seeDetail.view.PatientProfileView
+import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.GraphicPatientDetatilActivity
 import kotlinx.android.synthetic.main.activity_patient_profile.*
 
-class PatientProfileActivity : BaseActivity(), PatientProfileView {
+class PatientProfileActivity : BaseActivity(),
+    PatientProfileView {
 
     private val presenter by lazy { patientProfilePresenter() }
     private lateinit var currentUser: MWCurrentUser
@@ -32,7 +34,6 @@ class PatientProfileActivity : BaseActivity(), PatientProfileView {
 
         currentUser = getCurrentUserPreferenceObjectJson(this)
         presenter.viewReady(currentUser.id)
-        presenter.fetchPatientProfile(currentUser.id)
 
 
         patient_profile_logout.setOnClickListener {
@@ -64,6 +65,11 @@ class PatientProfileActivity : BaseActivity(), PatientProfileView {
             .centerCrop()
             .placeholder(R.drawable.ic_person_outline_black_24dp)
             .into(patient_profile_image)
+        patient_profile_button_see_graphics.setOnClickListener {
+            val intent = Intent(this, GraphicPatientDetatilActivity::class.java)
+            intent.putExtra("patientId", currentUser.id)
+            this.startActivity(intent)
+        }
     }
 
     override fun onFetchPatientProfileFail(error: String) {

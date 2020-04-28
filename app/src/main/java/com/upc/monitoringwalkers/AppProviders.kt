@@ -21,3 +21,4 @@ fun detailPatientinTherapistPresenter() = component().detailPatientInTherapistPr
 fun listPatientsByTherapistPresenter() = component().listPatientsByTherapistPresenter()
 fun listCommentsByPatientPresenter() = component().listCommentsByPatientPresenter()
 fun listPatientsWithoutTherapistPresenter() = component().listPatientsWithoutTherapistPresenter()
+fun graphicPatientPresenter() = component().graphicPatientDetatilPresenter()

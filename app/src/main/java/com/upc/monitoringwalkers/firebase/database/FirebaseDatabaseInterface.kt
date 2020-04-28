@@ -1,9 +1,6 @@
 package com.upc.monitoringwalkers.firebase.database
 
-import com.upc.monitoringwalkers.model.CommentEntity
-import com.upc.monitoringwalkers.model.DoctorEntity
-import com.upc.monitoringwalkers.model.PatientEntity
-import com.upc.monitoringwalkers.model.TherapistEntity
+import com.upc.monitoringwalkers.model.*
 
 interface FirebaseDatabaseInterface {
 
@@ -99,12 +96,12 @@ interface FirebaseDatabaseInterface {
     fun listenToDoctors(onResult: (DoctorEntity) -> Unit)
 
     /**
-     * Listen changes on patients by doctor
+     * List patients by doctor
      *
      * @param doctorId
      * @param onResult
      */
-    fun listenToPatientByDoctor(doctorId: String, onResult: (PatientEntity) -> Unit)
+    fun listPatientsByDoctor(doctorId: String, onResult: (PatientEntity) -> Unit)
 
     /**
      * List patients by Therapist
@@ -112,23 +109,23 @@ interface FirebaseDatabaseInterface {
      * @param patientEntity
      * @param onResult
      */
-    fun listenToPatientByTherapist(patientEntity: PatientEntity, onResult: (PatientEntity) -> Unit)
+    fun listPatientsByTherapist(patientEntity: PatientEntity, onResult: (PatientEntity) -> Unit)
 
     /**
      * List comments by Patient
      *
-     * @param patientEntity
+     * @param patientId
      * @param onResult
      */
     fun listCommentsByPatient(patientId: String, onResult: (CommentEntity) -> Unit)
 
     /**
-     * Listen changes on therapists by doctor
+     * List therapists by doctor
      *
      * @param doctorId
      * @param onResult
      */
-    fun listenToTherapistByDoctor(doctorId: String, onResult: (TherapistEntity) -> Unit)
+    fun listTherapistsByDoctor(doctorId: String, onResult: (TherapistEntity) -> Unit)
 
     /**
      * Delete a user by identifier
@@ -153,6 +150,22 @@ interface FirebaseDatabaseInterface {
      * @param onResult
      */
     fun updatePatientWithTherapist(patientEntity: PatientEntity, onResult: (Boolean) -> Unit)
+
+    /**
+     * List points of Force's graphic by Patient
+     *
+     * @param patientId
+     * @param onResult
+     */
+    fun getOfForceGraphicByPatient(patientId: String, onResult: (PointEntity) -> Unit)
+
+    /**
+     * List points of Speed's graphic by Patient
+     *
+     * @param patientId
+     * @param onResult
+     */
+    fun getOfSpeedGraphicByPatient(patientId: String, onResult: (PointEntity) -> Unit)
 
 
 

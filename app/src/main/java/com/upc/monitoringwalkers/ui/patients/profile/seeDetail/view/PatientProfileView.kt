@@ -1,4 +1,4 @@
-package com.upc.monitoringwalkers.ui.patients.profile.view
+package com.upc.monitoringwalkers.ui.patients.profile.seeDetail.view
 
 import com.upc.monitoringwalkers.model.PatientEntity
 

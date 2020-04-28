@@ -1,7 +1,7 @@
-package com.upc.monitoringwalkers.ui.patients.profile.presenter
+package com.upc.monitoringwalkers.ui.patients.profile.seeDetail.presenter
 
 import com.upc.monitoringwalkers.ui.base.BasePresenter
-import com.upc.monitoringwalkers.ui.patients.profile.view.PatientProfileView
+import com.upc.monitoringwalkers.ui.patients.profile.seeDetail.view.PatientProfileView
 
 interface PatientProfilePresenter : BasePresenter<PatientProfileView>{
 

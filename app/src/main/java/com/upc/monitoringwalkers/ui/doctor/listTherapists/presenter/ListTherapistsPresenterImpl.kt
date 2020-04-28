@@ -23,7 +23,7 @@ class ListTherapistsPresenterImpl @Inject constructor(
     }
 
     override fun listAllTherapistByDoctor(doctorId: String) {
-        databaseInterface.listenToTherapistByDoctor(doctorId) {
+        databaseInterface.listTherapistsByDoctor(doctorId) {
             view.addTherapist(it)
         }
     }
@@ -32,7 +32,7 @@ class ListTherapistsPresenterImpl @Inject constructor(
     override fun onDeleteButtonClicked(therapistEntity: TherapistEntity) {
 
 
-        databaseInterface.listenToPatientByDoctor(therapistEntity.doctorId) {
+        databaseInterface.listPatientsByDoctor(therapistEntity.doctorId) {
             if(therapistEntity.id==it.therapistId){
                 Log.i(
                     "DELETE",
@@ -54,7 +54,7 @@ class ListTherapistsPresenterImpl @Inject constructor(
 
     override fun deleteAllPatientsHaveTherapistId(doctorId: String) {
 
-        databaseInterface.listenToPatientByDoctor(doctorId) {
+        databaseInterface.listPatientsByDoctor(doctorId) {
             print(it)
         }
 
