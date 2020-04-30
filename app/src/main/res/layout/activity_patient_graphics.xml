@@ -7,6 +7,54 @@
     tools:context=".ui.patients.profile.seeGraphics.GraphicPatientDetatilActivity">
 
 
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/patient_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <Spinner
+                android:id="@+id/spinner_options"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/graph_force"
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_options"
+                app:layout_constraintVertical_bias="0.034" />
+
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/graph_speed"
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:layout_marginTop="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/graph_force"
+                app:layout_constraintVertical_bias="0.106" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
     <ProgressBar
         android:id="@+id/patient_profile_progress"
         android:layout_width="wrap_content"
@@ -28,44 +76,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/patient_profile"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <com.jjoe64.graphview.GraphView
-            android:id="@+id/graph_force"
-            android:layout_width="match_parent"
-            android:layout_height="200dip"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.143" />
-
-        <com.jjoe64.graphview.GraphView
-            android:id="@+id/graph_speed"
-            android:layout_width="match_parent"
-            android:layout_height="200dip"
-            android:layout_marginTop="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/graph_force"
-            app:layout_constraintVertical_bias="0.106" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

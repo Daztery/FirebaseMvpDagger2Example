@@ -3,6 +3,8 @@ package com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter
 import com.jjoe64.graphview.series.DataPoint
@@ -39,16 +41,20 @@ class GraphicPatientDetatilActivity : BaseActivity(),
     private fun initUi() {
 
         presenter.viewReady(patientId)
+
+        var options= arrayOf("Última hora","Último día","Última semana")
+        spinner_options.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options)
         presenter.fetchPointsOfForce(patientId)
 
 
     }
 
+
     override fun onFetchGraphicForceSuccess(pointEntity: PointEntity) {
 
         patient_profile_progress.visibility = View.GONE
         patient_profile.visibility = View.VISIBLE
-
+        scroll.visibility=View.VISIBLE
         //patient_profile_appBar.visibility=View.VISIBLE
 
         //val stringDate1="2019-08-07 09:00:00"
@@ -87,16 +93,63 @@ class GraphicPatientDetatilActivity : BaseActivity(),
 
         graphForce.addSeries(series)*/
 
-        dataMockeadaForce()
+        dataMockeadaForce(0)
+        spinner_options.onItemSelectedListener=object : AdapterView.OnItemClickListener,
+            AdapterView.OnItemSelectedListener {
+            override fun onItemClick(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
 
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                dataMockeadaForce(position)
+                dataMockeadaSpeed(position)
+                //shortToast(this@GraphicPatientDetatilActivity,position.toString())
+            }
+        }
+
+        //
     }
 
     override fun onFetchGraphicSpeedSuccess(pointEntity: PointEntity) {
         patient_profile_progress.visibility = View.GONE
         patient_profile.visibility = View.VISIBLE
+        scroll.visibility=View.VISIBLE
         //patient_profile_appBar.visibility=View.VISIBLE
 
-        dataMockeadaSpeed()
+
+        dataMockeadaSpeed(0)
+        /*spinner_options.onItemSelectedListener=object : AdapterView.OnItemClickListener,
+            AdapterView.OnItemSelectedListener {
+            override fun onItemClick(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                dataMockeadaSpeed(position)
+            }
+        }*/
     }
 
     override fun onFetchGraphicForceFail(error: String) {
@@ -118,11 +171,11 @@ class GraphicPatientDetatilActivity : BaseActivity(),
 
     private fun getDataPoints(pointEntity: PointEntity):ArrayList<DataPoint>{
 
-
         val dateformatYyyymmddhhmmss = SimpleDateFormat(
             "yyyy-MM-dd HH:mm:ss", Locale.ENGLISH
         )
         val date = dateformatYyyymmddhhmmss.parse(pointEntity.startedAt)
+
         val calendar = Calendar.getInstance()
         calendar.time=date
 
@@ -135,104 +188,322 @@ class GraphicPatientDetatilActivity : BaseActivity(),
     }
 
 
-    private fun dataMockeadaForce(){
-        val stringDate1="2020-04-20 10:28:12"
-        val stringDate2="2020-04-20 10:28:15"
-        val stringDate3="2020-04-20 10:28:16"
-        val stringDate4="2020-04-20 10:28:17"
-        val stringDate5="2020-04-20 10:28:19"
-        val stringDate6="2020-04-20 10:28:20"
+    private fun dataMockeadaForce(index:Int) {
 
-        val dateformatYyyymmddhhmmss = SimpleDateFormat(
-            "yyyy-MM-dd HH:mm:ss", Locale.ENGLISH
-        )
-        val date1 = dateformatYyyymmddhhmmss.parse(stringDate1)
-        val calendar1 = Calendar.getInstance()
-        calendar1.time=date1
 
-        val date2 = dateformatYyyymmddhhmmss.parse(stringDate2)
-        val calendar2 = Calendar.getInstance()
-        calendar2.time=date2
+        //Last Hour
+        val lastHour1 = "2020-04-30 18:10:12"
+        val lastHour2 = "2020-04-30 18:15:15"
+        val lastHour3 = "2020-04-30 18:18:16"
+        val lastHour4 = "2020-04-30 18:35:17"
+        val lastHour5 = "2020-04-30 18:45:19"
+        val lastHour6 = "2020-04-30 18:59:20"
 
-        val date3 = dateformatYyyymmddhhmmss.parse(stringDate3)
-        val calendar3 = Calendar.getInstance()
-        calendar3.time=date3
 
-        val date4 = dateformatYyyymmddhhmmss.parse(stringDate4)
-        val calendar4 = Calendar.getInstance()
-        calendar4.time=date4
+        //Last Day
+        val lastDay1 = "2020-04-30 07:10:12"
+        val lastDay2 = "2020-04-30 08:15:15"
+        val lastDay3 = "2020-04-30 09:18:16"
+        val lastDay4 = "2020-04-30 10:35:17"
+        val lastDay5 = "2020-04-30 11:45:19"
+        val lastDay6 = "2020-04-30 12:59:20"
+        val lastDay7 = "2020-04-30 13:28:17"
+        val lastDay8 = "2020-04-30 14:28:19"
+        val lastDay9 = "2020-04-30 15:28:20"
+        val lastDay10 = "2020-04-30 16:28:17"
+        val lastDay11 = "2020-04-30 17:28:19"
+        val lastDay12 = "2020-04-30 18:15:20"
 
-        val date5 = dateformatYyyymmddhhmmss.parse(stringDate5)
-        val calendar5 = Calendar.getInstance()
-        calendar5.time=date5
 
-        val date6 = dateformatYyyymmddhhmmss.parse(stringDate6)
-        val calendar6 = Calendar.getInstance()
-        calendar6.time=date6
+        //Last Week
+        val lastWeek1 = "2020-04-22 10:10:12"
+        val lastWeek2 = "2020-04-23 10:10:12"
+        val lastWeek3 = "2020-04-24 10:10:12"
+        val lastWeek4 = "2020-04-25 10:10:12"
+        val lastWeek5 = "2020-04-26 10:10:12"
+        val lastWeek6 = "2020-04-27 10:10:12"
+        val lastWeek7 = "2020-04-30 10:10:12"
+
+
+        /* var arrayDateLastHour= arrayListOf<String>()
+        arrayDateLastHour.addAll(listOf(
+            "2020-04-30 18:10:12",
+            "2020-04-30 18:15:15",
+            "2020-04-30 18:18:16",
+            "2020-04-30 18:35:17",
+            "2020-04-30 18:45:19",
+            "2020-04-30 18:59:20"
+        ))
+
+        var arrayValueLastHour= arrayListOf<Double>()
+        arrayValueLastHour.addAll(listOf(
+            4.0,
+            6.0,
+            6.5,
+            7.0,
+            7.5,
+            8.0
+        ))*/
+
+        /* var dataPoints  = arrayOfNulls<DataPoint>(arrayDateLastHour.size)
+
+        for (i in arrayDateLastHour.indices){
+            dataPoints[i] = DataPoint(instanceToDate(arrayDateLastHour[i]),arrayValueLastHour[i])
+        }
+
+        val series1: LineGraphSeries<DataPoint> = LineGraphSeries()
+
+        for (i in arrayDateLastHour.indices){
+            series1.appendData(dataPoints[i],false,dataPoints.size)
+        }*/
 
         val graph = findViewById<GraphView>(R.id.graph_force)
-        val series = LineGraphSeries(
-            arrayOf(
-                DataPoint(calendar1.time, 4.0),
-                DataPoint(calendar2.time, 6.0),
-                DataPoint(calendar3.time, 6.5),
-                DataPoint(calendar4.time, 7.0),
-                DataPoint(calendar5.time, 7.5),
-                DataPoint(calendar6.time, 8.0)
-            )
-        )
-        graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
-        graph.gridLabelRenderer.numHorizontalLabels = 6
-        graph.viewport.setMinY(0.0)
-        graph.viewport.setMinX(calendar1.time.time.toDouble())
-        graph.viewport.setMaxX(calendar6.time.time.toDouble())
-        graph.viewport.isXAxisBoundsManual = true
-        graph.title="Presion"
-        graph.addSeries(series)
+
+        var series:LineGraphSeries<DataPoint> = LineGraphSeries()
+
+        when (index) {
+            0 -> {
+                graph.removeAllSeries()
+                series = LineGraphSeries(
+                    arrayOf(
+                        DataPoint(instanceToDate(lastHour1), 4.0),
+                        DataPoint(instanceToDate(lastHour2), 4.0),
+                        DataPoint(instanceToDate(lastHour3), 6.0),
+                        DataPoint(instanceToDate(lastHour4), 6.5),
+                        DataPoint(instanceToDate(lastHour5), 7.0),
+                        DataPoint(instanceToDate(lastHour6), 7.5)
+
+                    )
+                )
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
+                graph.viewport.isXAxisBoundsManual = true
+                graph.viewport.setMinX(instanceToDate(lastHour1).time.toDouble())
+                graph.viewport.setMaxX(instanceToDate(lastHour6).time.toDouble())
+                graph.gridLabelRenderer.numHorizontalLabels = 4
+                graph.title="Presion"
+                graph.addSeries(series)
+            }
+            1 -> {
+
+                graph.removeAllSeries()
+                series = LineGraphSeries(
+                    arrayOf(
+                        DataPoint(instanceToDate(lastDay1 ), 4.0),
+                        DataPoint(instanceToDate(lastDay2 ), 4.0),
+                        DataPoint(instanceToDate(lastDay3 ), 6.0),
+                        DataPoint(instanceToDate(lastDay4 ), 6.5),
+                        DataPoint(instanceToDate(lastDay5 ), 7.0),
+                        DataPoint(instanceToDate(lastDay6 ), 4.0),
+                        DataPoint(instanceToDate(lastDay7 ), 4.0),
+                        DataPoint(instanceToDate(lastDay8 ), 6.0),
+                        DataPoint(instanceToDate(lastDay9 ), 6.5),
+                        DataPoint(instanceToDate(lastDay10), 7.0),
+                        DataPoint(instanceToDate(lastDay11), 4.0),
+                        DataPoint(instanceToDate(lastDay12), 4.0)
+                    )
+                )
+
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
+                graph.viewport.isXAxisBoundsManual = true
+                graph.viewport.setMinX(instanceToDate(lastDay1).time.toDouble())
+                graph.viewport.setMaxX(instanceToDate(lastDay12).time.toDouble())
+                graph.gridLabelRenderer.numHorizontalLabels = 4
+                graph.title="Presion"
+                graph.addSeries(series)
+            }
+            2 -> {
+
+                graph.removeAllSeries()
+                series = LineGraphSeries(
+                    arrayOf(
+                        DataPoint(instanceToDate(lastWeek1 ), 4.0),
+                        DataPoint(instanceToDate(lastWeek2 ), 4.0),
+                        DataPoint(instanceToDate(lastWeek3 ), 6.0),
+                        DataPoint(instanceToDate(lastWeek4 ), 6.5),
+                        DataPoint(instanceToDate(lastWeek5 ), 7.0),
+                        DataPoint(instanceToDate(lastWeek6 ), 4.0),
+                        DataPoint(instanceToDate(lastWeek7 ), 8.0)
+                    )
+                )
+
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
+                //graph.viewport.isScalable = true
+                //graph.viewport.isScrollable = true
+                //graph.viewport.setScalableY(true)
+                //graph.viewport.setScrollableY(true)
+                graph.viewport.isXAxisBoundsManual = true
+                graph.viewport.setMinX(instanceToDate(lastWeek1).time.toDouble())
+                graph.viewport.setMaxX(instanceToDate(lastWeek7).time.toDouble())
+                graph.gridLabelRenderer.numHorizontalLabels=4
+                graph.title="Presion"
+                graph.addSeries(series)
+
+            }
+
+        }
+
+
+
     }
 
-    private fun dataMockeadaSpeed(){
+    private fun instanceToDate(stringDate:String):Date{
+        val dateformatYyyymmddhhmmss = SimpleDateFormat(
+            "yyyy-MM-dd HH:mm:ss", Locale.ENGLISH
+        )
+        val date = dateformatYyyymmddhhmmss.parse(stringDate)
+        val calendar = Calendar.getInstance()
+        calendar.time=date
+
+        return calendar.time
+    }
+
+    private fun dataMockeadaSpeed(index:Int){
+/*
         val stringDate1="2020-04-20 10:28:12"
         val stringDate2="2020-04-20 10:28:15"
         val stringDate3="2020-04-20 10:28:16"
         val stringDate4="2020-04-20 10:28:17"
 
-        val dateformatYyyymmddhhmmss = SimpleDateFormat(
-            "yyyy-MM-dd HH:mm:ss", Locale.ENGLISH
-        )
-        val date1 = dateformatYyyymmddhhmmss.parse(stringDate1)
-        val calendar1 = Calendar.getInstance()
-        calendar1.time=date1
-
-        val date2 = dateformatYyyymmddhhmmss.parse(stringDate2)
-        val calendar2 = Calendar.getInstance()
-        calendar2.time=date2
-
-        val date3 = dateformatYyyymmddhhmmss.parse(stringDate3)
-        val calendar3 = Calendar.getInstance()
-        calendar3.time=date3
-
-        val date4 = dateformatYyyymmddhhmmss.parse(stringDate4)
-        val calendar4 = Calendar.getInstance()
-        calendar4.time=date4
-
         val graph = findViewById<GraphView>(R.id.graph_speed)
+
         val series = LineGraphSeries(
             arrayOf(
-                DataPoint(calendar1.time, 3.0),
-                DataPoint(calendar2.time, 3.5),
-                DataPoint(calendar3.time, 4.5),
-                DataPoint(calendar4.time, 6.0)
+                DataPoint(instanceToDate(stringDate1), 3.0),
+                DataPoint(instanceToDate(stringDate2), 3.5),
+                DataPoint(instanceToDate(stringDate3), 4.5),
+                DataPoint(instanceToDate(stringDate4), 6.0)
             )
         )
+
         graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
         graph.gridLabelRenderer.numHorizontalLabels = 4
-        graph.viewport.setMinY(0.0)
-        graph.viewport.setMinX(calendar1.time.time.toDouble())
-        graph.viewport.setMaxX(calendar4.time.time.toDouble())
-        graph.viewport.isXAxisBoundsManual = true
+        graph.viewport.isScalable = true
+        graph.viewport.isScrollable = true
+        graph.viewport.setScalableY(true)
+        graph.viewport.setScrollableY(true)
+
+
         graph.title="Velocidad"
-        graph.addSeries(series)
+        graph.addSeries(series)*/
+
+        //Last Hour
+        val lastHour1 = "2020-04-30 18:10:12"
+        val lastHour2 = "2020-04-30 18:15:15"
+        val lastHour3 = "2020-04-30 18:18:16"
+        val lastHour4 = "2020-04-30 18:35:17"
+        val lastHour5 = "2020-04-30 18:45:19"
+        val lastHour6 = "2020-04-30 18:59:20"
+
+
+        //Last Day
+        val lastDay1 = "2020-04-30 07:10:12"
+        val lastDay2 = "2020-04-30 08:15:15"
+        val lastDay3 = "2020-04-30 09:18:16"
+        val lastDay4 = "2020-04-30 10:35:17"
+        val lastDay5 = "2020-04-30 11:45:19"
+        val lastDay6 = "2020-04-30 12:59:20"
+        val lastDay7 = "2020-04-30 13:28:17"
+        val lastDay8 = "2020-04-30 14:28:19"
+        val lastDay9 = "2020-04-30 15:28:20"
+        val lastDay10 = "2020-04-30 16:28:17"
+        val lastDay11 = "2020-04-30 17:28:19"
+        val lastDay12 = "2020-04-30 18:15:20"
+
+
+        //Last Week
+        val lastWeek1 = "2020-04-22 10:10:12"
+        val lastWeek2 = "2020-04-23 10:10:12"
+        val lastWeek3 = "2020-04-24 10:10:12"
+        val lastWeek4 = "2020-04-25 10:10:12"
+        val lastWeek5 = "2020-04-26 10:10:12"
+        val lastWeek6 = "2020-04-27 10:10:12"
+        val lastWeek7 = "2020-04-30 10:10:12"
+
+        val graph = findViewById<GraphView>(R.id.graph_speed)
+
+        var series:LineGraphSeries<DataPoint> = LineGraphSeries()
+
+        when (index) {
+            0 -> {
+                graph.removeAllSeries()
+                series = LineGraphSeries(
+                    arrayOf(
+                        DataPoint(instanceToDate(lastHour1), 4.0),
+                        DataPoint(instanceToDate(lastHour2), 4.0),
+                        DataPoint(instanceToDate(lastHour3), 6.0),
+                        DataPoint(instanceToDate(lastHour4), 6.5),
+                        DataPoint(instanceToDate(lastHour5), 7.0),
+                        DataPoint(instanceToDate(lastHour6), 7.5)
+
+                    )
+                )
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
+                graph.viewport.isXAxisBoundsManual = true
+                graph.viewport.setMinX(instanceToDate(lastHour1).time.toDouble())
+                graph.viewport.setMaxX(instanceToDate(lastHour6).time.toDouble())
+                graph.gridLabelRenderer.numHorizontalLabels = 4
+                graph.title="Velocidad"
+                graph.addSeries(series)
+            }
+            1 -> {
+
+                graph.removeAllSeries()
+                series = LineGraphSeries(
+                    arrayOf(
+                        DataPoint(instanceToDate(lastDay1 ), 4.0),
+                        DataPoint(instanceToDate(lastDay2 ), 4.0),
+                        DataPoint(instanceToDate(lastDay3 ), 6.0),
+                        DataPoint(instanceToDate(lastDay4 ), 6.5),
+                        DataPoint(instanceToDate(lastDay5 ), 7.0),
+                        DataPoint(instanceToDate(lastDay6 ), 4.0),
+                        DataPoint(instanceToDate(lastDay7 ), 4.0),
+                        DataPoint(instanceToDate(lastDay8 ), 6.0),
+                        DataPoint(instanceToDate(lastDay9 ), 6.5),
+                        DataPoint(instanceToDate(lastDay10), 7.0),
+                        DataPoint(instanceToDate(lastDay11), 4.0),
+                        DataPoint(instanceToDate(lastDay12), 4.0)
+                    )
+                )
+
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
+                graph.viewport.isXAxisBoundsManual = true
+                graph.viewport.setMinX(instanceToDate(lastDay1).time.toDouble())
+                graph.viewport.setMaxX(instanceToDate(lastDay12).time.toDouble())
+                graph.gridLabelRenderer.numHorizontalLabels = 4
+                graph.title="Velocidad"
+                graph.addSeries(series)
+            }
+            2 -> {
+
+                graph.removeAllSeries()
+                series = LineGraphSeries(
+                    arrayOf(
+                        DataPoint(instanceToDate(lastWeek1 ), 4.0),
+                        DataPoint(instanceToDate(lastWeek2 ), 4.0),
+                        DataPoint(instanceToDate(lastWeek3 ), 6.0),
+                        DataPoint(instanceToDate(lastWeek4 ), 6.5),
+                        DataPoint(instanceToDate(lastWeek5 ), 7.0),
+                        DataPoint(instanceToDate(lastWeek6 ), 4.0),
+                        DataPoint(instanceToDate(lastWeek7 ), 8.0)
+                    )
+                )
+
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
+                //graph.viewport.isScalable = true
+                //graph.viewport.isScrollable = true
+                //graph.viewport.setScalableY(true)
+                //graph.viewport.setScrollableY(true)
+                graph.viewport.isXAxisBoundsManual = true
+                graph.viewport.setMinX(instanceToDate(lastWeek1).time.toDouble())
+                graph.viewport.setMaxX(instanceToDate(lastWeek7).time.toDouble())
+                graph.gridLabelRenderer.numHorizontalLabels=4
+                graph.title="Velocidad"
+                graph.addSeries(series)
+
+            }
+
+        }
+
     }
 
 
