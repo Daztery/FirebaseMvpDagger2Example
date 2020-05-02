@@ -26,10 +26,12 @@ class GraphicPatientDetatilActivity : BaseActivity(),
     private val presenter by lazy { graphicPatientPresenter() }
     private lateinit var patientId: String
 
+    var arrayPoints= arrayListOf<PointEntity>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_graphics)
-        presenter.setView(this)
+        presenter.setView(view = this)
         patientId = intent.extras!!.getString("patientId").toString()
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         initUi()
@@ -44,16 +46,20 @@ class GraphicPatientDetatilActivity : BaseActivity(),
 
     }
 
-    override fun onFetchGraphicForceSuccess(points: ArrayList<PointEntity>) {
+    override fun onFetchGraphicForceSuccess(pointEntity: PointEntity) {
 
         patient_profile_progress.visibility = View.GONE
         patient_profile.visibility = View.VISIBLE
         scroll.visibility=View.VISIBLE
 
-        //getDataPoints(pointEntity)
 
-        /*dataMockeadaForce(0)
-        spinner_options.onItemSelectedListener=object : AdapterView.OnItemClickListener,
+        //shortToast(this,pointEntity.toString())
+
+
+        //shortToast(this,arrayPoints.toString())
+
+        //dataMockeadaForce(0)
+        /*spinner_options.onItemSelectedListener=object : AdapterView.OnItemClickListener,
             AdapterView.OnItemSelectedListener {
             override fun onItemClick(
                 parent: AdapterView<*>?,
@@ -77,14 +83,14 @@ class GraphicPatientDetatilActivity : BaseActivity(),
             }
         }*/
 
-
-
     }
 
     override fun onFetchGraphicSpeedSuccess(pointEntity: PointEntity) {
         patient_profile_progress.visibility = View.GONE
         patient_profile.visibility = View.VISIBLE
         scroll.visibility=View.VISIBLE
+
+        getDataPoints(pointEntity)
 
         //dataMockeadaSpeed(0)
 
@@ -94,17 +100,17 @@ class GraphicPatientDetatilActivity : BaseActivity(),
 
         //var pair = getDataPoints(pointEntity)
 
-        var items : ArrayList<PointEntity> = ArrayList()
+       /* var items : ArrayList<PointEntity> = ArrayList()
 
-        items.add(pointEntity)
+        items.add(pointEntity)*/
 
-        longToast(this,items.toString())
+        //longToast(this,items.toString())
 
-        for(i in items.indices) {
+        for(i in arrayPoints.indices) {
             series.appendData(
-                DataPoint(instanceToDate(items[i].startedAt), items[i].value.toDouble()),
+                DataPoint(instanceToDate(arrayPoints[i].startedAt), arrayPoints[i].value.toDouble()),
                 true,
-                items.size
+                arrayPoints.size
             )
         }
 
@@ -143,6 +149,19 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         val calendar = Calendar.getInstance()
         calendar.time=date
 
+
+        arrayPoints.add(pointEntity)
+
+
+        /*
+
+        for(i in arrayDateLastHour.indices){
+            series.appendData(DataPoint(instanceToDate(arrayDateLastHour[i]),arrayValueLastHour[i]),true,arrayDateLastHour.size)
+        }
+        graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
+        graph.gridLabelRenderer.numHorizontalLabels = 4
+        graph.title="Presion"
+        graph.addSeries(series)*/
         //longToast(this,pointEntity.toString())
        /*var items = mutableListOf<PointEntity>()
         items.add(pointEntity)

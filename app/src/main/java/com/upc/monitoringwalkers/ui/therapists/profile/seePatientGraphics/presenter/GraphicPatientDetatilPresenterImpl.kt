@@ -3,7 +3,7 @@ package com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.prese
 import com.upc.monitoringwalkers.firebase.authentication.FirebaseAuthenticationInterface
 import com.upc.monitoringwalkers.firebase.database.FirebaseDatabaseInterface
 import com.upc.monitoringwalkers.model.isValid
-import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.view.GraphicPatientDetatilView
+import com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.view.GraphicPatientDetatilView
 import javax.inject.Inject
 
 class GraphicPatientDetatilPresenterImpl @Inject constructor(

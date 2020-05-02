@@ -33,7 +33,7 @@
             android:parentActivityName=".ui.therapists.profile.listComments.ListCommentsActivity"/>
 
         <activity
-            android:name=".ui.therapists.profile.seePatientGraphics.GraphicPatientDetatilActivity"
+            android:name=".ui.therapists.profile.seePatientGraphics.GraphicPatientDetailActivity"
             android:parentActivityName=".ui.therapists.profile.detailPatient.DetailPatientActivity"/>
 
         <!--Reset Password-->

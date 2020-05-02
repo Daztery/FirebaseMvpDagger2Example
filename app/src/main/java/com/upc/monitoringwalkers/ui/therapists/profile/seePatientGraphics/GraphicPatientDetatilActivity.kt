@@ -13,14 +13,14 @@ import com.upc.monitoringwalkers.R
 import com.upc.monitoringwalkers.graphicPatientPresenter
 import com.upc.monitoringwalkers.model.*
 import com.upc.monitoringwalkers.ui.base.BaseActivity
-import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.view.GraphicPatientDetatilView
+import com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.view.GraphicPatientDetatilView
 import kotlinx.android.synthetic.main.activity_patient_graphics.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class GraphicPatientDetatilActivity : BaseActivity(),
+class GraphicPatientDetailActivity : BaseActivity(),
     GraphicPatientDetatilView {
 
 
@@ -32,7 +32,7 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_graphics)
         //setSupportActionBar(patient_profile_toolbar)
-        presenter.setView(this)
+        //presenter.setView(view = this)
         patientId = intent.extras!!.getString("patientId").toString()
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         initUi()

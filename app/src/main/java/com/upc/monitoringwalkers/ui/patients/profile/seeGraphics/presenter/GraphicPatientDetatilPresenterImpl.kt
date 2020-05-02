@@ -19,8 +19,8 @@ class GraphicPatientDetatilPresenterImpl @Inject constructor(
     }
 
     override fun fetchPointsOfForce(patientId: String) {
-        databaseInterface.getAllPointsForce(patientId){
-            if(it.isNotEmpty()){
+        databaseInterface.getOfForceGraphicByPatient(patientId){
+            if(it.isValid()){
                 view.onFetchGraphicForceSuccess(it)
             } else {
                 view.onFetchGraphicForceFail("No tiene datos!")

@@ -1,7 +1,7 @@
 package com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.presenter
 
 import com.upc.monitoringwalkers.ui.base.BasePresenter
-import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.view.GraphicPatientDetatilView
+import com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.view.GraphicPatientDetatilView
 
 interface GraphicPatientDetatilPresenter : BasePresenter<GraphicPatientDetatilView>{
 
