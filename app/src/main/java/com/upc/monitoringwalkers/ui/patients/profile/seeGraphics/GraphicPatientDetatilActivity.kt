@@ -26,7 +26,8 @@ class GraphicPatientDetatilActivity : BaseActivity(),
     private val presenter by lazy { graphicPatientPresenter() }
     private lateinit var patientId: String
 
-    var arrayPoints= arrayListOf<PointEntity>()
+    private var arrayPointsForce= arrayListOf<PointEntity>()
+    private var arrayPointsSpeed= arrayListOf<PointEntity>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +43,7 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         presenter.viewReady(patientId)
         var options= arrayOf("Última hora","Último día","Última semana")
         spinner_options.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options)
-        presenter.fetchPointsOfForce(patientId)
+
 
     }
 
@@ -52,36 +53,26 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         patient_profile.visibility = View.VISIBLE
         scroll.visibility=View.VISIBLE
 
+        getDataPointsForce(pointEntity)
 
-        //shortToast(this,pointEntity.toString())
+
+        val series: LineGraphSeries<DataPoint> = LineGraphSeries()
+
+        val graph = findViewById<GraphView>(R.id.graph_force)
 
 
-        //shortToast(this,arrayPoints.toString())
+        for(i in arrayPointsForce.indices) {
+            series.appendData(
+                DataPoint(instanceToDate(arrayPointsForce[i].startedAt), arrayPointsForce[i].value.toDouble()),
+                true,
+                arrayPointsForce.size
+            )
+        }
 
-        //dataMockeadaForce(0)
-        /*spinner_options.onItemSelectedListener=object : AdapterView.OnItemClickListener,
-            AdapterView.OnItemSelectedListener {
-            override fun onItemClick(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                dataMockeadaForce(position)
-                dataMockeadaSpeed(position)
-            }
-        }*/
+        graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
+        graph.gridLabelRenderer.numHorizontalLabels = 4
+        graph.title="Presion"
+        graph.addSeries(series)
 
     }
 
@@ -90,31 +81,21 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         patient_profile.visibility = View.VISIBLE
         scroll.visibility=View.VISIBLE
 
-        getDataPoints(pointEntity)
+        getDataPointsSpeed(pointEntity)
 
-        //dataMockeadaSpeed(0)
 
         val series: LineGraphSeries<DataPoint> = LineGraphSeries()
 
         val graph = findViewById<GraphView>(R.id.graph_speed)
 
-        //var pair = getDataPoints(pointEntity)
 
-       /* var items : ArrayList<PointEntity> = ArrayList()
-
-        items.add(pointEntity)*/
-
-        //longToast(this,items.toString())
-
-        for(i in arrayPoints.indices) {
+        for(i in arrayPointsSpeed.indices) {
             series.appendData(
-                DataPoint(instanceToDate(arrayPoints[i].startedAt), arrayPoints[i].value.toDouble()),
+                DataPoint(instanceToDate(arrayPointsSpeed[i].startedAt), arrayPointsSpeed[i].value.toDouble()),
                 true,
-                arrayPoints.size
+                arrayPointsSpeed.size
             )
         }
-
-        //longToast(this,items.toString())
 
         graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
         graph.gridLabelRenderer.numHorizontalLabels = 4
@@ -139,38 +120,14 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         }
     }
 
-    private fun getDataPoints(pointEntity: PointEntity){// : MutableList<PointEntity>//ArrayList<Pair<String ,Double>>{//Pair<String ,Double>{
+    private fun getDataPointsForce(pointEntity: PointEntity){
 
-        val dateformatYyyymmddhhmmss = SimpleDateFormat(
-            "yyyy/MM/dd HH:mm:ss", Locale.ENGLISH
-        )
-        val date = dateformatYyyymmddhhmmss.parse(pointEntity.startedAt)
+        arrayPointsForce.add(pointEntity)
 
-        val calendar = Calendar.getInstance()
-        calendar.time=date
+    }
+    private fun getDataPointsSpeed(pointEntity: PointEntity){
 
-
-        arrayPoints.add(pointEntity)
-
-
-        /*
-
-        for(i in arrayDateLastHour.indices){
-            series.appendData(DataPoint(instanceToDate(arrayDateLastHour[i]),arrayValueLastHour[i]),true,arrayDateLastHour.size)
-        }
-        graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
-        graph.gridLabelRenderer.numHorizontalLabels = 4
-        graph.title="Presion"
-        graph.addSeries(series)*/
-        //longToast(this,pointEntity.toString())
-       /*var items = mutableListOf<PointEntity>()
-        items.add(pointEntity)
-
-        var pair=Pair(pointEntity.startedAt,pointEntity.value.toDouble())
-
-        var array= arrayListOf<Pair<String ,Double>>()
-        array.add(pair)*/
-
+        arrayPointsSpeed.add(pointEntity)
 
     }
 
@@ -418,7 +375,4 @@ class GraphicPatientDetatilActivity : BaseActivity(),
 
     }
 
-    private fun dataFromFirebaseForce(index:Int){
-
-    }
 }
