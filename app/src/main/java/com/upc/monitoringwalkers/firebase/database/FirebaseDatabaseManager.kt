@@ -195,6 +195,41 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
         //TODO See why is not implemented
     }
 
+    override fun getAllPointsForce(patientId: String, onResult: (ArrayList<PointEntity>) -> Unit) {
+        database.reference.child(KEY_THERAPY_SESSION_FORCE).orderByChild("patientId").equalTo(patientId)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onCancelled(error: DatabaseError) = Unit
+
+                override fun onChildMoved(snapshot: DataSnapshot, p1: String?) = Unit
+
+                override fun onChildChanged(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(ArrayPoint::class.java)?.run {
+                        if (isValidArray()) {
+                            Log.i(
+                                "pointInfo",
+                                "${this.points}"
+                            )
+                            onResult(mapToPointList())
+                        }
+                    }
+                }
+
+                override fun onChildAdded(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(ArrayPoint::class.java)?.run {
+                        if (isValidArray()) {
+                            Log.i(
+                                "pointInfo",
+                                "${this.points}"
+                            )
+                            onResult(mapToPointList())
+                        }
+                    }
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) = Unit
+            })
+    }
+
     override fun listTherapistsByDoctor(doctorId: String, onResult: (TherapistEntity) -> Unit) {
         database.reference.child(KEY_USER).orderByChild("doctorId").equalTo(doctorId)
             .addChildEventListener(object : ChildEventListener {

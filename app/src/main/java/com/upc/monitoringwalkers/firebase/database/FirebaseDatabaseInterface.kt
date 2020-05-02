@@ -72,6 +72,13 @@ interface FirebaseDatabaseInterface {
     fun getAllDoctors(onResult: (List<DoctorEntity>) -> Unit)
 
     /**
+     * Get all the POINTS where the TYPE is FORCE
+     *
+     * @param onResult Callback that is call when the result is given from the FirebaseDatabase
+     */
+    fun getAllPointsForce(patientId: String, onResult: (ArrayList<PointEntity>) -> Unit)
+
+    /**
      * Get the list of therapists given the doctor identifier.
      *
      * @param doctorId Doctor unique identifier

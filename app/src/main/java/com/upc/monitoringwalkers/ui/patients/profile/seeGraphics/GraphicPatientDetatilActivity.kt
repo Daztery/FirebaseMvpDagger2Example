@@ -1,6 +1,5 @@
 package com.upc.monitoringwalkers.ui.patients.profile.seeGraphics
 
-
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -10,6 +9,7 @@ import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import com.upc.monitoringwalkers.R
+import com.upc.monitoringwalkers.common.longToast
 import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.graphicPatientPresenter
 import com.upc.monitoringwalkers.model.*
@@ -20,21 +20,15 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-
-
-
 class GraphicPatientDetatilActivity : BaseActivity(),
     GraphicPatientDetatilView {
-
 
     private val presenter by lazy { graphicPatientPresenter() }
     private lateinit var patientId: String
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_graphics)
-        //setSupportActionBar(patient_profile_toolbar)
         presenter.setView(this)
         patientId = intent.extras!!.getString("patientId").toString()
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -50,13 +44,15 @@ class GraphicPatientDetatilActivity : BaseActivity(),
 
     }
 
-    override fun onFetchGraphicForceSuccess(pointEntity: PointEntity) {
+    override fun onFetchGraphicForceSuccess(points: ArrayList<PointEntity>) {
 
         patient_profile_progress.visibility = View.GONE
         patient_profile.visibility = View.VISIBLE
         scroll.visibility=View.VISIBLE
 
-        dataMockeadaForce(0)
+        //getDataPoints(pointEntity)
+
+        /*dataMockeadaForce(0)
         spinner_options.onItemSelectedListener=object : AdapterView.OnItemClickListener,
             AdapterView.OnItemSelectedListener {
             override fun onItemClick(
@@ -79,7 +75,10 @@ class GraphicPatientDetatilActivity : BaseActivity(),
                 dataMockeadaForce(position)
                 dataMockeadaSpeed(position)
             }
-        }
+        }*/
+
+
+
     }
 
     override fun onFetchGraphicSpeedSuccess(pointEntity: PointEntity) {
@@ -87,7 +86,35 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         patient_profile.visibility = View.VISIBLE
         scroll.visibility=View.VISIBLE
 
-        dataMockeadaSpeed(0)
+        //dataMockeadaSpeed(0)
+
+        val series: LineGraphSeries<DataPoint> = LineGraphSeries()
+
+        val graph = findViewById<GraphView>(R.id.graph_speed)
+
+        //var pair = getDataPoints(pointEntity)
+
+        var items : ArrayList<PointEntity> = ArrayList()
+
+        items.add(pointEntity)
+
+        longToast(this,items.toString())
+
+        for(i in items.indices) {
+            series.appendData(
+                DataPoint(instanceToDate(items[i].startedAt), items[i].value.toDouble()),
+                true,
+                items.size
+            )
+        }
+
+        //longToast(this,items.toString())
+
+        graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
+        graph.gridLabelRenderer.numHorizontalLabels = 4
+        graph.title="Velocidad"
+        graph.addSeries(series)
+
     }
 
     override fun onFetchGraphicForceFail(error: String) {
@@ -106,27 +133,32 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         }
     }
 
-    private fun getDataPoints(pointEntity: PointEntity):ArrayList<DataPoint>{
+    private fun getDataPoints(pointEntity: PointEntity){// : MutableList<PointEntity>//ArrayList<Pair<String ,Double>>{//Pair<String ,Double>{
 
         val dateformatYyyymmddhhmmss = SimpleDateFormat(
-            "yyyy-MM-dd HH:mm:ss", Locale.ENGLISH
+            "yyyy/MM/dd HH:mm:ss", Locale.ENGLISH
         )
         val date = dateformatYyyymmddhhmmss.parse(pointEntity.startedAt)
 
         val calendar = Calendar.getInstance()
         calendar.time=date
 
-        var arrayDataPoint: ArrayList<DataPoint> = ArrayList()
+        //longToast(this,pointEntity.toString())
+       /*var items = mutableListOf<PointEntity>()
+        items.add(pointEntity)
 
-        arrayDataPoint.add(DataPoint(calendar.time, pointEntity.value.toDouble()))
+        var pair=Pair(pointEntity.startedAt,pointEntity.value.toDouble())
 
-        return arrayDataPoint
+        var array= arrayListOf<Pair<String ,Double>>()
+        array.add(pair)*/
+
 
     }
 
     private fun instanceToDate(stringDate:String):Date{
+
         val dateformatYyyymmddhhmmss = SimpleDateFormat(
-            "yyyy-MM-dd HH:mm:ss", Locale.ENGLISH
+            "yyyy/MM/dd HH:mm:ss", Locale.ENGLISH
         )
         val date = dateformatYyyymmddhhmmss.parse(stringDate)
         val calendar = Calendar.getInstance()
@@ -364,6 +396,10 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         }
 
 
+
+    }
+
+    private fun dataFromFirebaseForce(index:Int){
 
     }
 }
