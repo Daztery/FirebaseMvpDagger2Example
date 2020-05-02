@@ -21,6 +21,7 @@ data class RegisterPatientModel(
         password,
         repeatPassword
     ) && doctorId.isNotBlank() && name.isNotEmpty() && lastName.isNotEmpty()
+            && age.isNotBlank() && weight.isNotBlank() && treatment.isNotBlank()
 }
 
 
@@ -48,6 +49,7 @@ data class RegisterTherapistModel(
 ) {
     fun isValid(): Boolean =
         isEmailValid(email) && arePasswordsSame(password, repeatPassword) && name.isNotEmpty() && lastName.isNotEmpty()
+                && specialty.isNotEmpty()
 }
 
 data class RegisterCommentModel(

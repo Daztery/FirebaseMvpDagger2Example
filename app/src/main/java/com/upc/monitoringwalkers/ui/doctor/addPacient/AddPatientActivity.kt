@@ -2,9 +2,7 @@ package com.upc.monitoringwalkers.ui.doctor.addPacient
 
 import android.os.Bundle
 import com.upc.monitoringwalkers.R
-import com.upc.monitoringwalkers.common.onTextChanged
-import com.upc.monitoringwalkers.common.shortToast
-import com.upc.monitoringwalkers.common.showGeneralError
+import com.upc.monitoringwalkers.common.*
 import com.upc.monitoringwalkers.model.Affectation
 import com.upc.monitoringwalkers.model.getCurrentUserPreferenceObjectJson
 import com.upc.monitoringwalkers.registerPatientPresenter
@@ -14,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_add_patient.*
 
 class AddPatientActivity : BaseActivity(), AddPatientView {
 
+    var flag:Boolean=false
     private val presenter by lazy { registerPatientPresenter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,7 +67,7 @@ class AddPatientActivity : BaseActivity(), AddPatientView {
 
 
         material_patient_button_register.setOnClickListener {
-            //showLoadingDialog()
+            showLoadingDialog()
             val doctor = getCurrentUserPreferenceObjectJson(this)
             presenter.onRegisterClicked(doctor.id)
         }
@@ -85,9 +84,13 @@ class AddPatientActivity : BaseActivity(), AddPatientView {
 
     override fun showSignUpError() {
         hideLoadingDialog()
-        showGeneralError(this)
+        if(flag){
+            showPasswordSameError(this)
+            flag=false
+        }else{
+            showRegisterError(this)
+        }
     }
-
 
     override fun showEmailError() {
         register_email_edit.error = getString(R.string.email_error)
@@ -99,6 +102,7 @@ class AddPatientActivity : BaseActivity(), AddPatientView {
 
     override fun showPasswordMatchingError() {
         register_confirm_password_edit.error = getString(R.string.password_error)
+        flag=true
     }
 
 

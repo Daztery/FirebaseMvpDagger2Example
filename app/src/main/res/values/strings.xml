@@ -16,6 +16,9 @@
     <string name="password_error">Contraseña invalida</string>
     <string name="error_title">Error</string>
     <string name="error_message">Ha ocurrido un error inesperado</string>
+    <string name="error_message_login">Correo o contraseña inválida</string>
+    <string name="error_message_register">Faltan detallar campos</string>
+    <string name="error_message_register_same_passwords">Las contraseñas no coinciden</string>
     <string name="accept_button_text">OK</string>
     <string name="title_activity_list_doctors">ListDoctorsActivity</string>
     <string name="no_items_text">No hay elementos disponibles</string>
@@ -29,18 +32,18 @@
     <string name="forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="patients">Mis pacientes</string>
     <string name="therapist">Mis terapeutas</string>
-    <string name="doctors">Doctores</string>
+    <string name="doctors">Medicos</string>
     <string name="add_therapist">Agregar terapeuta</string>
     <string name="add_patient">Agregar paciente</string>
-    <string name="add_doctor">Agregar doctor</string>
+    <string name="add_doctor">Agregar médico</string>
     <string name="register_weight_age">Peso</string>
     <string name="no_txt">No</string>
     <string name="yes_txt">Si</string>
     <string name="warning_title">Cuidado!</string>
     <string name="warning_message">Estas seguro que deseas eliminar?</string>
-    <string name="detail_doctor">Detalle doctor</string>
-    <string name="detail_therapist">Detalle Terapeuta</string>
-    <string name="detail_patient">Detalle Paciente</string>
+    <string name="detail_doctor">Detalle del Médico</string>
+    <string name="detail_therapist">Detalle del Terapeuta</string>
+    <string name="detail_patient">Detalle del Paciente</string>
     <string name="register_hint_speciality">Especialidad</string>
 
     <!-- TODO: Remove or change this placeholder text -->

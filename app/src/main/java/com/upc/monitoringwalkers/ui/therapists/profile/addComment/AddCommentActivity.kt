@@ -6,6 +6,7 @@ import com.upc.monitoringwalkers.addCommentPresenter
 import com.upc.monitoringwalkers.common.onTextChanged
 import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.common.showGeneralError
+import com.upc.monitoringwalkers.common.showRegisterError
 import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.therapists.profile.addComment.view.AddCommentView
 import kotlinx.android.synthetic.main.activity_add_comment.*
@@ -65,7 +66,7 @@ class AddCommentActivity : BaseActivity(), AddCommentView {
 
     override fun showSignUpError() {
         hideLoadingDialog()
-        showGeneralError(this)
+        showRegisterError(this)
     }
 
 }

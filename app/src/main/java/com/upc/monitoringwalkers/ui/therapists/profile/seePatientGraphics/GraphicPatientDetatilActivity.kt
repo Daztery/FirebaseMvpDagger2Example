@@ -272,7 +272,6 @@ class GraphicPatientDetatilActivity : BaseActivity(),
                         DataPoint(instanceToDate(lastHour4), 6.5),
                         DataPoint(instanceToDate(lastHour5), 7.0),
                         DataPoint(instanceToDate(lastHour6), 7.5)
-
                     )
                 )
                 graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
@@ -288,18 +287,18 @@ class GraphicPatientDetatilActivity : BaseActivity(),
                 graph.removeAllSeries()
                 series = LineGraphSeries(
                     arrayOf(
-                        DataPoint(instanceToDate(lastDay1 ), 4.0),
-                        DataPoint(instanceToDate(lastDay2 ), 4.0),
-                        DataPoint(instanceToDate(lastDay3 ), 6.0),
-                        DataPoint(instanceToDate(lastDay4 ), 6.5),
+                        DataPoint(instanceToDate(lastDay1 ), 5.0),
+                        DataPoint(instanceToDate(lastDay2 ), 5.0),
+                        DataPoint(instanceToDate(lastDay3 ), 7.0),
+                        DataPoint(instanceToDate(lastDay4 ), 7.5),
                         DataPoint(instanceToDate(lastDay5 ), 7.0),
-                        DataPoint(instanceToDate(lastDay6 ), 4.0),
-                        DataPoint(instanceToDate(lastDay7 ), 4.0),
-                        DataPoint(instanceToDate(lastDay8 ), 6.0),
-                        DataPoint(instanceToDate(lastDay9 ), 6.5),
-                        DataPoint(instanceToDate(lastDay10), 7.0),
-                        DataPoint(instanceToDate(lastDay11), 4.0),
-                        DataPoint(instanceToDate(lastDay12), 4.0)
+                        DataPoint(instanceToDate(lastDay6 ), 8.0),
+                        DataPoint(instanceToDate(lastDay7 ), 8.0),
+                        DataPoint(instanceToDate(lastDay8 ), 9.0),
+                        DataPoint(instanceToDate(lastDay9 ), 9.5),
+                        DataPoint(instanceToDate(lastDay10), 10.0),
+                        DataPoint(instanceToDate(lastDay11), 11.0),
+                        DataPoint(instanceToDate(lastDay12), 12.0)
                     )
                 )
 
@@ -321,7 +320,7 @@ class GraphicPatientDetatilActivity : BaseActivity(),
                         DataPoint(instanceToDate(lastWeek3 ), 6.0),
                         DataPoint(instanceToDate(lastWeek4 ), 6.5),
                         DataPoint(instanceToDate(lastWeek5 ), 7.0),
-                        DataPoint(instanceToDate(lastWeek6 ), 4.0),
+                        DataPoint(instanceToDate(lastWeek6 ), 8.0),
                         DataPoint(instanceToDate(lastWeek7 ), 8.0)
                     )
                 )
@@ -429,7 +428,7 @@ class GraphicPatientDetatilActivity : BaseActivity(),
                 series = LineGraphSeries(
                     arrayOf(
                         DataPoint(instanceToDate(lastHour1), 4.0),
-                        DataPoint(instanceToDate(lastHour2), 4.0),
+                        DataPoint(instanceToDate(lastHour2), 5.0),
                         DataPoint(instanceToDate(lastHour3), 6.0),
                         DataPoint(instanceToDate(lastHour4), 6.5),
                         DataPoint(instanceToDate(lastHour5), 7.0),
@@ -452,16 +451,16 @@ class GraphicPatientDetatilActivity : BaseActivity(),
                     arrayOf(
                         DataPoint(instanceToDate(lastDay1 ), 4.0),
                         DataPoint(instanceToDate(lastDay2 ), 4.0),
-                        DataPoint(instanceToDate(lastDay3 ), 6.0),
+                        DataPoint(instanceToDate(lastDay3 ), 5.0),
                         DataPoint(instanceToDate(lastDay4 ), 6.5),
                         DataPoint(instanceToDate(lastDay5 ), 7.0),
-                        DataPoint(instanceToDate(lastDay6 ), 4.0),
-                        DataPoint(instanceToDate(lastDay7 ), 4.0),
-                        DataPoint(instanceToDate(lastDay8 ), 6.0),
-                        DataPoint(instanceToDate(lastDay9 ), 6.5),
-                        DataPoint(instanceToDate(lastDay10), 7.0),
-                        DataPoint(instanceToDate(lastDay11), 4.0),
-                        DataPoint(instanceToDate(lastDay12), 4.0)
+                        DataPoint(instanceToDate(lastDay6 ), 8.0),
+                        DataPoint(instanceToDate(lastDay7 ), 9.0),
+                        DataPoint(instanceToDate(lastDay8 ), 10.0),
+                        DataPoint(instanceToDate(lastDay9 ), 10.5),
+                        DataPoint(instanceToDate(lastDay10), 11.0),
+                        DataPoint(instanceToDate(lastDay11), 12.0),
+                        DataPoint(instanceToDate(lastDay12), 12.2)
                     )
                 )
 
@@ -479,11 +478,11 @@ class GraphicPatientDetatilActivity : BaseActivity(),
                 series = LineGraphSeries(
                     arrayOf(
                         DataPoint(instanceToDate(lastWeek1 ), 4.0),
-                        DataPoint(instanceToDate(lastWeek2 ), 4.0),
+                        DataPoint(instanceToDate(lastWeek2 ), 5.0),
                         DataPoint(instanceToDate(lastWeek3 ), 6.0),
                         DataPoint(instanceToDate(lastWeek4 ), 6.5),
                         DataPoint(instanceToDate(lastWeek5 ), 7.0),
-                        DataPoint(instanceToDate(lastWeek6 ), 4.0),
+                        DataPoint(instanceToDate(lastWeek6 ), 6.5),
                         DataPoint(instanceToDate(lastWeek7 ), 8.0)
                     )
                 )

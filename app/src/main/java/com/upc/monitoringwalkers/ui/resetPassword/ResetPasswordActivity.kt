@@ -26,10 +26,13 @@ class ResetPasswordActivity : BaseActivity(), ResetPasswordView {
 
     private fun initUi() {
         reset_password_btn.setOnClickListener {
-            presenter.onResetPasswordClicked(reset_password_edit_text.text.toString().trim())
+            presenter.onEmailChanged(reset_password_edit_text.text.toString().trim())
         }
     }
 
+    override fun showEmailError() {
+        reset_password_edit_text.error = getString(R.string.email_error)
+    }
     override fun onResetSuccess() {
         shortToast(this, "Se envio el correo a la direccion indicada")
     }

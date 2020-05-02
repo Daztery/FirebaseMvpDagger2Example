@@ -58,6 +58,7 @@ class PatientHolder(
         containerPatientWithoutTherapist.setOnClickListener {
             patient.therapistId=therapistId
             onTherapistIdChanged(patient)
+            shortToast(context, "Paciente agregado")
         }
         Glide
             .with(this)

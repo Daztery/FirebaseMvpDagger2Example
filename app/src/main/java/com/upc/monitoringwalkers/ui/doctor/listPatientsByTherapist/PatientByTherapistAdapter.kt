@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.upc.monitoringwalkers.R
+import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.common.showDeleteAdvertice
 import com.upc.monitoringwalkers.model.PatientEntity
 import com.upc.monitoringwalkers.ui.therapists.profile.detailPatient.DetailPatientActivity
@@ -66,6 +67,7 @@ class PatientHolder(
             showDeleteAdvertice(context) {
                 patient.therapistId=""
                 onDeleteClickHandler(patient)
+                shortToast(context, "Paciente eliminado")
             }
         }
         Glide

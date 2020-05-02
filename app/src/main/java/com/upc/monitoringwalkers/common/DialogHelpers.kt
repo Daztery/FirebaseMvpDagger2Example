@@ -20,6 +20,33 @@ fun showGeneralError(context: Context) {
         .show()
 }
 
+fun showLoginError(context: Context) {
+    AlertDialog.Builder(context)
+        .setTitle(context.resources.getString(R.string.error_title))
+        .setMessage(context.resources.getString(R.string.error_message_login))
+        .setPositiveButton(context.resources.getString(R.string.accept_button_text))
+        { dialog, _ -> dialog.dismiss() }
+        .show()
+}
+
+fun showRegisterError(context: Context) {
+    AlertDialog.Builder(context)
+        .setTitle(context.resources.getString(R.string.error_title))
+        .setMessage(context.resources.getString(R.string.error_message_register))
+        .setPositiveButton(context.resources.getString(R.string.accept_button_text))
+        { dialog, _ -> dialog.dismiss() }
+        .show()
+}
+
+fun showPasswordSameError(context: Context) {
+    AlertDialog.Builder(context)
+        .setTitle(context.resources.getString(R.string.error_title))
+        .setMessage(context.resources.getString(R.string.error_message_register_same_passwords))
+        .setPositiveButton(context.resources.getString(R.string.accept_button_text))
+        { dialog, _ -> dialog.dismiss() }
+        .show()
+}
+
 
 fun showDeleteAdvertice(context: Context, onConfirm: () -> Unit) {
     AlertDialog.Builder(context)

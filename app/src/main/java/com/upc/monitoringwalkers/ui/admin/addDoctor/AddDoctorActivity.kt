@@ -3,9 +3,7 @@ package com.upc.monitoringwalkers.ui.admin.addDoctor
 import android.os.Bundle
 import com.upc.monitoringwalkers.R
 import com.upc.monitoringwalkers.addDoctorPresenter
-import com.upc.monitoringwalkers.common.onTextChanged
-import com.upc.monitoringwalkers.common.shortToast
-import com.upc.monitoringwalkers.common.showGeneralError
+import com.upc.monitoringwalkers.common.*
 import com.upc.monitoringwalkers.ui.admin.addDoctor.view.AddDoctorView
 import com.upc.monitoringwalkers.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_add_doctor.*
@@ -13,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_add_doctor.*
 
 class AddDoctorActivity : BaseActivity(), AddDoctorView {
 
+    private var flag:Boolean=false
     private val presenter by lazy { addDoctorPresenter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +53,12 @@ class AddDoctorActivity : BaseActivity(), AddDoctorView {
 
     override fun showSignUpError() {
         hideLoadingDialog()
-        showGeneralError(this)
+        if(flag) {
+            showPasswordSameError(this)
+            flag=false
+        }else{
+            showRegisterError(this)
+        }
     }
 
     override fun showEmailError() {
@@ -67,5 +71,6 @@ class AddDoctorActivity : BaseActivity(), AddDoctorView {
 
     override fun showPasswordMatchingError() {
         register_doctor_confirm_password_edit.error = getString(R.string.password_error)
+        flag=true
     }
 }

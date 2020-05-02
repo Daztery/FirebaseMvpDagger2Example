@@ -1,5 +1,6 @@
 package com.upc.monitoringwalkers.ui.resetPassword.presenter
 
+import com.upc.monitoringwalkers.common.isEmailValid
 import com.upc.monitoringwalkers.firebase.authentication.FirebaseAuthenticationInterface
 import com.upc.monitoringwalkers.ui.resetPassword.view.ResetPasswordView
 import javax.inject.Inject
@@ -19,4 +20,13 @@ class ResetPasswordPresenterImpl @Inject constructor(
             if (it) resetPasswordView.onResetSuccess() else resetPasswordView.onResetFail()
         }
     }
+
+    override fun onEmailChanged(email: String) {
+        if (!isEmailValid(email)) {
+            resetPasswordView.showEmailError()
+        }else{
+            onResetPasswordClicked(email)
+        }
+    }
+
 }

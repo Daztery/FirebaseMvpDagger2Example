@@ -2,9 +2,7 @@ package com.upc.monitoringwalkers.ui.doctor.addTherapist
 
 import android.os.Bundle
 import com.upc.monitoringwalkers.R
-import com.upc.monitoringwalkers.common.onTextChanged
-import com.upc.monitoringwalkers.common.shortToast
-import com.upc.monitoringwalkers.common.showGeneralError
+import com.upc.monitoringwalkers.common.*
 import com.upc.monitoringwalkers.model.getCurrentUserPreferenceObjectJson
 import com.upc.monitoringwalkers.registerTherapistPresenter
 import com.upc.monitoringwalkers.ui.base.BaseActivity
@@ -13,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_add_therapist.*
 
 class AddTherapistActivity : BaseActivity(), AddTherapistView {
 
+    private var flag:Boolean=false
     private val presenter by lazy { registerTherapistPresenter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +66,13 @@ class AddTherapistActivity : BaseActivity(), AddTherapistView {
 
     override fun showSignUpError() {
         hideLoadingDialog()
-        showGeneralError(this)
+        if(flag) {
+            showPasswordSameError(this)
+            flag=false
+        }else{
+            showRegisterError(this)
+        }
+
     }
 
     override fun showEmailError() {
@@ -76,10 +81,12 @@ class AddTherapistActivity : BaseActivity(), AddTherapistView {
 
     override fun showPasswordError() {
         register_therapist_password_edit.error = getString(R.string.password_error)
+
     }
 
     override fun showPasswordMatchingError() {
         register_therapist_confirm_password_edit.error = getString(R.string.password_error)
+        flag=true
     }
 
 }

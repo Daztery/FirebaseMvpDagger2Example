@@ -7,4 +7,6 @@ interface ResetPasswordPresenter : BasePresenter<ResetPasswordView> {
 
     fun onResetPasswordClicked(email: String)
 
+    fun onEmailChanged(email: String)
+
 }

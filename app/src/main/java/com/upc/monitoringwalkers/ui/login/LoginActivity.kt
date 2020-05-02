@@ -6,6 +6,7 @@ import com.upc.monitoringwalkers.R
 import com.upc.monitoringwalkers.common.onTextChanged
 import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.common.showGeneralError
+import com.upc.monitoringwalkers.common.showLoginError
 import com.upc.monitoringwalkers.loginPresenter
 import com.upc.monitoringwalkers.model.MWCurrentUser
 import com.upc.monitoringwalkers.model.setCurrentUserPreferenceObject
@@ -66,7 +67,7 @@ class LoginActivity : BaseActivity(), LoginView {
 
     override fun onLoginError() {
         hideLoadingDialog()
-        showGeneralError(this)
+        showLoginError(this)
     }
 
     override fun showEmailError() {
