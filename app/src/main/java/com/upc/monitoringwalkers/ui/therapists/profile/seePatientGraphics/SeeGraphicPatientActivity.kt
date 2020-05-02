@@ -1,4 +1,5 @@
-package com.upc.monitoringwalkers.ui.patients.profile.seeGraphics
+package com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics
+
 
 import android.os.Bundle
 import android.view.View
@@ -9,30 +10,32 @@ import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import com.upc.monitoringwalkers.R
-import com.upc.monitoringwalkers.common.longToast
-import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.graphicPatientPresenter
 import com.upc.monitoringwalkers.model.*
+import com.upc.monitoringwalkers.seeGraphicPatientFromTherapistPresenter
 import com.upc.monitoringwalkers.ui.base.BaseActivity
-import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.view.GraphicPatientDetailView
+import com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.view.SeeGraphicPatientView
 import kotlinx.android.synthetic.main.activity_patient_graphics.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class GraphicPatientDetatilActivity : BaseActivity(),
-    GraphicPatientDetailView {
 
-    private val presenter by lazy { graphicPatientPresenter() }
+class SeeGraphicPatientActivity : BaseActivity(),
+    SeeGraphicPatientView {
+
+
+    private val presenter by lazy { seeGraphicPatientFromTherapistPresenter() }
     private lateinit var patientId: String
 
     private var arrayPointsForce= arrayListOf<PointEntity>()
     private var arrayPointsSpeed= arrayListOf<PointEntity>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_graphics)
-        presenter.setView(view = this)
+        presenter.setView(this)
         patientId = intent.extras!!.getString("patientId").toString()
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         initUi()
@@ -44,8 +47,8 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         var options= arrayOf("Última hora","Último día","Última semana")
         spinner_options.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options)
 
-
     }
+
 
     override fun onFetchGraphicForceSuccess(pointEntity: PointEntity) {
 
@@ -374,5 +377,6 @@ class GraphicPatientDetatilActivity : BaseActivity(),
 
 
     }
+
 
 }

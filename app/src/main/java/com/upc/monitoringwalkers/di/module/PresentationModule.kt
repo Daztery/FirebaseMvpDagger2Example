@@ -32,14 +32,16 @@ import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenter
 import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenterImpl
 import com.upc.monitoringwalkers.ui.patients.profile.seeDetail.presenter.PatientProfilePresenter
 import com.upc.monitoringwalkers.ui.patients.profile.seeDetail.presenter.PatientProfilePresenterImpl
-import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.presenter.GraphicPatientDetatilPresenter
-import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.presenter.GraphicPatientDetatilPresenterImpl
+import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.presenter.GraphicPatientDetailPresenter
+import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.presenter.GraphicPatientDetailPresenterImpl
 import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresenter
 import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresenterImpl
 import com.upc.monitoringwalkers.ui.splash.presenter.SplashPresenter
 import com.upc.monitoringwalkers.ui.splash.presenter.SplashPresenterImpl
 import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.presenter.TherapistProfilePresenter
 import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.presenter.TherapistProfilePresenterImpl
+import com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.presenter.SeeGraphicPatientPresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.presenter.SeeGraphicPatientPresenterImpl
 import dagger.Binds
 import dagger.Module
 
@@ -103,5 +105,8 @@ abstract class PresentationModule {
     abstract fun listPatientsWithoutTherapistPresenter(listPatientsWithoutTheparistPresenter: ListPatientsWithoutTheparistPresenterImpl): ListPatientsWithoutTherapistPresenter
 
     @Binds
-    abstract fun graphicPatientDetatilPresenter(graphicPatientDetatilPresenter: GraphicPatientDetatilPresenterImpl): GraphicPatientDetatilPresenter
+    abstract fun graphicPatientDetailPresenter(graphicPatientDetailPresenter: GraphicPatientDetailPresenterImpl): GraphicPatientDetailPresenter
+
+    @Binds
+    abstract fun seeGraphicPatientFromTherapistPresenter(seeGraphicPatientPresenterImpl: SeeGraphicPatientPresenterImpl): SeeGraphicPatientPresenter
 }

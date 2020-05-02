@@ -18,7 +18,6 @@
         <activity android:name=".ui.therapists.profile.listPatients.TherapistProfileActivity"
             android:theme="@style/AppThemeDoctorPatient.NoActionBar"/>
 
-
         <activity
             android:name=".ui.therapists.profile.detailPatient.DetailPatientActivity"
             android:parentActivityName=".ui.therapists.profile.listPatients.TherapistProfileActivity"/>
@@ -33,7 +32,7 @@
             android:parentActivityName=".ui.therapists.profile.listComments.ListCommentsActivity"/>
 
         <activity
-            android:name=".ui.therapists.profile.seePatientGraphics.GraphicPatientDetailActivity"
+            android:name=".ui.therapists.profile.seePatientGraphics.SeeGraphicPatientActivity"
             android:parentActivityName=".ui.therapists.profile.detailPatient.DetailPatientActivity"/>
 
         <!--Reset Password-->

@@ -1,9 +1,9 @@
 package com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.presenter
 
 import com.upc.monitoringwalkers.ui.base.BasePresenter
-import com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.view.GraphicPatientDetatilView
+import com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.view.SeeGraphicPatientView
 
-interface GraphicPatientDetatilPresenter : BasePresenter<GraphicPatientDetatilView>{
+interface SeeGraphicPatientPresenter : BasePresenter<SeeGraphicPatientView>{
 
     fun viewReady(patientId: String)
 

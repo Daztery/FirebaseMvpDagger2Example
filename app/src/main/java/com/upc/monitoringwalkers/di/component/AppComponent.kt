@@ -17,10 +17,11 @@ import com.upc.monitoringwalkers.ui.doctor.listPatientsWithoutTherapist.presente
 import com.upc.monitoringwalkers.ui.doctor.listTherapists.presenter.ListTherapistsPresenter
 import com.upc.monitoringwalkers.ui.login.presenter.LoginPresenter
 import com.upc.monitoringwalkers.ui.patients.profile.seeDetail.presenter.PatientProfilePresenter
-import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.presenter.GraphicPatientDetatilPresenter
+import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.presenter.GraphicPatientDetailPresenter
 import com.upc.monitoringwalkers.ui.resetPassword.presenter.ResetPasswordPresenter
 import com.upc.monitoringwalkers.ui.splash.presenter.SplashPresenter
 import com.upc.monitoringwalkers.ui.therapists.profile.listPatients.presenter.TherapistProfilePresenter
+import com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.presenter.SeeGraphicPatientPresenter
 import dagger.Component
 import javax.inject.Singleton
 
@@ -66,6 +67,7 @@ interface AppComponent {
 
     fun listPatientsWithoutTherapistPresenter(): ListPatientsWithoutTherapistPresenter
 
-    fun graphicPatientDetatilPresenter(): GraphicPatientDetatilPresenter
+    fun graphicPatientDetailPresenter(): GraphicPatientDetailPresenter
 
+    fun seeGraphicPatientFromTherapistPresenter(): SeeGraphicPatientPresenter
 }

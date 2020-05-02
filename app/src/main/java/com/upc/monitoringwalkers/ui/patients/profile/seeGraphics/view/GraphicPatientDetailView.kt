@@ -2,7 +2,7 @@ package com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.view
 
 import com.upc.monitoringwalkers.model.PointEntity
 
-interface GraphicPatientDetatilView{
+interface GraphicPatientDetailView{
     fun onFetchGraphicForceSuccess(pointEntity: PointEntity)
 
     fun onFetchGraphicSpeedSuccess(pointEntity: PointEntity)

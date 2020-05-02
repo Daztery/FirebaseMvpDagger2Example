@@ -1,20 +1,20 @@
-package com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.presenter
+package com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.presenter
 
 import com.upc.monitoringwalkers.firebase.authentication.FirebaseAuthenticationInterface
 import com.upc.monitoringwalkers.firebase.database.FirebaseDatabaseInterface
 import com.upc.monitoringwalkers.model.isValid
-import com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.view.GraphicPatientDetatilView
+import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.view.GraphicPatientDetailView
 import javax.inject.Inject
 
-class GraphicPatientDetatilPresenterImpl @Inject constructor(
+class GraphicPatientDetailPresenterImpl @Inject constructor(
     private val authentication: FirebaseAuthenticationInterface,
     private val databaseInterface: FirebaseDatabaseInterface
-) : GraphicPatientDetatilPresenter {
+) : GraphicPatientDetailPresenter {
 
 
-    private lateinit var view: GraphicPatientDetatilView
+    private lateinit var view: GraphicPatientDetailView
 
-    override fun setView(view: GraphicPatientDetatilView) {
+    override fun setView(view: GraphicPatientDetailView) {
         this.view = view
     }
 
