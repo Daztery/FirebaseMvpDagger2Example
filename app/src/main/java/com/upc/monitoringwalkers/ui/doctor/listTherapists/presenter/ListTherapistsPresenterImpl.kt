@@ -42,7 +42,6 @@ class ListTherapistsPresenterImpl @Inject constructor(
                 databaseInterface.deleteTherapistFromPatient(it) {
                     view.deletePatientsWithTherapistId(therapistEntity)
                 }
-
             }
             databaseInterface.deleteUser(therapistEntity.id) {
                 view.deleteTherapist(therapistEntity)

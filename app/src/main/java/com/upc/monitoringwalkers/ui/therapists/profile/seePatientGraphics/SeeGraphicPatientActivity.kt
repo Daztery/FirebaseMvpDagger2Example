@@ -37,14 +37,13 @@ class SeeGraphicPatientActivity : BaseActivity(),
         setContentView(R.layout.activity_patient_graphics)
         presenter.setView(this)
         patientId = intent.extras!!.getString("patientId").toString()
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         initUi()
     }
 
     private fun initUi() {
 
         presenter.viewReady(patientId)
-        var options= arrayOf("Última hora","Último día","Última semana")
+        val options= arrayOf("Última hora","Último día","Última semana")
         spinner_options.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options)
 
     }

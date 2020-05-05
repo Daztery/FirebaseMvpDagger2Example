@@ -102,6 +102,7 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         graph.title="Velocidad"
         graph.addSeries(series)
 
+
     }
 
     override fun onFetchGraphicForceFail(error: String) {
@@ -141,6 +142,7 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         calendar.time=date
 
         return calendar.time
+
     }
 
     private fun dataMockeadaForce(index:Int) {

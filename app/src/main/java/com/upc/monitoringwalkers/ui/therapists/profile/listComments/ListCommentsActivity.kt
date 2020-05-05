@@ -41,7 +41,6 @@ class ListCommentsActivity : BaseActivity(), ListCommentsView {
             intent.putExtra("patientId", patientId  )
             this.startActivity(intent)
         }
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun showNoDataDescription() {

@@ -10,6 +10,8 @@ private const val KEY_COMMENT = "comment"
 private const val KEY_TYPE_USER = "type"
 private const val KEY_THERAPY_SESSION_FORCE = "therapy-session-force"
 private const val KEY_THERAPY_SESSION_SPEED = "therapy-session-speed"
+private const val KEY_THERAPY_SESSION_FORCE_TIMESTAMP = "therapy-session-force-timestamp"
+private const val KEY_THERAPY_SESSION_SPEED_TIMESTAMP = "therapy-session-speed-timestamp"
 private const val KEY_THERAPIST = "THERAPIST"
 private const val KEY_PATIENT = "PATIENT"
 private const val KEY_DOCTOR = "DOCTOR"
@@ -456,5 +458,43 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
                 override fun onChildRemoved(snapshot: DataSnapshot) = Unit
             })
     }
+    override fun getForceGraphicLastHourByPatient(
+        patientId: String,
+        onResult: (PointEntity) -> Unit
+    ) {
 
+
+        database.reference.child(KEY_THERAPY_SESSION_SPEED).orderByChild("patientId").equalTo(patientId)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onCancelled(error: DatabaseError) = Unit
+
+                override fun onChildMoved(snapshot: DataSnapshot, p1: String?) = Unit
+
+                override fun onChildChanged(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(PointEntity::class.java)?.run {
+                        if (isValid()) {
+                            Log.i(
+                                "pointInfo",
+                                "${this.startedAt} ${this.value}"
+                            )
+                            onResult(mapToPoint())
+                        }
+                    }
+                }
+
+                override fun onChildAdded(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(PointEntity::class.java)?.run {
+                        if (isValid()) {
+                            Log.i(
+                                "pointInfo",
+                                "${this.startedAt} ${this.value}"
+                            )
+                            onResult(mapToPoint())
+                        }
+                    }
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) = Unit
+            })
+    }
 }
