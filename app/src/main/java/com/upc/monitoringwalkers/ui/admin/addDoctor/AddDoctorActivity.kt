@@ -47,15 +47,14 @@ class AddDoctorActivity : BaseActivity(), AddDoctorView {
 
     override fun onRegisterSuccess() {
         hideLoadingDialog()
-        shortToast(this, "Registro doctor exitoso")
+        shortToast(this, "Registro de médico exitoso")
         onBackPressed()
     }
 
     override fun showSignUpError() {
         hideLoadingDialog()
-        if(flag) {
+        if (!arePasswordsSame(register_doctor_password_edit.text.toString(),register_doctor_confirm_password_edit.text.toString())) {
             showPasswordSameError(this)
-            flag=false
         }else{
             showRegisterError(this)
         }

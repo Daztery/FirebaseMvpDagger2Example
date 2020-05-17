@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.upc.monitoringwalkers.R
+import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.common.showDeleteAdvertice
 import com.upc.monitoringwalkers.model.TherapistEntity
 import com.upc.monitoringwalkers.ui.doctor.detailTherapist.DetailTherapistActivity
@@ -53,6 +54,7 @@ class TherapistHolder(
         therapist_delete.setOnClickListener {
             showDeleteAdvertice(context) {
                 onDeleteClickHandler(therapistEntity)
+                shortToast(context, "Terapeuta eliminado")
             }
         }
         container_item_therapist.setOnClickListener {

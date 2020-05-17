@@ -78,22 +78,6 @@ interface FirebaseDatabaseInterface {
      */
     fun getAllPointsForce(patientId: String, onResult: (ArrayList<PointEntity>) -> Unit)
 
-    /**
-     * Get the list of therapists given the doctor identifier.
-     *
-     * @param doctorId Doctor unique identifier
-     * @param onResult Callback that is call when the result is given as a list of TherapistEntity
-     */
-    fun getTherapistByDoctor(doctorId: String, onResult: (List<TherapistEntity>) -> Unit)
-
-    /**
-     * Get the list of patients given the doctor identifier.
-     *
-     * @param doctorId Doctor unique identifier
-     * @param onResult Callback that is call when the result is given as a list of PatientEntity
-     */
-    fun getPatientsByDoctor(doctorId: String, onResult: (List<PatientEntity>) -> Unit)
-
 
     /**
      * This method listen all the occurrences to the child of USERS that type is DOCTOR.

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.upc.monitoringwalkers.R
+import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.common.showDeleteAdvertice
 import com.upc.monitoringwalkers.model.DoctorEntity
 import com.upc.monitoringwalkers.ui.admin.detailDoctor.DetailDoctorActivity
@@ -61,6 +62,7 @@ class DoctorHolder(itemView: View, private inline val onDeleteClickHandler: (Doc
         doctor_delete.setOnClickListener {
             showDeleteAdvertice(context) {
                 onDeleteClickHandler(doctorEntity)
+                shortToast(context, "Médico eliminado")
             }
         }
         Glide

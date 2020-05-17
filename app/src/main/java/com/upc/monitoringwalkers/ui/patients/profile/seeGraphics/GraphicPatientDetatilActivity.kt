@@ -2,7 +2,6 @@ package com.upc.monitoringwalkers.ui.patients.profile.seeGraphics
 
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter
@@ -17,8 +16,10 @@ import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.view.GraphicPatientDetailView
 import kotlinx.android.synthetic.main.activity_patient_graphics.*
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 class GraphicPatientDetatilActivity : BaseActivity(),
     GraphicPatientDetailView {
@@ -55,11 +56,9 @@ class GraphicPatientDetatilActivity : BaseActivity(),
 
         getDataPointsForce(pointEntity)
 
-
         val series: LineGraphSeries<DataPoint> = LineGraphSeries()
 
         val graph = findViewById<GraphView>(R.id.graph_force)
-
 
         for(i in arrayPointsForce.indices) {
             series.appendData(
@@ -73,6 +72,8 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         graph.gridLabelRenderer.numHorizontalLabels = 4
         graph.title="Presion"
         graph.addSeries(series)
+        //graph.viewport.isScalable=true
+        //graph.viewport.setScalableY(true)
 
     }
 
@@ -141,6 +142,17 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         calendar.time=date
 
         return calendar.time
+    }
+
+    private fun getLastHour(){
+        val current = LocalDateTime.now()
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS")
+        val formatted = current.format(formatter)
+
+        val string = "2017-07-25"
+        val date = LocalDate.parse(string, DateTimeFormatter.ISO_DATE)
+
     }
 
     private fun dataMockeadaForce(index:Int) {

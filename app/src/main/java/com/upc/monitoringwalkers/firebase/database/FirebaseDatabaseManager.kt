@@ -32,9 +32,6 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
                 onResult(it.isSuccessful && it.isComplete)
             }
 
-        /*database.reference.child(KEY_COMMENT).child(patientEntity.id).setValue(patientEntity.id).addOnCompleteListener {
-            onResult(it.isSuccessful && it.isComplete)
-        }*/
      }
 
     override fun deleteTherapistFromPatient(patientEntity: PatientEntity, onResult: (Boolean) -> Unit) {
@@ -43,9 +40,7 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
                 onResult(it.isSuccessful && it.isComplete)
             }
 
-        /*database.reference.child(KEY_COMMENT).child(patientEntity.id).removeValue().addOnCompleteListener {
-            onResult(it.isSuccessful && it.isComplete)
-        }*/
+
     }
 
     override fun listPatientsByTherapist(
@@ -186,13 +181,6 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
                     }
                 }
             })
-    }
-
-    override fun getPatientsByDoctor(doctorId: String, onResult: (List<PatientEntity>) -> Unit) {
-        //TODO See why is not implemented
-    }
-    override fun getTherapistByDoctor(doctorId: String, onResult: (List<TherapistEntity>) -> Unit) {
-        //TODO See why is not implemented
     }
 
     override fun getAllPointsForce(patientId: String, onResult: (ArrayList<PointEntity>) -> Unit) {
@@ -336,8 +324,6 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
     }
 
     override fun createComment(commentEntity: CommentEntity) {
-
-        //database.reference.child(KEY_COMMENT).child(commentEntity.patientId).child(commentEntity.date).setValue(commentEntity)
 
         database.reference.child(KEY_COMMENT).child(commentEntity.id).setValue(commentEntity)
     }

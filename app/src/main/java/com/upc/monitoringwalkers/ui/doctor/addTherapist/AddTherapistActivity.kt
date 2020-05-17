@@ -66,9 +66,9 @@ class AddTherapistActivity : BaseActivity(), AddTherapistView {
 
     override fun showSignUpError() {
         hideLoadingDialog()
-        if(flag) {
+
+        if (!arePasswordsSame(register_therapist_password_edit.text.toString(),register_therapist_confirm_password_edit.text.toString())) {
             showPasswordSameError(this)
-            flag=false
         }else{
             showRegisterError(this)
         }
@@ -86,7 +86,6 @@ class AddTherapistActivity : BaseActivity(), AddTherapistView {
 
     override fun showPasswordMatchingError() {
         register_therapist_confirm_password_edit.error = getString(R.string.password_error)
-        flag=true
     }
 
 }

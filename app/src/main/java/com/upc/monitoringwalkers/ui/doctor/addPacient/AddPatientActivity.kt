@@ -84,9 +84,8 @@ class AddPatientActivity : BaseActivity(), AddPatientView {
 
     override fun showSignUpError() {
         hideLoadingDialog()
-        if(flag){
+        if (!arePasswordsSame(register_password_edit.text.toString(),register_confirm_password_edit.text.toString())) {
             showPasswordSameError(this)
-            flag=false
         }else{
             showRegisterError(this)
         }
