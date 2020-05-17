@@ -51,6 +51,7 @@ class DetailPatientActivity : BaseActivity(), DetailPatientView {
         detail_patient.visibility = View.VISIBLE
         detail_patient_full_name.text = "${patientEntity.name} ${patientEntity.lastName}"
         detail_patient_email.text = patientEntity.email
+
         Glide
             .with(this)
             .load(getString(R.string.img_patient))

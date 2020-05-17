@@ -59,6 +59,21 @@ class PatientProfileActivity : BaseActivity(),
         patient_profile_appBar.visibility=View.VISIBLE
         patient_profile_full_name.text = "${patientEntity.name} ${patientEntity.lastName}"
         patient_profile_email.text = patientEntity.email
+
+        when(patientEntity.affectation.toString()){
+            "HIGH"->{
+                patient_profile_affectation.text="Alto"
+            }
+            "MIDDLE"->{
+                patient_profile_affectation.text="Medio"
+            }
+            "LOW"->{
+                patient_profile_affectation.text="Bajo"
+            }
+        }
+
+
+
         Glide
             .with(this)
             .load("https://cdn2.iconfinder.com/data/icons/covid-19-filled/64/virus-18-512.png")

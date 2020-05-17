@@ -444,5 +444,43 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
                 override fun onChildRemoved(snapshot: DataSnapshot) = Unit
             })
     }
+    override fun getForceGraphicLastHourByPatient(
+        patientId: String,
+        onResult: (PointEntity) -> Unit
+    ) {
 
+
+        database.reference.child(KEY_THERAPY_SESSION_SPEED).orderByChild("patientId").equalTo(patientId)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onCancelled(error: DatabaseError) = Unit
+
+                override fun onChildMoved(snapshot: DataSnapshot, p1: String?) = Unit
+
+                override fun onChildChanged(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(PointEntity::class.java)?.run {
+                        if (isValid()) {
+                            Log.i(
+                                "pointInfo",
+                                "${this.startedAt} ${this.value}"
+                            )
+                            onResult(mapToPoint())
+                        }
+                    }
+                }
+
+                override fun onChildAdded(snapshot: DataSnapshot, p1: String?) {
+                    snapshot.getValue(PointEntity::class.java)?.run {
+                        if (isValid()) {
+                            Log.i(
+                                "pointInfo",
+                                "${this.startedAt} ${this.value}"
+                            )
+                            onResult(mapToPoint())
+                        }
+                    }
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) = Unit
+            })
+    }
 }

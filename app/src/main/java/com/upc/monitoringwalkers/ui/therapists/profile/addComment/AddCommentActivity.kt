@@ -46,7 +46,6 @@ class AddCommentActivity : BaseActivity(), AddCommentView {
         }
 
         supportActionBar!!.setTitle("Agregar comentario")
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
     }
     private fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {

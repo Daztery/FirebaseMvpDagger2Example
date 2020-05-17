@@ -158,6 +158,13 @@ interface FirebaseDatabaseInterface {
      */
     fun getOfSpeedGraphicByPatient(patientId: String, onResult: (PointEntity) -> Unit)
 
+    /**
+     * List points of Speed's graphic by Patient
+     *
+     * @param patientId
+     * @param onResult
+     */
+    fun getForceGraphicLastHourByPatient(patientId: String, onResult: (PointEntity) -> Unit)
 
 
 }
