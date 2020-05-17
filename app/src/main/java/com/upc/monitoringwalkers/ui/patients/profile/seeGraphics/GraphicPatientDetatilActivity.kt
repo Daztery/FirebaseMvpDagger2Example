@@ -1,25 +1,24 @@
 package com.upc.monitoringwalkers.ui.patients.profile.seeGraphics
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
+import androidx.annotation.RequiresApi
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import com.upc.monitoringwalkers.R
-import com.upc.monitoringwalkers.common.longToast
-import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.graphicPatientPresenter
 import com.upc.monitoringwalkers.model.*
 import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.view.GraphicPatientDetailView
 import kotlinx.android.synthetic.main.activity_patient_graphics.*
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
+import java.sql.Timestamp
+
 
 class GraphicPatientDetatilActivity : BaseActivity(),
     GraphicPatientDetailView {
@@ -46,6 +45,7 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         spinner_options.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options)
 
 
+
     }
 
     override fun onFetchGraphicForceSuccess(pointEntity: PointEntity) {
@@ -62,7 +62,7 @@ class GraphicPatientDetatilActivity : BaseActivity(),
 
         for(i in arrayPointsForce.indices) {
             series.appendData(
-                DataPoint(instanceToDate(arrayPointsForce[i].startedAt), arrayPointsForce[i].value.toDouble()),
+                DataPoint(Date(arrayPointsForce[i].startedAt), arrayPointsForce[i].value.toDouble()),
                 true,
                 arrayPointsForce.size
             )
@@ -78,21 +78,20 @@ class GraphicPatientDetatilActivity : BaseActivity(),
     }
 
     override fun onFetchGraphicSpeedSuccess(pointEntity: PointEntity) {
+
         patient_profile_progress.visibility = View.GONE
         patient_profile.visibility = View.VISIBLE
         scroll.visibility=View.VISIBLE
 
         getDataPointsSpeed(pointEntity)
 
-
         val series: LineGraphSeries<DataPoint> = LineGraphSeries()
 
         val graph = findViewById<GraphView>(R.id.graph_speed)
 
-
         for(i in arrayPointsSpeed.indices) {
             series.appendData(
-                DataPoint(instanceToDate(arrayPointsSpeed[i].startedAt), arrayPointsSpeed[i].value.toDouble()),
+                DataPoint(Date(arrayPointsSpeed[i].startedAt), arrayPointsSpeed[i].value.toDouble()),
                 true,
                 arrayPointsSpeed.size
             )
@@ -132,29 +131,27 @@ class GraphicPatientDetatilActivity : BaseActivity(),
 
     }
 
-    private fun instanceToDate(stringDate:String):Date{
+    /*private fun instanceToDate(stringDate:String):Date{
 
         val dateformatYyyymmddhhmmss = SimpleDateFormat(
             "yyyy/MM/dd HH:mm:ss", Locale.ENGLISH
         )
+
         val date = dateformatYyyymmddhhmmss.parse(stringDate)
         val calendar = Calendar.getInstance()
         calendar.time=date
 
         return calendar.time
-    }
+
+    }*/
 
     private fun getLastHour(){
-        val current = LocalDateTime.now()
 
-        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS")
-        val formatted = current.format(formatter)
-
-        val string = "2017-07-25"
-        val date = LocalDate.parse(string, DateTimeFormatter.ISO_DATE)
+        val calendar = Calendar.getInstance()
+        return calendar.time
 
     }
-
+/*
     private fun dataMockeadaForce(index:Int) {
 
         var arrayDateLastHour= arrayListOf<String>()
@@ -386,5 +383,5 @@ class GraphicPatientDetatilActivity : BaseActivity(),
 
 
     }
-
+*/
 }

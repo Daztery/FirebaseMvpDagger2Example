@@ -23,11 +23,13 @@ class PatientProfileActivity : BaseActivity(),
     private lateinit var currentUser: MWCurrentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_profile)
         setSupportActionBar(patient_profile_toolbar)
         presenter.setView(this)
         initUi()
+
     }
 
     private fun initUi() {
@@ -35,11 +37,9 @@ class PatientProfileActivity : BaseActivity(),
         currentUser = getCurrentUserPreferenceObjectJson(this)
         presenter.viewReady(currentUser.id)
 
-
         patient_profile_logout.setOnClickListener {
             presenter.logout()
         }
-
 
     }
 

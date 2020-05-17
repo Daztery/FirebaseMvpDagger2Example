@@ -50,6 +50,7 @@ class ListTherapistsPresenterImpl @Inject constructor(
                 view.deleteTherapist(therapistEntity)
             }
         }
+
         if(patients.size==0){
             databaseInterface.deleteUser(therapistEntity.id) {
                 view.deleteTherapist(therapistEntity)

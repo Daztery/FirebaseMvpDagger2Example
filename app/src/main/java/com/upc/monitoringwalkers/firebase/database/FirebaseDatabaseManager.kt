@@ -10,6 +10,8 @@ private const val KEY_COMMENT = "comment"
 private const val KEY_TYPE_USER = "type"
 private const val KEY_THERAPY_SESSION_FORCE = "therapy-session-force"
 private const val KEY_THERAPY_SESSION_SPEED = "therapy-session-speed"
+private const val KEY_THERAPY_SESSION_FORCE_TIMESTAMP = "therapy-session-force-timestamp"
+private const val KEY_THERAPY_SESSION_SPEED_TIMESTAMP = "therapy-session-speed-timestamp"
 private const val KEY_THERAPIST = "THERAPIST"
 private const val KEY_PATIENT = "PATIENT"
 private const val KEY_DOCTOR = "DOCTOR"
@@ -370,7 +372,7 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
         patientId: String,
         onResult: (PointEntity) -> Unit
     ) {
-        database.reference.child(KEY_THERAPY_SESSION_FORCE).orderByChild("patientId").equalTo(patientId)
+        database.reference.child(KEY_THERAPY_SESSION_FORCE_TIMESTAMP).orderByChild("patientId").equalTo(patientId)
             .addChildEventListener(object : ChildEventListener {
                 override fun onCancelled(error: DatabaseError) = Unit
 
@@ -409,7 +411,7 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
         patientId: String,
         onResult: (PointEntity) -> Unit
     ) {
-        database.reference.child(KEY_THERAPY_SESSION_SPEED).orderByChild("patientId").equalTo(patientId)
+        database.reference.child(KEY_THERAPY_SESSION_SPEED_TIMESTAMP).orderByChild("patientId").equalTo(patientId)
             .addChildEventListener(object : ChildEventListener {
                 override fun onCancelled(error: DatabaseError) = Unit
 

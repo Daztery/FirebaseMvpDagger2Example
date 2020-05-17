@@ -16,6 +16,7 @@ import com.upc.monitoringwalkers.seeGraphicPatientFromTherapistPresenter
 import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.therapists.profile.seePatientGraphics.view.SeeGraphicPatientView
 import kotlinx.android.synthetic.main.activity_patient_graphics.*
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -66,7 +67,7 @@ class SeeGraphicPatientActivity : BaseActivity(),
 
         for(i in arrayPointsForce.indices) {
             series.appendData(
-                DataPoint(instanceToDate(arrayPointsForce[i].startedAt), arrayPointsForce[i].value.toDouble()),
+                DataPoint(Date(arrayPointsForce[i].startedAt), arrayPointsForce[i].value.toDouble()),
                 true,
                 arrayPointsForce.size
             )
@@ -94,7 +95,7 @@ class SeeGraphicPatientActivity : BaseActivity(),
 
         for(i in arrayPointsSpeed.indices) {
             series.appendData(
-                DataPoint(instanceToDate(arrayPointsSpeed[i].startedAt), arrayPointsSpeed[i].value.toDouble()),
+                DataPoint(Date(arrayPointsSpeed[i].startedAt), arrayPointsSpeed[i].value.toDouble()),
                 true,
                 arrayPointsSpeed.size
             )
@@ -145,6 +146,7 @@ class SeeGraphicPatientActivity : BaseActivity(),
 
         return calendar.time
     }
+
 
     private fun dataMockeadaForce(index:Int) {
 
