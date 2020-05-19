@@ -41,9 +41,11 @@ class GraphicPatientDetatilActivity : BaseActivity(),
     private fun initUi() {
 
         presenter.viewReady(patientId)
-        val options= arrayOf("Toda los datos","Última hora","Último día","Última semana")
-        spinner_options.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options)
+        val optionsForce= arrayOf("Presión - Toda los datos","Presión - Última hora","Presión - Último día","Presión - Última semana")
+        spinner_options.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,optionsForce)
 
+        val optionsSpeed= arrayOf("Velocidad - Toda los datos","Velocidad - Última hora","Velocidad - Último día","Velocidad - Última semana")
+        spinner_options2.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,optionsSpeed)
     }
 
     override fun onFetchGraphicForceSuccess(pointEntity: PointEntity) {
@@ -119,7 +121,7 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         graph.title="Velocidad"
         graph.addSeries(series)
 
-       /* spinner_options.onItemSelectedListener=object : AdapterView.OnItemClickListener,
+        spinner_options2.onItemSelectedListener=object : AdapterView.OnItemClickListener,
             AdapterView.OnItemSelectedListener {
             override fun onItemClick(
                 parent: AdapterView<*>?,
@@ -139,12 +141,11 @@ class GraphicPatientDetatilActivity : BaseActivity(),
                 id: Long
             ) {
 
-
-
+                changeGraphicsSpeed(position,pointEntity,graph,series)
 
             }
         }
-*/
+
     }
 
     override fun onFetchGraphicForceFail(error: String) {

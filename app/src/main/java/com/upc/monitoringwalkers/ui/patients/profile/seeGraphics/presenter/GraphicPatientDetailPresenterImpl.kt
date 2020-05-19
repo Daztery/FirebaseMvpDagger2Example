@@ -38,6 +38,10 @@ class GraphicPatientDetailPresenterImpl @Inject constructor(
         }
     }
 
+
+
+
+
     override fun viewReady(patientId: String) {
         fetchPointsOfForce(patientId)
         fetchPointsOfSpeed(patientId)
