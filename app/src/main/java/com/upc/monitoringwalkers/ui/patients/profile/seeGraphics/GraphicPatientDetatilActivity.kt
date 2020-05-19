@@ -1,23 +1,21 @@
 package com.upc.monitoringwalkers.ui.patients.profile.seeGraphics
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.annotation.RequiresApi
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import com.upc.monitoringwalkers.R
+import com.upc.monitoringwalkers.common.shortToast
 import com.upc.monitoringwalkers.graphicPatientPresenter
 import com.upc.monitoringwalkers.model.*
 import com.upc.monitoringwalkers.ui.base.BaseActivity
 import com.upc.monitoringwalkers.ui.patients.profile.seeGraphics.view.GraphicPatientDetailView
 import kotlinx.android.synthetic.main.activity_patient_graphics.*
-import java.text.SimpleDateFormat
 import java.util.*
-import java.sql.Timestamp
 
 
 class GraphicPatientDetatilActivity : BaseActivity(),
@@ -30,21 +28,21 @@ class GraphicPatientDetatilActivity : BaseActivity(),
     private var arrayPointsSpeed= arrayListOf<PointEntity>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_graphics)
-        presenter.setView(view = this)
+        presenter.setView(this)
         patientId = intent.extras!!.getString("patientId").toString()
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         initUi()
+
     }
 
     private fun initUi() {
 
         presenter.viewReady(patientId)
-        var options= arrayOf("Última hora","Último día","Última semana")
+        val options= arrayOf("Toda los datos","Última hora","Último día","Última semana")
         spinner_options.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options)
-
-
 
     }
 
@@ -52,13 +50,12 @@ class GraphicPatientDetatilActivity : BaseActivity(),
 
         patient_profile_progress.visibility = View.GONE
         patient_profile.visibility = View.VISIBLE
-        scroll.visibility=View.VISIBLE
+        scroll.visibility = View.VISIBLE
 
         getDataPointsForce(pointEntity)
 
-        val series: LineGraphSeries<DataPoint> = LineGraphSeries()
-
         val graph = findViewById<GraphView>(R.id.graph_force)
+        val series: LineGraphSeries<DataPoint> = LineGraphSeries()
 
         for(i in arrayPointsForce.indices) {
             series.appendData(
@@ -67,13 +64,37 @@ class GraphicPatientDetatilActivity : BaseActivity(),
                 arrayPointsForce.size
             )
         }
-
-        graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
-        graph.gridLabelRenderer.numHorizontalLabels = 4
+        graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this@GraphicPatientDetatilActivity)
+        graph.gridLabelRenderer.numHorizontalLabels = 5
         graph.title="Presion"
         graph.addSeries(series)
-        //graph.viewport.isScalable=true
-        //graph.viewport.setScalableY(true)
+
+        spinner_options.onItemSelectedListener=object : AdapterView.OnItemClickListener,
+            AdapterView.OnItemSelectedListener {
+            override fun onItemClick(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+                changeGraphicsForce(position,pointEntity,graph,series)
+
+
+            }
+        }
+
 
     }
 
@@ -84,11 +105,8 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         scroll.visibility=View.VISIBLE
 
         getDataPointsSpeed(pointEntity)
-
-        val series: LineGraphSeries<DataPoint> = LineGraphSeries()
-
         val graph = findViewById<GraphView>(R.id.graph_speed)
-
+        val series: LineGraphSeries<DataPoint> = LineGraphSeries()
         for(i in arrayPointsSpeed.indices) {
             series.appendData(
                 DataPoint(Date(arrayPointsSpeed[i].startedAt), arrayPointsSpeed[i].value.toDouble()),
@@ -96,12 +114,37 @@ class GraphicPatientDetatilActivity : BaseActivity(),
                 arrayPointsSpeed.size
             )
         }
-
-        graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
-        graph.gridLabelRenderer.numHorizontalLabels = 4
+        graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this@GraphicPatientDetatilActivity)
+        graph.gridLabelRenderer.numHorizontalLabels = 5
         graph.title="Velocidad"
         graph.addSeries(series)
 
+       /* spinner_options.onItemSelectedListener=object : AdapterView.OnItemClickListener,
+            AdapterView.OnItemSelectedListener {
+            override fun onItemClick(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+
+
+
+            }
+        }
+*/
     }
 
     override fun onFetchGraphicForceFail(error: String) {
@@ -125,32 +168,205 @@ class GraphicPatientDetatilActivity : BaseActivity(),
         arrayPointsForce.add(pointEntity)
 
     }
+
     private fun getDataPointsSpeed(pointEntity: PointEntity){
 
         arrayPointsSpeed.add(pointEntity)
 
     }
 
-    /*private fun instanceToDate(stringDate:String):Date{
-
-        val dateformatYyyymmddhhmmss = SimpleDateFormat(
-            "yyyy/MM/dd HH:mm:ss", Locale.ENGLISH
-        )
-
-        val date = dateformatYyyymmddhhmmss.parse(stringDate)
-        val calendar = Calendar.getInstance()
-        calendar.time=date
-
-        return calendar.time
-
-    }*/
-
-    private fun getLastHour(){
+    private fun getLastHour(): Date{
 
         val calendar = Calendar.getInstance()
+       /* calendar.set(Calendar.HOUR,5)
+        calendar.set(Calendar.MINUTE,0)
+        calendar.set(Calendar.SECOND,0)
+        calendar.set(Calendar.DAY_OF_MONTH,17)
+        calendar.set(Calendar.MONTH,Calendar.MAY)
+        calendar.set(Calendar.YEAR,2020)*/
+
+        calendar.add(Calendar.HOUR_OF_DAY,-1)
+
         return calendar.time
 
     }
+
+    private fun getLastDay(): Date{
+
+        val calendar = Calendar.getInstance()
+
+        calendar.add(Calendar.DAY_OF_WEEK,-1)
+
+        return calendar.time
+
+    }
+
+    private fun getLastWeek(): Date{
+
+        val calendar = Calendar.getInstance()
+
+        calendar.add(Calendar.WEEK_OF_MONTH,-1)
+
+        return calendar.time
+
+    }
+
+    private fun changeGraphicsForce(index:Int,pointEntity: PointEntity,graph:GraphView,series:LineGraphSeries<DataPoint>){
+        when (index){
+            0->{
+                graph.removeAllSeries()
+                getDataPointsForce(pointEntity)
+                series.resetData(arrayOf<DataPoint>())
+                for(i in arrayPointsForce.indices) {
+                    series.appendData(
+                        DataPoint(Date(arrayPointsForce[i].startedAt), arrayPointsForce[i].value.toDouble()),
+                        true,
+                        arrayPointsForce.size
+                    )
+                }
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this@GraphicPatientDetatilActivity)
+                graph.gridLabelRenderer.numHorizontalLabels = 5
+                graph.title="Presion"
+                graph.addSeries(series)
+            }
+            1 ->{
+                graph.removeAllSeries()
+                getDataPointsForce(pointEntity)
+                series.resetData(arrayOf<DataPoint>())
+                for(i in arrayPointsForce.indices) {
+                    if(Date(arrayPointsForce[i].startedAt)>getLastHour()){
+                        series.appendData(
+                            DataPoint(Date(arrayPointsForce[i].startedAt), arrayPointsForce[i].value.toDouble()),
+
+                            true,
+                            arrayPointsForce.size
+                        )
+                    }
+                }
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this@GraphicPatientDetatilActivity)
+                graph.gridLabelRenderer.numHorizontalLabels = 4
+                graph.title="Presion"
+                graph.addSeries(series)
+            }
+            2 ->{
+                graph.removeAllSeries()
+                getDataPointsForce(pointEntity)
+                series.resetData(arrayOf<DataPoint>())
+                for(i in arrayPointsForce.indices) {
+                    if(Date(arrayPointsForce[i].startedAt)>getLastDay()){
+                        series.appendData(
+                            DataPoint(Date(arrayPointsForce[i].startedAt), arrayPointsForce[i].value.toDouble()),
+
+                            true,
+                            arrayPointsForce.size
+                        )
+                    }
+                }
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this@GraphicPatientDetatilActivity)
+                graph.gridLabelRenderer.numHorizontalLabels = 4
+                graph.title="Presion"
+                graph.addSeries(series)
+            }
+            3 ->{
+                graph.removeAllSeries()
+                getDataPointsForce(pointEntity)
+                series.resetData(arrayOf<DataPoint>())
+                for(i in arrayPointsForce.indices) {
+                    if(Date(arrayPointsForce[i].startedAt)>getLastWeek()){
+                        series.appendData(
+                            DataPoint(Date(arrayPointsForce[i].startedAt), arrayPointsForce[i].value.toDouble()),
+
+                            true,
+                            arrayPointsForce.size
+                        )
+                    }
+                }
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this@GraphicPatientDetatilActivity)
+                graph.gridLabelRenderer.numHorizontalLabels = 4
+                graph.title="Presion"
+                graph.addSeries(series)
+            }
+        }
+    }
+
+    private fun changeGraphicsSpeed(index:Int,pointEntity: PointEntity,graph:GraphView,series:LineGraphSeries<DataPoint>){
+        when (index){
+            0->{
+                graph.removeAllSeries()
+                getDataPointsSpeed(pointEntity)
+                series.resetData(arrayOf<DataPoint>())
+                for(i in arrayPointsSpeed.indices) {
+                    series.appendData(
+                        DataPoint(Date(arrayPointsSpeed[i].startedAt), arrayPointsSpeed[i].value.toDouble()),
+                        true,
+                        arrayPointsSpeed.size
+                    )
+                }
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this@GraphicPatientDetatilActivity)
+                graph.gridLabelRenderer.numHorizontalLabels = 5
+                graph.title="Velocidad1"
+                graph.addSeries(series)
+            }
+            1 ->{
+                graph.removeAllSeries()
+                getDataPointsSpeed(pointEntity)
+                series.resetData(arrayOf<DataPoint>())
+                for(i in arrayPointsSpeed.indices) {
+                    if(Date(arrayPointsSpeed[i].startedAt)>getLastHour()){
+                        series.appendData(
+                            DataPoint(Date(arrayPointsSpeed[i].startedAt), arrayPointsSpeed[i].value.toDouble()),
+
+                            true,
+                            arrayPointsSpeed.size
+                        )
+                    }
+                }
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this@GraphicPatientDetatilActivity)
+                graph.gridLabelRenderer.numHorizontalLabels = 4
+                graph.title="Velocidad"
+                graph.addSeries(series)
+            }
+            2 ->{
+                graph.removeAllSeries()
+                getDataPointsSpeed(pointEntity)
+                series.resetData(arrayOf<DataPoint>())
+                for(i in arrayPointsSpeed.indices) {
+                    if(Date(arrayPointsSpeed[i].startedAt)>getLastDay()){
+                        series.appendData(
+                            DataPoint(Date(arrayPointsSpeed[i].startedAt), arrayPointsSpeed[i].value.toDouble()),
+
+                            true,
+                            arrayPointsSpeed.size
+                        )
+                    }
+                }
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this@GraphicPatientDetatilActivity)
+                graph.gridLabelRenderer.numHorizontalLabels = 4
+                graph.title="Velocidad"
+                graph.addSeries(series)
+            }
+            3 ->{
+                graph.removeAllSeries()
+                getDataPointsSpeed(pointEntity)
+                series.resetData(arrayOf<DataPoint>())
+                for(i in arrayPointsSpeed.indices) {
+                    if(Date(arrayPointsSpeed[i].startedAt)>getLastWeek()){
+                        series.appendData(
+                            DataPoint(Date(arrayPointsSpeed[i].startedAt), arrayPointsSpeed[i].value.toDouble()),
+
+                            true,
+                            arrayPointsSpeed.size
+                        )
+                    }
+                }
+                graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this@GraphicPatientDetatilActivity)
+                graph.gridLabelRenderer.numHorizontalLabels = 4
+                graph.title="Velocidad"
+                graph.addSeries(series)
+            }
+        }
+    }
+
 /*
     private fun dataMockeadaForce(index:Int) {
 

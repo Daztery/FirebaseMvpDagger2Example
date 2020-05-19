@@ -449,7 +449,6 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
         onResult: (PointEntity) -> Unit
     ) {
 
-
         database.reference.child(KEY_THERAPY_SESSION_SPEED).orderByChild("patientId").equalTo(patientId)
             .addChildEventListener(object : ChildEventListener {
                 override fun onCancelled(error: DatabaseError) = Unit
