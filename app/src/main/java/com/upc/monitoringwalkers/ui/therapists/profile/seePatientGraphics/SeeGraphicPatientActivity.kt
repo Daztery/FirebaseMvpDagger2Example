@@ -44,10 +44,10 @@ class SeeGraphicPatientActivity : BaseActivity(),
     private fun initUi() {
 
         presenter.viewReady(patientId)
-        val optionsForce= arrayOf("Presión - Toda los datos","Presión - Última hora","Presión - Último día","Presión - Última semana")
+        val optionsForce= arrayOf("Todos los datos","Presión - Última hora","Presión - Último día","Presión - Última semana")
         spinner_options.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,optionsForce)
 
-        val optionsSpeed= arrayOf("Velocidad - Toda los datos","Velocidad - Última hora","Velocidad - Último día","Velocidad - Última semana")
+        val optionsSpeed= arrayOf("Todos los datos","Velocidad - Última hora","Velocidad - Último día","Velocidad - Última semana")
         spinner_options2.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,optionsSpeed)
 
     }
